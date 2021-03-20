@@ -12,7 +12,7 @@ const Description = styled.p`
 `;
 
 const VideoDescription = (props) => {
-  return <Description>{props.description}</Description>;
+  return <Description role="paragraph">{props.description}</Description>;
 };
 
 VideoDescription.propTypes = {

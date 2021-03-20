@@ -5,7 +5,7 @@ import VideoTitle from "./VideoTitle";
 import VideoChannel from "./VideoChannel";
 import VideoDescription from "./VideoDescription";
 
-const Details = styled.div`
+const Details = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
