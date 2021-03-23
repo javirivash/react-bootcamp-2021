@@ -17,7 +17,7 @@ const Content = styled.main`
 
   .mainTitle {
     font-family: "Oswald", sans-serif;
-    font-size: 3rem;
+    font-size: 48px;
     text-align: center;
     margin: 60px auto 35px;
   }

@@ -6,9 +6,9 @@ const Input = styled.input`
   color: #c0c0c0;
   background-color: #202020;
   border-radius: 3px;
-  margin: 0 auto 0 0.6rem;
-  width: 25rem;
-  padding: 0.5rem;
+  margin: 0 auto;
+  width: 300px;
+  padding: 8px;
 `;
 
 const Search = () => {

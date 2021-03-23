@@ -7,18 +7,19 @@ import ThemeToggle from "./ThemeToggle";
 
 const Container = styled.nav`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #101010;
-  height: 4rem;
-  padding: 1rem;
+  height: 64px;
+  padding: 16px;
 
   * {
+    text-align: center;
     border: none;
-    height: 2.2rem;
+    height: 34px;
   }
 
   *:focus {
