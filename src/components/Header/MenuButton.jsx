@@ -10,11 +10,11 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: #202020;
+    background-color: #181818;
   }
 
   :active {
-    background-color: #080808;
+    color: #d0d0d0;
   }
 
   @media only screen and (max-width: 580px) {
