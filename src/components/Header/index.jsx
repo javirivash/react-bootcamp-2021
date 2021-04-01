@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import MenuButton from "./MenuButton";
-import Search from "./Search";
-import LoginButton from "./LoginButton";
-import ThemeToggle from "./ThemeToggle";
+import MenuButton from "./_children/MenuButton";
+import Search from "./_children/Search";
+import LoginButton from "./_children/LoginButton";
+import ThemeToggle from "./_children/ThemeToggle";
 
 const Container = styled.nav`
   display: flex;

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import VideoDetails from "./VideoDetails";
-import snippet from "./snippet.json";
+import snippet from "../snippet.json";
 
 describe("VideoDetails", () => {
   test("video title is in the document", () => {

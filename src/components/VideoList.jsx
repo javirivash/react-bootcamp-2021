@@ -11,7 +11,7 @@ const ItemsContainer = styled.article`
   margin: auto;
 `;
 
-const Videos = ({ data }) => {
+const VideoList = ({ data }) => {
   return (
     <ItemsContainer>
       {data.items.map((item) => (
@@ -21,8 +21,8 @@ const Videos = ({ data }) => {
   );
 };
 
-Videos.propTypes = {
+VideoList.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default Videos;
+export default VideoList;

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Header from "./Header";
-import Videos from "./Videos";
+import VideoList from "./VideoList";
 import styled, { createGlobalStyle } from "styled-components";
 import data from "../mock/youtube-videos-mock.json";
 
@@ -31,7 +31,7 @@ function App() {
         <Header />
         <Content>
           <h1 className="mainTitle">Welcome to YouTubit</h1>
-          <Videos data={data} />
+          <VideoList data={data} />
         </Content>
       </div>
     </Fragment>
