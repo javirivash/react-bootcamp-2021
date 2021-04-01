@@ -36,7 +36,7 @@ const Form = styled.form`
   }
 `;
 
-const Search = ({ handleSearch }) => {
+const Search = ({ handleSearch, handleShowSearch }) => {
   const [text, setText] = useState("");
 
   const onChange = (e) => {
@@ -47,6 +47,7 @@ const Search = ({ handleSearch }) => {
     e.preventDefault();
     if (text !== "") {
       handleSearch(text);
+      handleShowSearch(true);
       setText("");
     } else {
       console.log("Enter a search text");
@@ -75,6 +76,7 @@ const Search = ({ handleSearch }) => {
 
 Search.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  handleShowSearch: PropTypes.func.isRequired,
 };
 
 export default Search;
