@@ -4,15 +4,19 @@ import { useState, useEffect } from "react";
 
 const useApiSearch = (searchText, selectedVideo) => {
   const [isClientInit, setIsClientInit] = useState(false);
-  const [resultVideos, setResultVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [relatedVideos, setRelatedVideos] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // eslint-disable-next-line no-undef
   const apiKey = process.env.REACT_APP_API_KEY;
   let discovery = {};
 
-  const handleClientState = (initBoolean) => {
-    setIsClientInit(initBoolean);
+  const validateItems = (items) => {
+    const validatedItems = items.filter((item) => {
+      return item.snippet && item.id?.videoId;
+    });
+    return validatedItems.slice(0, 24);
   };
 
   const handleClientLoad = async () => {
@@ -22,33 +26,39 @@ const useApiSearch = (searchText, selectedVideo) => {
         "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
       );
       discovery = await response.json();
-      gapi.load("client", handleClientInit);
+      gapi.load("client", () => {
+        handleClientInit(searchText);
+      });
     } catch (error) {
+      setLoading(false);
       console.error("handleClientLoad: Something went wrong... ", error);
     }
   };
 
-  const handleClientInit = async () => {
+  const handleClientInit = async (query) => {
     try {
       await gapi.client.init({
         apiKey: apiKey,
         discoveryDocs: [discovery],
       });
-      handleClientState(true);
+      setIsClientInit(true);
+      searchRequest(query);
     } catch (error) {
+      setLoading(false);
       console.error("handleClientInit: Something went wrong... ", error);
     }
   };
 
-  const searchRequest = async () => {
+  const searchRequest = async (query) => {
     try {
+      setLoading(true);
       const response = await gapi.client.youtube.search.list({
         part: ["snippet"],
-        maxResults: 24,
-        q: searchText,
+        maxResults: 50,
+        q: query,
         type: ["video"],
       });
-      setResultVideos(response.result.items);
+      setSearchResults(validateItems(response.result.items));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -56,17 +66,16 @@ const useApiSearch = (searchText, selectedVideo) => {
     }
   };
 
-  const searchRelated = async () => {
+  const searchRelated = async (selectedVideo) => {
     try {
-      console.log("searchRelated called with video: ", selectedVideo);
       setLoading(true);
       const response = await gapi.client.youtube.search.list({
         part: ["snippet"],
-        maxResults: 24,
+        maxResults: 50,
         type: ["video"],
         relatedToVideoId: selectedVideo.id,
       });
-      setResultVideos(response.result.items);
+      setRelatedVideos(validateItems(response.result.items));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -75,24 +84,20 @@ const useApiSearch = (searchText, selectedVideo) => {
   };
 
   useEffect(() => {
-    isClientInit
-      ? searchRequest()
-      : async () => {
-          await handleClientLoad();
-          searchRequest();
-        };
+    if (isClientInit) {
+      searchRequest(searchText);
+    } else {
+      handleClientLoad();
+    }
   }, [searchText]);
 
   useEffect(() => {
-    isClientInit
-      ? searchRelated()
-      : async () => {
-          await handleClientLoad();
-          searchRelated();
-        };
+    if (isClientInit) {
+      searchRelated(selectedVideo);
+    }
   }, [selectedVideo]);
 
-  return [resultVideos, loading];
+  return [searchResults, relatedVideos, loading];
 };
 
 export default useApiSearch;
