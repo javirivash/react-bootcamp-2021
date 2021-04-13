@@ -1,3 +1,4 @@
 export const GET_RESULT_VIDEOS = "GET_RESULT_VIDEOS";
 export const GET_RELATED_VIDEOS = "GET_RELATED_VIDEOS";
 export const SET_LOADING = "SET_LOADING";
+export const TOGGLE_THEME = "TOGGLE_THEME";
