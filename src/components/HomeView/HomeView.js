@@ -30,14 +30,14 @@ const HomeView = () => {
     handleInitGapi();
   }, []);
 
-  const title = `Showing search results for "${searchText}"`;
+  const listTitle = `Showing search results for "${searchText}"`;
 
   return (
     !showPlayer &&
     !loading && (
       <div>
         <MainTitle>Welcome to Youtubit</MainTitle>
-        <VideoList title={title} videos={resultVideos}></VideoList>
+        <VideoList listTitle={listTitle} videos={resultVideos}></VideoList>
       </div>
     )
   );

@@ -5,7 +5,7 @@ import PlayerDetails from "./_children/PlayerDetails";
 import VideoList from "../VideoList";
 import AppContext from "../../context/appContext";
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   margin: 64px auto 0;
   width: 100%;
 `;
@@ -19,11 +19,11 @@ const PlayerView = () => {
   return (
     showPlayer &&
     !loading && (
-      <Container>
+      <StyledContainer>
         <Player />
         <PlayerDetails />
         <VideoList title={title} videos={relatedVideos} />
-      </Container>
+      </StyledContainer>
     )
   );
 };
