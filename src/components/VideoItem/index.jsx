@@ -7,16 +7,17 @@ import AppContext from "../../context/appContext";
 
 const StyledItem = styled.div`
   display: flex;
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.item};
   border-radius: 4px;
   margin: 0 20px 20px 0;
   padding: 15px;
   height: 180px;
+  width: 100%;
   max-width: 430px;
   cursor: pointer;
 
   :hover {
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.theme.itemHover};
   }
 `;
 
@@ -29,12 +30,10 @@ const VideoItem = ({ id, snippet }) => {
   };
 
   return (
-    <div role="videoItem" onClick={onClick}>
-      <StyledItem>
-        <VideoDetails snippet={snippet} />
-        <VideoThumbnail thumbnails={snippet.thumbnails} />
-      </StyledItem>
-    </div>
+    <StyledItem role="videoItem" onClick={onClick}>
+      <VideoDetails snippet={snippet} />
+      <VideoThumbnail thumbnails={snippet.thumbnails} />
+    </StyledItem>
   );
 };
 
