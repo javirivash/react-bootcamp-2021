@@ -29,10 +29,8 @@ const AppState = (props) => {
 
   // HANDLE INIT GAPI
   const handleInitGapi = async () => {
-    initGapi();
-    setTimeout(() => {
-      getResultVideos(state.searchText);
-    }, 1000);
+    await initGapi();
+    getResultVideos(state.searchText);
   };
 
   // GET RESULT VIDEOS
@@ -47,9 +45,7 @@ const AppState = (props) => {
         q: query,
         type: ["video"],
       });
-      console.log("Response items: ", response.result.items);
       items = validateItems(response.result.items);
-      console.log("Validated items: ", items);
     } catch (error) {
       console.error("getResultVideos: Something went wrong... ", error);
     }
