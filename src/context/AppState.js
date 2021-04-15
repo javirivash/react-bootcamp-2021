@@ -29,7 +29,7 @@ const AppState = (props) => {
 
   // HANDLE INIT GAPI
   const handleInitGapi = async () => {
-    await initGapi();
+    console.log(await initGapi());
     getResultVideos(state.searchText);
   };
 

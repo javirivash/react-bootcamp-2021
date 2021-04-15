@@ -19,6 +19,10 @@ const StyledItem = styled.div`
   :hover {
     background-color: ${(props) => props.theme.itemHover};
   }
+
+  @media only screen and (max-width: 530px) {
+    margin: 0 0 20px 0;
+  }
 `;
 
 const VideoItem = ({ video }) => {
