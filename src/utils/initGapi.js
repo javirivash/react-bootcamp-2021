@@ -16,7 +16,7 @@ const initGapi = async () => {
         apiKey: apiKey,
         discoveryDocs: [discovery],
       });
-      resolve(5);
+      resolve();
     } catch (error) {
       console.error("handleClientInit: Something went wrong... ", error);
     }
