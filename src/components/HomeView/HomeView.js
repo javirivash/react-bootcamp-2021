@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import VideoList from "../VideoList";
-import AppContext from "../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 import styled from "styled-components";
 
 const MainTitle = styled.h1`
@@ -17,27 +17,26 @@ const MainTitle = styled.h1`
 `;
 
 const HomeView = () => {
-  const appContext = useContext(AppContext);
   const {
     searchText,
     resultVideos,
     showPlayer,
     loading,
     handleInitGapi,
-  } = appContext;
+  } = useAppContext();
 
   useEffect(() => {
     handleInitGapi();
   }, []);
 
-  const listTitle = `Showing search results for "${searchText}"`;
+  const searchTitle = `Showing search results for "${searchText}"`;
 
   return (
     !showPlayer &&
     !loading && (
       <div>
         <MainTitle>Welcome to Youtubit</MainTitle>
-        <VideoList listTitle={listTitle} videos={resultVideos}></VideoList>
+        <VideoList listTitle={searchTitle} videos={resultVideos}></VideoList>
       </div>
     )
   );

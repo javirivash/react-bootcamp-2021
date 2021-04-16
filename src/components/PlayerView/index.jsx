@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import Player from "./_children/Player";
 import PlayerDetails from "./_children/PlayerDetails";
 import VideoList from "../VideoList";
-import AppContext from "../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 
 const StyledContainer = styled.div`
   margin: 64px auto 0;
@@ -11,10 +11,9 @@ const StyledContainer = styled.div`
 `;
 
 const PlayerView = () => {
-  const appContext = useContext(AppContext);
-  const { showPlayer, loading, relatedVideos } = appContext;
+  const { showPlayer, loading, relatedVideos } = useAppContext();
 
-  const listTitle = "More videos you may like";
+  const relatedTitle = "More videos you may like";
 
   return (
     showPlayer &&
@@ -22,7 +21,7 @@ const PlayerView = () => {
       <StyledContainer>
         <Player />
         <PlayerDetails />
-        <VideoList listTitle={listTitle} videos={relatedVideos} />
+        <VideoList listTitle={relatedTitle} videos={relatedVideos} />
       </StyledContainer>
     )
   );

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import AppContext from "../../context/appContext";
+import React from "react";
+import { useAppContext } from "../../context/appContext";
 import spinner from "./spinner.gif";
 import styled from "styled-components";
 
@@ -10,8 +10,7 @@ const StyledSpinner = styled.img`
   display: block;
 `;
 const Spinner = () => {
-  const appContext = useContext(AppContext);
-  const { loading } = appContext;
+  const { loading } = useAppContext();
 
   return loading && <StyledSpinner src={spinner} alt="Loading..." />;
 };
