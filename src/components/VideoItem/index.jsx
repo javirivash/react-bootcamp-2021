@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import VideoDetails from "./_children/VideoDetails";
 import VideoThumbnail from "./_children/VideoThumbnail";
-import AppContext from "../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 
 const StyledItem = styled.div`
   display: flex;
@@ -26,8 +26,7 @@ const StyledItem = styled.div`
 `;
 
 const VideoItem = ({ video }) => {
-  const appContext = useContext(AppContext);
-  const { getRelatedVideos } = appContext;
+  const { getRelatedVideos } = useAppContext();
 
   const onClick = () => {
     getRelatedVideos(video);
