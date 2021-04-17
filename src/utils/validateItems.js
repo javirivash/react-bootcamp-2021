@@ -7,7 +7,7 @@ const validateItems = (items) => {
     return text.replace(/&#34;/g, '"').replace(/&#39;/g, "'");
   };
 
-  return filteredItems.slice(0, 24).map((item) => {
+  const validatedItems = filteredItems.slice(0, 24).map((item) => {
     const {
       title,
       description,
@@ -25,6 +25,7 @@ const validateItems = (items) => {
       thumbnail: url,
     };
   });
+  return validatedItems;
 };
 
 export default validateItems;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Player from "./_children/Player";
 import PlayerDetails from "./_children/PlayerDetails";
 import VideoList from "../VideoList";
-import { useAppContext } from "../../context/appContext";
+import { useAppContext } from "../../context/app/appContext";
 
 const StyledContainer = styled.div`
   margin: 64px auto 0;
