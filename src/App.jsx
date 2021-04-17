@@ -4,7 +4,9 @@ import Spinner from "./components/layout/Spinner";
 import HomeView from "./components/HomeView/HomeView";
 import PlayerView from "./components/PlayerView";
 import styled from "styled-components";
-import AppState from "./context/AppState";
+import AppState from "./context/app/AppState";
+import AlertState from "./context/alert/AlertState";
+import Alert from "./components/layout/Alert";
 
 const Content = styled.div`
   background-color: ${(props) => props.theme.background};
@@ -18,16 +20,19 @@ const Content = styled.div`
 
 const App = () => {
   return (
-    <AppState>
-      <div className="App">
-        <Header />
-        <Content>
-          <Spinner />
-          <HomeView />
-          <PlayerView />
-        </Content>
-      </div>
-    </AppState>
+    <AlertState>
+      <AppState>
+        <div className="App">
+          <Header />
+          <Alert />
+          <Content>
+            <Spinner />
+            <HomeView />
+            <PlayerView />
+          </Content>
+        </div>
+      </AppState>
+    </AlertState>
   );
 };
 

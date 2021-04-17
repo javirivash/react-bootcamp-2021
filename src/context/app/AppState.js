@@ -3,8 +3,9 @@
 import React, { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
-import validateItems from "../utils/validateItems";
-import initGapi from "../utils/initGapi";
+import validateItems from "../../utils/validateItems";
+import initGapi from "../../utils/initGapi";
+import { useAlertContext } from "../alert/alertContext";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes";
 import {
@@ -12,9 +13,9 @@ import {
   GET_RELATED_VIDEOS,
   SET_LOADING,
   TOGGLE_THEME,
-} from "./types";
+} from "../types";
 
-const AppState = (props) => {
+const AppState = ({ children }) => {
   const initialState = {
     searchText: "Moonwalk",
     resultVideos: [],
@@ -26,6 +27,7 @@ const AppState = (props) => {
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const { setAlert } = useAlertContext();
 
   // HANDLE INIT GAPI
   const handleInitGapi = async () => {
@@ -47,6 +49,8 @@ const AppState = (props) => {
       });
       items = validateItems(response.result.items);
     } catch (error) {
+      items = [];
+      setAlert("Error: Failed fetching results");
       console.error("getResultVideos: Something went wrong... ", error);
     }
 
@@ -62,7 +66,7 @@ const AppState = (props) => {
     let items;
 
     try {
-      const response = await gapi.client.youtube.search.list({
+      const response = await gapi.client.youtube.search.lis({
         part: ["snippet"],
         maxResults: 50,
         type: ["video"],
@@ -70,6 +74,8 @@ const AppState = (props) => {
       });
       items = validateItems(response.result.items);
     } catch (error) {
+      items = [];
+      setAlert("Error: Failed fetching results");
       console.error("getRelatedVideos: Something went wrong... ", error);
     }
 
@@ -103,7 +109,7 @@ const AppState = (props) => {
     >
       <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />
-        {props.children}
+        {children}
       </ThemeProvider>
     </AppContext.Provider>
   );
