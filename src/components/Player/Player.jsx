@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppContext } from "../../../context/app/appContext";
+import { useAppContext } from "../../context/app/appContext";
 
 const StyledContainer = styled.div`
   max-width: 950px;
