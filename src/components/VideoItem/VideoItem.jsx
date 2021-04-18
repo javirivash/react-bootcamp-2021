@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import VideoDetails from "./_children/VideoDetails";
+import VideoItemDetails from "./_children/VideoItemDetails";
 import VideoThumbnail from "./_children/VideoThumbnail";
 import { useAppContext } from "../../context/app/appContext";
 
@@ -37,7 +37,7 @@ const VideoItem = ({ video }) => {
 
   return (
     <StyledItem role="videoItem" onClick={onClick}>
-      <VideoDetails video={video} />
+      <VideoItemDetails video={video} />
       <VideoThumbnail thumbnail={video.thumbnail} />
     </StyledItem>
   );

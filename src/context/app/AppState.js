@@ -17,7 +17,7 @@ import {
 
 const AppState = ({ children }) => {
   const initialState = {
-    searchText: "Moonwalk",
+    searchText: "Tiny Desk",
     resultVideos: [],
     selectedVideo: {},
     relatedVideos: [],

@@ -6,7 +6,7 @@ const StyledAlert = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   z-index: 1;
   top: 64px;
   background-color: rgb(24, 24, 24, 0.99);
