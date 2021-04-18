@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useAppContext } from "../../../context/app/appContext";
 import { useAlertContext } from "../../../context/alert/alertContext";
@@ -39,8 +40,13 @@ const Form = styled.form`
 
 const Search = () => {
   const [text, setText] = useState("");
-  const { getResultVideos } = useAppContext();
+  const { getResultVideos, handleInitGapi } = useAppContext();
   const { setAlert } = useAlertContext();
+  const history = useHistory();
+
+  useEffect(() => {
+    handleInitGapi();
+  }, []);
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -53,6 +59,7 @@ const Search = () => {
     e.preventDefault();
     if (text !== "") {
       getResultVideos(text);
+      history.push("/");
       document.getElementById("text").select();
     } else {
       setAlert("Enter a search text");

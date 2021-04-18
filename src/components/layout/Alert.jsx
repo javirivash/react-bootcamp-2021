@@ -20,14 +20,14 @@ const StyledAlert = styled.div`
   }
 `;
 
-const StyledIcon = styled.span`
+const StyledIcon = styled.i`
   margin-right: 10px;
 `;
 const StyledMessage = styled.h1`
   font-family: "Roboto", sans-serif;
   margin-right: auto;
 `;
-const StyledButton = styled.span`
+const StyledButton = styled.i`
   cursor: pointer;
 `;
 

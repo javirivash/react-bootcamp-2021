@@ -12,7 +12,6 @@ export default (state, action) => {
         ...state,
         searchText: action.payload.query,
         resultVideos: action.payload.items,
-        showPlayer: false,
         loading: false,
       };
     case GET_RELATED_VIDEOS:
@@ -20,7 +19,6 @@ export default (state, action) => {
         ...state,
         selectedVideo: action.payload.video,
         relatedVideos: action.payload.items,
-        showPlayer: true,
         loading: false,
       };
     case SET_LOADING:

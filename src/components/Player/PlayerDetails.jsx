@@ -1,7 +1,7 @@
 import React from "react";
-import { useAppContext } from "../../../context/app/appContext";
+import { useAppContext } from "../../context/app/appContext";
+import { StyledTitle } from "../VideoList/VideoList";
 import styled from "styled-components";
-import { StyledTitle } from "../../VideoList";
 
 const StyledContainer = styled.div`
   font-family: "DM Sans", sans-serif;

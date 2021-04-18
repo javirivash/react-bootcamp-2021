@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import VideoDetails from "./_children/VideoDetails";
@@ -27,9 +28,11 @@ const StyledItem = styled.div`
 
 const VideoItem = ({ video }) => {
   const { getRelatedVideos } = useAppContext();
+  const history = useHistory();
 
   const onClick = () => {
     getRelatedVideos(video);
+    history.push("/player");
   };
 
   return (
