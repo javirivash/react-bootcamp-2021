@@ -23,7 +23,7 @@ const App = () => {
     <AlertState>
       <AppState>
         <Router>
-          <div className="App">
+          <div id="App">
             <Header />
             <Alert />
             <StyledContainer>
