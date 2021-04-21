@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAppContext } from "../../../context/app/appContext";
-import AriaModal from "react-aria-modal";
+import Modal from "../../layout/Modal";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -23,50 +23,27 @@ const StyledButton = styled.button`
 `;
 
 const LoginButton = () => {
-  const [isModalActive, setIsModalActive] = useState(false);
-  const { searchText } = useAppContext();
+  const {
+    currentUser,
+    shouldShowLogin,
+    activateLogin,
+    logOutUser,
+  } = useAppContext();
 
-  const activateModal = () => {
-    setIsModalActive(true);
+  const onClick = () => {
+    if (!currentUser.id) {
+      activateLogin();
+    } else {
+      logOutUser();
+    }
   };
-  const deactivateModal = () => {
-    setIsModalActive(false);
-  };
-  const getApplicationNode = () => {
-    return document.getElementById("App");
-  };
-
-  const modal = isModalActive ? (
-    <AriaModal
-      titleText="demo one"
-      verticallyCenter={true}
-      initialFocus="#usernameTextbox"
-      underlayStyle={{ paddingTop: "2em" }}
-      onExit={deactivateModal}
-      getApplicationNode={getApplicationNode}
-    >
-      <div id="demo-one-modal" className="modal">
-        <div className="modal-body">
-          <h1>{searchText}</h1>
-          <p>
-            Here is a modal <a href="#">with</a> <a href="#">some</a>{" "}
-            <a href="#">focusable</a> parts.
-          </p>
-        </div>
-        <footer className="modal-footer">
-          <button id="demo-one-deactivate" onClick={activateModal}>
-            deactivate modal
-          </button>
-        </footer>
-      </div>
-    </AriaModal>
-  ) : (
-    false
-  );
 
   return (
     <div>
-      <StyledButton onClick={activateModal}>Log in</StyledButton>;{modal}
+      <StyledButton onClick={onClick}>
+        {!currentUser.id ? "Sign up" : "Log out"}
+      </StyledButton>
+      {shouldShowLogin && <Modal />}
     </div>
   );
 };
