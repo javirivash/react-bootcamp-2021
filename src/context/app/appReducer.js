@@ -5,9 +5,12 @@ import {
   TOGGLE_THEME,
   ACTIVATE_LOGIN,
   DEACTIVATE_LOGIN,
+  TOGGLE_MENU,
   SIGN_UP_USER,
   LOG_IN_USER,
   LOG_OUT_USER,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
 } from "../types";
 
 export default (state, action) => {
@@ -46,20 +49,38 @@ export default (state, action) => {
         ...state,
         shouldShowLogin: false,
       };
+    case TOGGLE_MENU:
+      return {
+        ...state,
+        shouldShowMenu: action.payload,
+      };
     case SIGN_UP_USER:
       return {
         ...state,
         currentUser: action.payload,
+        currentFavorites: [],
       };
     case LOG_IN_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: action.payload.user,
+        currentFavorites: action.payload.favorites,
       };
     case LOG_OUT_USER:
       return {
         ...state,
         currentUser: {},
+        currentFavorites: [],
+      };
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        currentFavorites: action.payload,
+      };
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        currentFavorites: action.payload,
       };
     default:
       return state;

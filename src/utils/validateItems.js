@@ -26,6 +26,7 @@ const validateItems = (items) => {
       description: restoreCharacters(description),
       channelTitle: restoreCharacters(channelTitle),
       thumbnail: url,
+      isFavorite: false,
     };
   });
   return validatedItems;
