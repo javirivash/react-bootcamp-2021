@@ -1,4 +1,5 @@
 import React from "react";
+import { useAppContext } from "../../../context/app/appContext";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -6,12 +7,15 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 3px;
-  margin-right: 90px;
+  margin-right: 94px;
   width: 34px;
   cursor: pointer;
   opacity: 0.7;
 
   :hover {
+    opacity: 1;
+  }
+  :focus {
     opacity: 1;
   }
 
@@ -21,7 +25,15 @@ const StyledButton = styled.button`
 `;
 
 const MenuButton = () => {
-  return <StyledButton className="material-icons">menu</StyledButton>;
+  const { shouldShowMenu, toggleMenu } = useAppContext();
+  const onClick = () => {
+    toggleMenu();
+  };
+  return (
+    <StyledButton onClick={onClick} className="material-icons">
+      {shouldShowMenu ? "close" : "menu"}
+    </StyledButton>
+  );
 };
 
 export default MenuButton;

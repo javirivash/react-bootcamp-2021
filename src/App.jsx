@@ -1,12 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import AlertState from "./context/alert/AlertState";
 import AppState from "./context/app/AppState";
 import styled from "styled-components";
 import Header from "./components/Header/Header";
 import Alert from "./components/layout/Alert";
-import HomeView from "./pages/HomeView";
-import PlayerView from "./pages/PlayerView";
+import HomeView from "./components/pages/HomeView";
+import PlayerView from "./components/pages/PlayerView";
+import FavoritesView from "./components/pages/FavoritesView";
+import FavoritesPlayer from "./components/pages/FavoritesPlayer";
+import PrivateRoute from "./components/pages/PrivateRoute";
+import NotFound from "./components/pages/NotFound";
 
 const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.background};
@@ -28,8 +32,19 @@ const App = () => {
             <Alert />
             <StyledContainer>
               <Switch>
-                <Route exact path="/" component={HomeView} />
+                <PrivateRoute
+                  exact
+                  path="/favorites/player"
+                  component={FavoritesPlayer}
+                />
+                <PrivateRoute
+                  exact
+                  path="/favorites"
+                  component={FavoritesView}
+                />
                 <Route exact path="/player" component={PlayerView} />
+                <Route exact path="/" component={HomeView} />
+                <Route component={NotFound} />
               </Switch>
             </StyledContainer>
           </div>

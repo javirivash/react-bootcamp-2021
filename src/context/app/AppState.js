@@ -16,18 +16,23 @@ import {
   TOGGLE_THEME,
   ACTIVATE_LOGIN,
   DEACTIVATE_LOGIN,
+  TOGGLE_MENU,
   SIGN_UP_USER,
   LOG_IN_USER,
   LOG_OUT_USER,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
 } from "../types";
 
 const AppState = ({ children }) => {
   const initialState = {
-    searchText: "Tiny Desk",
+    searchText: "Wizeline Academy",
     resultVideos: [],
     selectedVideo: {},
     relatedVideos: [],
     currentUser: {},
+    currentFavorites: [],
+    shouldShowMenu: false,
     shouldShowLogin: false,
     loading: true,
     theme: "light",
@@ -72,19 +77,22 @@ const AppState = ({ children }) => {
   const getRelatedVideos = async (video) => {
     setLoading();
     let items;
-
-    try {
-      const response = await gapi.client.youtube.search.list({
-        part: ["snippet"],
-        maxResults: 50,
-        type: ["video"],
-        relatedToVideoId: video.id,
-      });
-      items = validateItems(response.result.items);
-    } catch (error) {
-      items = [];
-      setAlert("Error: Failed fetching results");
-      console.error("getRelatedVideos: Something went wrong... ", error);
+    if (!video.isFavorite) {
+      try {
+        const response = await gapi.client.youtube.search.list({
+          part: ["snippet"],
+          maxResults: 50,
+          type: ["video"],
+          relatedToVideoId: video.id,
+        });
+        items = validateItems(response.result.items);
+      } catch (error) {
+        items = [];
+        setAlert("Error: Failed fetching results");
+        console.error("getRelatedVideos: Something went wrong... ", error);
+      }
+    } else {
+      items = state.relatedVideos;
     }
 
     dispatch({
@@ -114,6 +122,12 @@ const AppState = ({ children }) => {
     dispatch({ type: DEACTIVATE_LOGIN });
   };
 
+  //TOGGLE MENU
+  const toggleMenu = () => {
+    const updatedState = !state.shouldShowMenu;
+    dispatch({ type: TOGGLE_MENU, payload: updatedState });
+  };
+
   // SIGN UP USER
   const signUpUser = async (email, password) => {
     let user;
@@ -141,6 +155,7 @@ const AppState = ({ children }) => {
   // LOG IN USER
   const logInUser = async (email, password) => {
     let user;
+    let favorites;
     try {
       const userCredential = await firebase
         .auth()
@@ -149,6 +164,7 @@ const AppState = ({ children }) => {
         id: userCredential.user.uid,
         email: userCredential.user.email,
       };
+      favorites = await getFavorites(userCredential.user.uid);
       deactivateLogin();
       setAlert(`You've successfully logged in as ${user.email}`);
     } catch (error) {
@@ -158,7 +174,7 @@ const AppState = ({ children }) => {
 
     dispatch({
       type: LOG_IN_USER,
-      payload: user,
+      payload: { user, favorites },
     });
   };
 
@@ -176,6 +192,60 @@ const AppState = ({ children }) => {
     });
   };
 
+  // ADD FAVORITE
+  const addFavorite = async (video) => {
+    const userId = state.currentUser.id;
+    const userData = firebase.database().ref("users/" + userId);
+    let updatedFavorites;
+    try {
+      await userData.child(video.id).set(video);
+      updatedFavorites = await getFavorites(userId);
+      setAlert("Added to Favorites");
+    } catch (error) {
+      setAlert("There was an error while adding to Favorites");
+    }
+
+    dispatch({
+      type: ADD_FAVORITE,
+      payload: updatedFavorites,
+    });
+  };
+
+  // REMOVE FAVORITE
+  const removeFavorite = async (videoId) => {
+    const userId = state.currentUser.id;
+    const userData = firebase.database().ref("users/" + userId);
+    let updatedFavorites;
+    try {
+      await userData.child(videoId).remove();
+      updatedFavorites = await getFavorites(userId);
+      setAlert("Removed from Favorites");
+    } catch (error) {
+      setAlert("There was an error while removing from Favorites");
+    }
+    dispatch({
+      type: REMOVE_FAVORITE,
+      payload: updatedFavorites,
+    });
+  };
+
+  // GET_FAVORITES
+  const getFavorites = async (userId) => {
+    const userData = firebase.database().ref("users/" + userId);
+    let favorites;
+    try {
+      const snapshot = await userData.get();
+      if (snapshot.val()) {
+        favorites = Object.values(snapshot.val());
+      }
+    } catch (error) {
+      setAlert("There was an error getting Favorites: ");
+      console.error(error);
+    }
+    if (!favorites) return [];
+    return favorites;
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -187,9 +257,12 @@ const AppState = ({ children }) => {
         toggleTheme,
         activateLogin,
         deactivateLogin,
+        toggleMenu,
         signUpUser,
         logInUser,
         logOutUser,
+        addFavorite,
+        removeFavorite,
       }}
     >
       <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>

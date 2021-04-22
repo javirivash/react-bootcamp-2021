@@ -16,6 +16,11 @@ const StyledButton = styled.button`
     background-color: transparent;
     opacity: 1;
   }
+  :focus {
+    color: #c0c0c0;
+    background-color: transparent;
+    opacity: 1;
+  }
 `;
 
 const ThemeToggle = () => {

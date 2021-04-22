@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAppContext } from "../context/app/appContext";
+import { useAppContext } from "../../context/app/appContext";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -9,8 +9,8 @@ const StyledForm = styled.form`
   background-color: ${(props) => props.theme.dialog};
   border-radius: 5px;
   height: 400px;
-  width: 300px;
-  padding: 20px;
+  width: 360px;
+  padding: 25px;
 
   * {
     color: ${(props) => props.theme.primaryText};
@@ -22,10 +22,14 @@ const StyledForm = styled.form`
   }
 `;
 const StyledExit = styled.button`
-  align-self: flex-end;
+  align-self: flex-start;
   font-size: 14px;
   background: none;
   cursor: pointer;
+`;
+const StyledFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 const StyledHeader = styled.h1`
   font-family: "Roboto", sans-serif;
@@ -71,9 +75,10 @@ const StyledLogin = styled.button`
 const StyledReturn = styled.button`
   font-family: "Roboto", sans-serif;
   font-size: 14px;
-  padding: 10px 10px 10px 0;
+  padding: 8px 8px 8px 0;
   opacity: 0.6;
   background: none;
+  height: 16px;
   cursor: pointer;
   :hover {
     opacity: 1;
@@ -111,13 +116,16 @@ const LoginView = () => {
 
   return shouldShowSignup ? (
     <StyledForm onSubmit={handleSignup}>
-      <StyledExit
-        type="button"
-        onClick={deactivateLogin}
-        className="material-icons"
-      >
-        close
-      </StyledExit>
+      <StyledFlex>
+        <span className="material-icons">verified_user</span>
+        <StyledExit
+          type="button"
+          onClick={deactivateLogin}
+          className="material-icons"
+        >
+          close
+        </StyledExit>
+      </StyledFlex>
       <div>
         <StyledHeader>Enter a new email and password</StyledHeader>
         <StyledInput
@@ -147,13 +155,16 @@ const LoginView = () => {
     </StyledForm>
   ) : (
     <StyledForm onSubmit={handleLogin}>
-      <StyledExit
-        type="button"
-        onClick={deactivateLogin}
-        className="material-icons"
-      >
-        close
-      </StyledExit>
+      <StyledFlex>
+        <span className="material-icons">verified_user</span>
+        <StyledExit
+          type="button"
+          onClick={deactivateLogin}
+          className="material-icons"
+        >
+          close
+        </StyledExit>
+      </StyledFlex>
       <div>
         <StyledHeader>Enter your email and password</StyledHeader>
         <StyledInput

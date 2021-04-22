@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import Player from "../components/Player/Player";
-import PlayerDetails from "../components/Player/PlayerDetails";
-import VideoList from "../components/VideoList/VideoList";
-import { useAppContext } from "../context/app/appContext";
+import Player from "../Player/Player";
+import PlayerDetails from "../Player/PlayerDetails";
+import VideoList from "../VideoList/VideoList";
+import { useAppContext } from "../../context/app/appContext";
 
 const StyledContainer = styled.div`
   margin: 64px auto 0;
