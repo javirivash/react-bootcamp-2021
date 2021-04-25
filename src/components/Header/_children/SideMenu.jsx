@@ -37,15 +37,18 @@ const StyledMenu = styled.div`
 
 const SideMenu = () => {
   const { currentUser, shouldShowMenu, toggleMenu } = useAppContext();
+  const onClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   if (!shouldShowMenu) return null;
   return ReactDom.createPortal(
     <StyledMenu onClick={toggleMenu}>
-      <Link to={"/"} replace>
+      <Link to={"/"} onClick={onClick} replace>
         Home
       </Link>
       {currentUser.id && (
-        <Link to={"/favorites"} replace>
+        <Link to={"/favorites"} onClick={onClick} replace>
           Favorites
         </Link>
       )}
