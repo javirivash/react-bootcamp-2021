@@ -33,6 +33,7 @@ const VideoItem = ({ video }) => {
 
   const onClick = () => {
     getRelatedVideos(video, pathname);
+    window.scrollTo(0, 0);
     if (pathname == "/favorites") {
       history.push("/favorites/player");
     }
