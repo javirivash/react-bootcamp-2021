@@ -19,14 +19,18 @@ export default (state, action) => {
       return {
         ...state,
         searchText: action.payload.query,
-        resultVideos: action.payload.items,
+        resultVideos: action.payload.updatedLocalFavorites.results,
+        relatedVideos: action.payload.updatedLocalFavorites.related,
+        currentFavorites: action.payload.updatedLocalFavorites.favorites,
         loading: false,
       };
     case GET_RELATED_VIDEOS:
       return {
         ...state,
         selectedVideo: action.payload.video,
-        relatedVideos: action.payload.items,
+        resultVideos: action.payload.updatedLocalFavorites.results,
+        relatedVideos: action.payload.updatedLocalFavorites.related,
+        currentFavorites: action.payload.updatedLocalFavorites.favorites,
         loading: false,
       };
     case SET_LOADING:
@@ -64,7 +68,9 @@ export default (state, action) => {
       return {
         ...state,
         currentUser: action.payload.user,
-        currentFavorites: action.payload.favorites,
+        resultVideos: action.payload.updatedLocalFavorites.results,
+        relatedVideos: action.payload.updatedLocalFavorites.related,
+        currentFavorites: action.payload.updatedLocalFavorites.favorites,
       };
     case LOG_OUT_USER:
       return {
@@ -75,12 +81,16 @@ export default (state, action) => {
     case ADD_FAVORITE:
       return {
         ...state,
-        currentFavorites: action.payload,
+        resultVideos: action.payload.results,
+        relatedVideos: action.payload.related,
+        currentFavorites: action.payload.favorites,
       };
     case REMOVE_FAVORITE:
       return {
         ...state,
-        currentFavorites: action.payload,
+        resultVideos: action.payload.results,
+        relatedVideos: action.payload.related,
+        currentFavorites: action.payload.favorites,
       };
     default:
       return state;

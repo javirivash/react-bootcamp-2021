@@ -18,16 +18,14 @@ const MainTitle = styled.h1`
 
 const HomeView = () => {
   const { searchText, resultVideos } = useAppContext();
-
   const searchTitle = (
     <Fragment>
       Showing search results for <i>{searchText}</i>
     </Fragment>
   );
-
   return (
     <Fragment>
-      <MainTitle>Welcome to Youtubit</MainTitle>
+      <MainTitle>Welcome to YouTubit</MainTitle>
       <VideoList listTitle={searchTitle} videos={resultVideos}></VideoList>
     </Fragment>
   );

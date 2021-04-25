@@ -28,14 +28,15 @@ const StyledItem = styled.div`
 
 const VideoItem = ({ video }) => {
   const { getRelatedVideos } = useAppContext();
-  const history = useHistory();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const onClick = () => {
-    getRelatedVideos(video);
-    if (pathname.includes("/favorites")) {
+    getRelatedVideos(video, pathname);
+    if (pathname == "/favorites") {
       history.push("/favorites/player");
-    } else {
+    }
+    if (pathname == "/") {
       history.push("/player");
     }
   };
