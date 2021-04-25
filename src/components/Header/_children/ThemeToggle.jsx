@@ -12,13 +12,9 @@ const StyledButton = styled.button`
   opacity: 0.7;
 
   :hover {
-    color: #c0c0c0;
-    background-color: transparent;
     opacity: 1;
   }
   :focus {
-    color: #c0c0c0;
-    background-color: transparent;
     opacity: 1;
   }
 `;
