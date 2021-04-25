@@ -3,9 +3,11 @@
 import React, { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
-import validateItems from "../../utils/validateItems";
 import initGapi from "../../utils/initGapi";
 import initFirebase from "../../utils/initFirebase";
+import validateItems from "../../utils/validateItems";
+import getFavorites from "../../utils/getFavorites";
+import updateLocalFavorites from "../../utils/updateLocalFavorites";
 import { useAlertContext } from "../alert/alertContext";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes";
@@ -51,7 +53,11 @@ const AppState = ({ children }) => {
   // GET RESULT VIDEOS
   const getResultVideos = async (query) => {
     setLoading();
-    let items;
+    let updatedLocalFavorites = updateLocalFavorites(
+      state.resultVideos,
+      state.relatedVideos,
+      state.currentFavorites
+    );
 
     try {
       const response = await gapi.client.youtube.search.list({
@@ -60,24 +66,32 @@ const AppState = ({ children }) => {
         q: query,
         type: ["video"],
       });
-      items = validateItems(response.result.items);
+      const resultVideos = validateItems(response.result.items);
+      updatedLocalFavorites = updateLocalFavorites(
+        resultVideos,
+        state.relatedVideos,
+        state.currentFavorites
+      );
     } catch (error) {
-      items = [];
       setAlert("Error: Failed fetching results");
       console.error("getResultVideos: Something went wrong... ", error);
     }
 
     dispatch({
       type: GET_RESULT_VIDEOS,
-      payload: { query, items },
+      payload: { query, updatedLocalFavorites },
     });
   };
 
   // GET RELATED VIDEOS
-  const getRelatedVideos = async (video) => {
+  const getRelatedVideos = async (video, pathname) => {
     setLoading();
-    let items;
-    if (!video.isFavorite) {
+    let updatedLocalFavorites = {
+      results: state.resultVideos,
+      related: state.relatedVideos,
+      favorites: state.currentFavorites,
+    };
+    if (!pathname.includes("/favorites")) {
       try {
         const response = await gapi.client.youtube.search.list({
           part: ["snippet"],
@@ -85,19 +99,21 @@ const AppState = ({ children }) => {
           type: ["video"],
           relatedToVideoId: video.id,
         });
-        items = validateItems(response.result.items);
+        const relatedVideos = validateItems(response.result.items);
+        updatedLocalFavorites = updateLocalFavorites(
+          state.resultVideos,
+          relatedVideos,
+          state.currentFavorites
+        );
       } catch (error) {
-        items = [];
         setAlert("Error: Failed fetching results");
         console.error("getRelatedVideos: Something went wrong... ", error);
       }
-    } else {
-      items = state.relatedVideos;
     }
 
     dispatch({
       type: GET_RELATED_VIDEOS,
-      payload: { video, items },
+      payload: { video, updatedLocalFavorites },
     });
   };
 
@@ -154,8 +170,12 @@ const AppState = ({ children }) => {
 
   // LOG IN USER
   const logInUser = async (email, password) => {
-    let user;
-    let favorites;
+    let user = {};
+    let updatedLocalFavorites = {
+      results: state.resultVideos,
+      related: state.relatedVideos,
+      favorites: state.currentFavorites,
+    };
     try {
       const userCredential = await firebase
         .auth()
@@ -164,17 +184,21 @@ const AppState = ({ children }) => {
         id: userCredential.user.uid,
         email: userCredential.user.email,
       };
-      favorites = await getFavorites(userCredential.user.uid);
+      const favorites = await getFavorites(user.id);
+      updatedLocalFavorites = updateLocalFavorites(
+        state.resultVideos,
+        state.relatedVideos,
+        favorites
+      );
       deactivateLogin();
       setAlert(`You've successfully logged in as ${user.email}`);
     } catch (error) {
-      user = {};
       setAlert("Error while logging in: " + error.message);
     }
 
     dispatch({
       type: LOG_IN_USER,
-      payload: { user, favorites },
+      payload: { user, updatedLocalFavorites },
     });
   };
 
@@ -196,18 +220,26 @@ const AppState = ({ children }) => {
   const addFavorite = async (video) => {
     const userId = state.currentUser.id;
     const userData = firebase.database().ref("users/" + userId);
-    let updatedFavorites;
+    let updatedLocalFavorites = {
+      results: state.resultVideos,
+      related: state.relatedVideos,
+      favorites: state.currentFavorites,
+    };
     try {
       await userData.child(video.id).set(video);
-      updatedFavorites = await getFavorites(userId);
+      const favorites = await getFavorites(userId);
+      updatedLocalFavorites = updateLocalFavorites(
+        state.resultVideos,
+        state.relatedVideos,
+        favorites
+      );
       setAlert("Added to Favorites");
     } catch (error) {
       setAlert("There was an error while adding to Favorites");
     }
-
     dispatch({
       type: ADD_FAVORITE,
-      payload: updatedFavorites,
+      payload: updatedLocalFavorites,
     });
   };
 
@@ -215,35 +247,28 @@ const AppState = ({ children }) => {
   const removeFavorite = async (videoId) => {
     const userId = state.currentUser.id;
     const userData = firebase.database().ref("users/" + userId);
-    let updatedFavorites;
+    let updatedLocalFavorites = {
+      results: state.resultVideos,
+      related: state.relatedVideos,
+      favorites: state.currentFavorites,
+    };
     try {
       await userData.child(videoId).remove();
-      updatedFavorites = await getFavorites(userId);
+      const favorites = await getFavorites(userId);
+      updatedLocalFavorites = updateLocalFavorites(
+        state.resultVideos,
+        state.relatedVideos,
+        favorites
+      );
       setAlert("Removed from Favorites");
     } catch (error) {
       setAlert("There was an error while removing from Favorites");
     }
+
     dispatch({
       type: REMOVE_FAVORITE,
-      payload: updatedFavorites,
+      payload: updatedLocalFavorites,
     });
-  };
-
-  // GET_FAVORITES
-  const getFavorites = async (userId) => {
-    const userData = firebase.database().ref("users/" + userId);
-    let favorites;
-    try {
-      const snapshot = await userData.get();
-      if (snapshot.val()) {
-        favorites = Object.values(snapshot.val());
-      }
-    } catch (error) {
-      setAlert("There was an error getting Favorites: ");
-      console.error(error);
-    }
-    if (!favorites) return [];
-    return favorites;
   };
 
   return (

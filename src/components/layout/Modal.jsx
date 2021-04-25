@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppContext } from "../../context/app/appContext";
 import AriaModal from "react-aria-modal";
-import LoginView from "../../pages/LoginView";
+import LoginView from "../pages/LoginView";
 
 const Modal = () => {
   const { deactivateLogin } = useAppContext();

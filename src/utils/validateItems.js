@@ -5,9 +5,9 @@ const validateItems = (items) => {
 
   const restoreCharacters = (text) => {
     return text
-      .replace(/&#34;/g, '"')
-      .replace(/&#39;/g, "'")
-      .replace(/&amp;/g, "&");
+      .replace(/&#34;|&quot;/g, '"')
+      .replace(/&#39;|&apos;/g, "'")
+      .replace(/&#38;|&amp;/g, "&");
   };
 
   const validatedItems = filteredItems.slice(0, 24).map((item) => {
@@ -26,7 +26,7 @@ const validateItems = (items) => {
       description: restoreCharacters(description),
       channelTitle: restoreCharacters(channelTitle),
       thumbnail: url,
-      isFavorite: false,
+      isFavorite: null,
     };
   });
   return validatedItems;
