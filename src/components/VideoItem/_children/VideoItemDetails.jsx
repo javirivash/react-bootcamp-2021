@@ -52,9 +52,9 @@ const VideoItemDetails = ({ video }) => {
   const { title, description, channelTitle } = video;
 
   return (
-    <StyledContainer>
+    <StyledContainer role="videoItemDetails">
       <StyledTitle>{title}</StyledTitle>
-      <StyledDescription>{description}</StyledDescription>
+      <StyledDescription role="description">{description}</StyledDescription>
       <StyledFlex>
         <FavoriteButton video={video} />
         <StyledChannel>{channelTitle}</StyledChannel>

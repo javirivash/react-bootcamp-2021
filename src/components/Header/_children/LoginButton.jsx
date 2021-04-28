@@ -16,7 +16,6 @@ const StyledButton = styled.button`
   min-width: 74px;
   cursor: pointer;
   opacity: 0.7;
-
   :hover {
     opacity: 1;
   }

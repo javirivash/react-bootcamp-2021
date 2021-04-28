@@ -31,11 +31,11 @@ const Container = styled.div`
 const Header = () => {
   return (
     <Fragment>
-      <Container role="header">
-        <MenuButton name="menu" />
+      <Container>
+        <MenuButton />
         <Search />
-        <LoginButton name="logIn" />
-        <ThemeToggle name="themeToggle" />
+        <LoginButton />
+        <ThemeToggle />
       </Container>
       <SideMenu />
     </Fragment>
