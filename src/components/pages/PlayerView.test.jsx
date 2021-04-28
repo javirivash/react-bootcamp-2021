@@ -36,6 +36,11 @@ describe("PlayerView", () => {
     expect(iframe).toHaveAttribute("src", videoLink);
   });
 
+  it("renders player details", () => {
+    renderComponent();
+    expect(screen.getByRole("playerDetails")).toBeInTheDocument();
+  });
+
   it("renders videos list title", () => {
     renderComponent();
     expect(

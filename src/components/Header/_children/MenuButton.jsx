@@ -11,14 +11,12 @@ const StyledButton = styled.button`
   width: 34px;
   cursor: pointer;
   opacity: 0.7;
-
   :hover {
     opacity: 1;
   }
   :focus {
     opacity: 1;
   }
-
   @media only screen and (max-width: 580px) {
     margin-right: 10px;
   }
@@ -29,6 +27,7 @@ const MenuButton = () => {
   const onClick = () => {
     toggleMenu();
   };
+
   return (
     <StyledButton onClick={onClick} className="material-icons">
       {shouldShowMenu ? "close" : "menu"}

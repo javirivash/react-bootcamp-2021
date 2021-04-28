@@ -11,7 +11,6 @@ const StyledForm = styled.form`
   height: 400px;
   width: 360px;
   padding: 25px;
-
   * {
     color: ${(props) => props.theme.primaryText};
     border-radius: 3px;

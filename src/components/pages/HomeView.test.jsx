@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import HomeView from "./HomeView";
 import AppContext from "../../context/app/appContext";
 import { currentUser, resultVideos } from "../../utils/testMocks";
+import HomeView from "./HomeView";
 jest.mock("react-router-dom", () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: "/" }),
