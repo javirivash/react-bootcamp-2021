@@ -19,7 +19,7 @@ const updateLocalFavorites = (resultVideos, relatedVideos, favorites) => {
   });
 
   // UPDATE REMOVED FAVORITES FROM RELATED
-  updatedLocalFavorites.related = resultVideos.map((related) => {
+  updatedLocalFavorites.related = relatedVideos.map((related) => {
     if (related.isFavorite) {
       const favoriteMatch = favorites.filter((favorite) => {
         return related.id === favorite.id;
