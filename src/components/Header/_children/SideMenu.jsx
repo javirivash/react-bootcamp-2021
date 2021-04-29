@@ -1,8 +1,8 @@
 import React from "react";
-import ReactDom from "react-dom";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../../context/app/appContext";
 import styled from "styled-components";
+import AriaModal from "react-aria-modal";
 
 const StyledMenu = styled.div`
   position: fixed;
@@ -11,26 +11,30 @@ const StyledMenu = styled.div`
   left: 0;
   background-color: rgb(28, 28, 28, 0.99);
   color: #c0c0c0;
-  width: 150px;
+  border-radius: 0 0 5px 5px;
+  width: 66px;
 
   a {
     display: block;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
+    line-height: 38px;
     text-align: center;
     color: #c0c0c0;
     background-color: transparent;
     border: none;
     width: 100%;
-    padding: 14px;
+    height: 66px;
+    padding: 21px;
     opacity: 0.7;
     :hover {
-      opacity: 1;
-      opacity: 1;
       background-color: rgb(30, 30, 30, 0.99);
+      border-radius: 0 0 5px 5px;
     }
     :focus {
-      background-color: rgb(30, 30, 30, 0.99);
+      border-radius: 0 0 5px 5px;
+      opacity: 1;
+      outline: none;
     }
   }
 `;
@@ -42,18 +46,25 @@ const SideMenu = () => {
   };
 
   if (!shouldShowMenu) return null;
-  return ReactDom.createPortal(
-    <StyledMenu onClick={toggleMenu}>
-      <Link to={"/"} onClick={onClick} replace>
-        Home
-      </Link>
-      {currentUser.id && (
-        <Link to={"/favorites"} onClick={onClick} replace>
-          Favorites
+  return (
+    <AriaModal
+      titleText="menuModal"
+      scrollDisabled={false}
+      underlayColor={false}
+      focusTrapPaused={true}
+      onExit={toggleMenu}
+    >
+      <StyledMenu onClick={toggleMenu}>
+        <Link to={"/"} onClick={onClick} replace>
+          <span className="material-icons">home</span>
         </Link>
-      )}
-    </StyledMenu>,
-    document.getElementById("menuPortal")
+        {currentUser.id && (
+          <Link to={"/favorites"} onClick={onClick} replace>
+            <span className="material-icons">favorite</span>
+          </Link>
+        )}
+      </StyledMenu>
+    </AriaModal>
   );
 };
 

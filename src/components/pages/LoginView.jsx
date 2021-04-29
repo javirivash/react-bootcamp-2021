@@ -74,10 +74,10 @@ const StyledLogin = styled.button`
 const StyledReturn = styled.button`
   font-family: "Roboto", sans-serif;
   font-size: 14px;
-  padding: 8px 8px 8px 0;
+  padding-right: 8px;
   opacity: 0.6;
   background: none;
-  height: 16px;
+  height: 25px;
   cursor: pointer;
   :hover {
     opacity: 1;

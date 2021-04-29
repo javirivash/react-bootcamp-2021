@@ -8,15 +8,17 @@ const StyledAlert = styled.div`
   align-items: center;
   position: fixed;
   z-index: 1;
-  top: 64px;
-  background-color: rgb(24, 24, 24, 0.99);
-  border-top: solid 1px #101010;
-  width: 100%;
-  padding: 8px 10px;
+  bottom: 0px;
+  background-color: ${(props) => props.theme.alert};
+  border-radius: 5px;
+  margin: 10px 2%;
+  width: 96%;
+  padding: 18px;
+  box-shadow: ${(props) => props.theme.shadow};
 
   * {
     font-size: 14px;
-    color: #c0c0c0;
+    color: ${(props) => props.theme.primaryText};
   }
 `;
 
