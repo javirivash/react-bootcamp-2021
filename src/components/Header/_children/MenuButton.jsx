@@ -24,12 +24,9 @@ const StyledButton = styled.button`
 
 const MenuButton = () => {
   const { shouldShowMenu, toggleMenu } = useAppContext();
-  const onClick = () => {
-    toggleMenu();
-  };
 
   return (
-    <StyledButton onClick={onClick} className="material-icons">
+    <StyledButton onClick={toggleMenu} className="material-icons">
       {shouldShowMenu ? "close" : "menu"}
     </StyledButton>
   );

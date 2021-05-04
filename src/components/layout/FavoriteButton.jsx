@@ -33,7 +33,7 @@ const FavoriteButton = ({ video }) => {
     e.stopPropagation();
   };
 
-  if (!currentUser.id) return null;
+  if (!currentUser.isLoggedIn) return null;
   return (
     <StyledButton
       onClick={toggleFavorite}

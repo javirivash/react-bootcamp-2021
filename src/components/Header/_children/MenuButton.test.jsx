@@ -21,13 +21,10 @@ describe("MenuButton", () => {
     );
   };
 
-  it("calls toggleMenu every time it's clicked", () => {
+  it("calls toggleMenu when clicked", () => {
     renderComponent();
     userEvent.click(screen.getByRole("button"));
-    userEvent.click(screen.getByRole("button"));
-    userEvent.click(screen.getByRole("button"));
-    userEvent.click(screen.getByRole("button"));
-    expect(toggleMenu).toHaveBeenCalledTimes(4);
+    expect(toggleMenu).toHaveBeenCalled();
   });
 
   it("shows menu icon when menu is not showing", () => {
