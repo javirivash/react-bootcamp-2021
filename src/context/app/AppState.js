@@ -154,6 +154,7 @@ const AppState = ({ children }) => {
       user = {
         id: userCredential.user.uid,
         email: userCredential.user.email,
+        isLoggedIn: true,
       };
       deactivateLogin();
       setAlert(`You've successfully signed up as ${user.email}`);
@@ -183,6 +184,7 @@ const AppState = ({ children }) => {
       user = {
         id: userCredential.user.uid,
         email: userCredential.user.email,
+        isLoggedIn: true,
       };
       const favorites = await getFavorites(user.id);
       updatedLocalFavorites = updateLocalFavorites(

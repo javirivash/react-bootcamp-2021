@@ -1,6 +1,7 @@
 export const currentUser = {
   id: "WNivqTDm0FShPEncS5R8p7LrHaI3",
   email: "johndoe@gmail.com",
+  isLoggedIn: true,
 };
 
 export const selectedVideo = {
