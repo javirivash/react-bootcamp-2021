@@ -20,25 +20,3 @@ const initFirebase = () => {
 };
 
 export default initFirebase;
-
-// const firebaseConfig = {
-//   apiKey: firebaseKey,
-//   authDomain: `youtubit-1adf4.firebaseapp.com`,
-//   databaseURL: `https://youtubit-1adf4-default-rtdb.firebaseio.com`,
-//   projectId: `youtubit-1adf4`,
-//   storageBucket: `youtubit-1adf4.appspot.com`,
-//   messagingSenderId: `941718889832`,
-//   appId: firebaseAppId,
-//   measurementId: `G-Q29WYTQKD1`,
-// };
-
-// var firebaseConfig = {
-//   apiKey: `API_KEY`,
-//   authDomain: `PROJECT_ID.firebaseapp.com`,
-//   databaseURL: `https://PROJECT_ID.firebaseio.com`,
-//   projectId: `PROJECT_ID`,
-//   storageBucket: `PROJECT_ID.appspot.com`,
-//   messagingSenderId: `SENDER_ID`,
-//   appId: `APP_ID`,
-//   measurementId: `G-MEASUREMENT_ID`,
-// };
