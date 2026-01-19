@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 
 const initFirebase = () => {
-  const firebaseApiKey = process.env.REACT_APP_FIREBASE_API_KEY;
-  const firebaseProjectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
-  const firebaseAppId = process.env.REACT_APP_FIREBASE_APP_ID;
+  const firebaseApiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+  const firebaseProjectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
+  const firebaseAppId = import.meta.env.VITE_FIREBASE_APP_ID;
 
   const firebaseConfig = {
     apiKey: firebaseApiKey,

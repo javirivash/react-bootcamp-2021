@@ -1,19 +1,12 @@
 /* global gapi */
-/* eslint-disable no-undef */
 const initGapi = async () => {
-  let apiKey;
   let discovery = {};
-
-  if (process.env.REACT_APP_YOUTUBE_API_KEY) {
-    apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-  } else {
-    apiKey = process.env.YOUTUBE_API_KEY;
-  }
+  const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
   const handleClientInit = async (resolve) => {
     try {
       await gapi.client.init({
-        apiKey: apiKey,
+        apiKey,
         discoveryDocs: [discovery],
       });
       resolve();
