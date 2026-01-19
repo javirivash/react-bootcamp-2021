@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import AppContext from '../../context/app/appContext';
 import { currentUser, resultVideos } from '../../utils/testMocks';
 import HomeView from './HomeView';
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: '/' }),
 }));

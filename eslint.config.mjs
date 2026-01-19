@@ -1,18 +1,18 @@
-import js from "@eslint/js";
-import reactPlugin from "eslint-plugin-react";
-import jestPlugin from "eslint-plugin-jest";
-import globals from "globals";
-import eslintConfigPrettier from "eslint-config-prettier";
+import js from '@eslint/js';
+import reactPlugin from 'eslint-plugin-react';
+import vitest from '@vitest/eslint-plugin';
+import globals from 'globals';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 const config = [
   {
-    ignores: ["build", "dist", "node_modules", "coverage"],
+    ignores: ['build', 'dist', 'node_modules'],
   },
 
   // JS + React Configuration
   js.configs.recommended,
   {
-    files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
+    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     plugins: {
       react: reactPlugin,
     },
@@ -28,30 +28,30 @@ const config = [
     },
     settings: {
       react: {
-        version: "detect",
+        version: 'detect',
       },
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "no-unused-vars": "warn",
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'no-unused-vars': 'warn',
     },
   },
 
-  // Jest Configuration
+  // Vitest Configuration
   {
-    files: ["**/*.test.{js,jsx}", "**/*.spec.{js,jsx}"],
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}'],
     plugins: {
-      jest: jestPlugin,
+      vitest,
     },
     languageOptions: {
       globals: {
-        ...globals.jest,
+        ...vitest.environments.env.globals,
       },
     },
     rules: {
-      ...jestPlugin.configs.recommended.rules,
+      ...vitest.configs.recommended.rules,
     },
   },
 

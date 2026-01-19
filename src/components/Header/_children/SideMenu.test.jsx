@@ -8,7 +8,7 @@ import SideMenu from './SideMenu';
 
 describe('SideMenu', () => {
   const shouldShowMenu = true;
-  const toggleMenu = jest.fn();
+  const toggleMenu = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider
@@ -27,7 +27,7 @@ describe('SideMenu', () => {
   };
 
   beforeAll(() => {
-    window.scrollTo = jest.fn();
+    window.scrollTo = vi.fn();
   });
   afterAll(() => {
     window.scrollTo.mockClear();

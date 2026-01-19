@@ -6,7 +6,7 @@ import MenuButton from './MenuButton';
 
 describe('MenuButton', () => {
   const shouldShowMenu = false;
-  const toggleMenu = jest.fn();
+  const toggleMenu = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider

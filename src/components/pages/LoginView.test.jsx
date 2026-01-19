@@ -5,9 +5,9 @@ import AppContext from '../../context/app/appContext';
 import LoginView from './LoginView';
 
 describe('LoginView', () => {
-  const deactivateLogin = jest.fn();
-  const signUpUser = jest.fn();
-  const logInUser = jest.fn();
+  const deactivateLogin = vi.fn();
+  const signUpUser = vi.fn();
+  const logInUser = vi.fn();
 
   const renderComponent = (contextValue = {}) => {
     render(

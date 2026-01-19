@@ -5,7 +5,7 @@ import AppContext from '../../../context/app/appContext';
 import ThemeToggle from './ThemeToggle';
 
 describe('ThemeToggle', () => {
-  const toggleTheme = jest.fn();
+  const toggleTheme = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider

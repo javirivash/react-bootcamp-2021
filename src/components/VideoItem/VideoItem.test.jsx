@@ -4,13 +4,13 @@ import userEvent from '@testing-library/user-event';
 import AppContext from '../../context/app/appContext';
 import { currentUser, selectedVideo } from '../../utils/testMocks';
 import VideoItem from './VideoItem';
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: '/' }),
 }));
 
 describe('VideoItem', () => {
-  const getRelatedVideos = jest.fn();
+  const getRelatedVideos = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider
@@ -26,7 +26,7 @@ describe('VideoItem', () => {
   };
 
   beforeAll(() => {
-    window.scrollTo = jest.fn();
+    window.scrollTo = vi.fn();
   });
   afterAll(() => {
     window.scrollTo.mockClear();

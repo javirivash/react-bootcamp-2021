@@ -4,15 +4,15 @@ import userEvent from '@testing-library/user-event';
 import AlertContext from '../../../context/alert/alertContext';
 import AppContext from '../../../context/app/appContext';
 import Search from './Search';
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: '/player' }),
 }));
 
 describe('Search', () => {
-  const setAlert = jest.fn();
-  const initApis = jest.fn();
-  const getResultVideos = jest.fn();
+  const setAlert = vi.fn();
+  const initApis = vi.fn();
+  const getResultVideos = vi.fn();
 
   const renderComponent = (contextValue = {}) => {
     render(

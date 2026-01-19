@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import FavoritesView from './FavoritesView';
 import AppContext from '../../context/app/appContext';
 import { currentUser, currentFavorites } from '../../utils/testMocks';
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: '/favorites' }),
 }));

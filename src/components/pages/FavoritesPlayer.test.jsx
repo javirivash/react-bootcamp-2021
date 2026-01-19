@@ -7,7 +7,7 @@ import {
   favoriteVideo as selectedVideo,
   currentFavorites,
 } from '../../utils/testMocks';
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
   useHistory: () => [],
   useLocation: () => ({ pathname: '/favorites/player' }),
 }));

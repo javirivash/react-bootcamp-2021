@@ -1,6 +1,4 @@
 /*global firebase */
-/* eslint-disable no-undef */
-
 const initFirebase = () => {
   const firebaseApiKey = import.meta.env.VITE_FIREBASE_API_KEY;
   const firebaseProjectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;

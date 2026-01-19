@@ -6,8 +6,8 @@ import { currentUser, selectedVideo } from '../../utils/testMocks';
 import FavoriteButton from './FavoriteButton';
 
 describe('FavoriteButton', () => {
-  const addFavorite = jest.fn();
-  const removeFavorite = jest.fn();
+  const addFavorite = vi.fn();
+  const removeFavorite = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider

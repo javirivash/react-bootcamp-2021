@@ -7,8 +7,8 @@ import LoginButton from './LoginButton';
 
 describe('LoginButton', () => {
   const shouldShowLogin = false;
-  const activateLogin = jest.fn();
-  const logOutUser = jest.fn();
+  const activateLogin = vi.fn();
+  const logOutUser = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider

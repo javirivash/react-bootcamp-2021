@@ -4,8 +4,8 @@ import AppContext from '../../context/app/appContext';
 import AlertContext from '../../context/alert/alertContext';
 import { currentUser } from '../../utils/testMocks';
 import Header from './Header';
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', () => ({
+  ...vi.requireActual('react-router-dom'),
   useHistory: () => [],
   useLocation: () => ({ pathname: '/' }),
 }));
@@ -13,13 +13,13 @@ jest.mock('react-router-dom', () => ({
 describe('Header', () => {
   const shouldShowMenu = false;
   const shouldShowLogin = true;
-  const toggleMenu = jest.fn();
-  const setAlert = jest.fn();
-  const initApis = jest.fn();
-  const activateLogin = jest.fn();
-  const logOutUser = jest.fn();
-  const toggleTheme = jest.fn();
-  const getResultVideos = jest.fn();
+  const toggleMenu = vi.fn();
+  const setAlert = vi.fn();
+  const initApis = vi.fn();
+  const activateLogin = vi.fn();
+  const logOutUser = vi.fn();
+  const toggleTheme = vi.fn();
+  const getResultVideos = vi.fn();
 
   const renderComponent = (contextValue = {}) => {
     render(
@@ -45,8 +45,8 @@ describe('Header', () => {
   };
 
   beforeAll(() => {
-    window.scrollTo = jest.fn();
-    window.scroll = jest.fn();
+    window.scrollTo = vi.fn();
+    window.scroll = vi.fn();
   });
   afterAll(() => {
     window.scrollTo.mockClear();
