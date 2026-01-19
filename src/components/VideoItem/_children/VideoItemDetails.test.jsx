@@ -1,10 +1,10 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import AppContext from "../../../context/app/appContext";
-import { currentUser, selectedVideo } from "../../../utils/testMocks";
-import VideoItemDetails from "./VideoItemDetails";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import AppContext from '../../../context/app/appContext';
+import { currentUser, selectedVideo } from '../../../utils/testMocks';
+import VideoItemDetails from './VideoItemDetails';
 
-describe("VideoItemDetails", () => {
+describe('VideoItemDetails', () => {
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider
@@ -19,32 +19,32 @@ describe("VideoItemDetails", () => {
   };
   const { title, channelTitle } = selectedVideo;
 
-  it("renders video title", () => {
+  it('renders video title', () => {
     renderComponent();
-    expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
   });
 
-  it("renders video description", () => {
+  it('renders video description', () => {
     renderComponent();
-    expect(screen.getByRole("description")).toBeInTheDocument();
+    expect(screen.getByRole('description')).toBeInTheDocument();
   });
 
-  it("renders channel name", () => {
+  it('renders channel name', () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: channelTitle }),
+      screen.getByRole('heading', { name: channelTitle }),
     ).toBeInTheDocument();
   });
 
-  describe("Favorite Button", () => {
-    it("renders button when there is an user logged in", () => {
+  describe('Favorite Button', () => {
+    it('renders button when there is an user logged in', () => {
       renderComponent();
-      expect(screen.getByRole("button")).toBeInTheDocument();
+      expect(screen.getByRole('button')).toBeInTheDocument();
     });
 
-    it("does not render button when there is no user logged in", () => {
+    it('does not render button when there is no user logged in', () => {
       renderComponent({ currentUser: {} });
-      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+      expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
   });
 });

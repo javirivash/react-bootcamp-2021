@@ -1,16 +1,16 @@
 /* global gapi, firebase*/
 /* eslint-disable react/prop-types */
-import React, { useReducer } from "react";
-import AppContext from "./appContext";
-import AppReducer from "./appReducer";
-import initGapi from "../../utils/initGapi";
-import initFirebase from "../../utils/initFirebase";
-import validateItems from "../../utils/validateItems";
-import getFavorites from "../../utils/getFavorites";
-import updateLocalFavorites from "../../utils/updateLocalFavorites";
-import { useAlertContext } from "../alert/alertContext";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "./themes";
+import React, { useReducer } from 'react';
+import AppContext from './appContext';
+import AppReducer from './appReducer';
+import initGapi from '../../utils/initGapi';
+import initFirebase from '../../utils/initFirebase';
+import validateItems from '../../utils/validateItems';
+import getFavorites from '../../utils/getFavorites';
+import updateLocalFavorites from '../../utils/updateLocalFavorites';
+import { useAlertContext } from '../alert/alertContext';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme, GlobalStyles } from './themes';
 import {
   GET_RESULT_VIDEOS,
   GET_RELATED_VIDEOS,
@@ -24,11 +24,11 @@ import {
   LOG_OUT_USER,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
-} from "../types";
+} from '../types';
 
 const AppState = ({ children }) => {
   const initialState = {
-    searchText: "Wizeline Academy",
+    searchText: 'Wizeline Academy',
     resultVideos: [],
     selectedVideo: {},
     relatedVideos: [],
@@ -37,7 +37,7 @@ const AppState = ({ children }) => {
     shouldShowMenu: false,
     shouldShowLogin: false,
     loading: true,
-    theme: "light",
+    theme: 'light',
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -61,10 +61,10 @@ const AppState = ({ children }) => {
 
     try {
       const response = await gapi.client.youtube.search.list({
-        part: ["snippet"],
+        part: ['snippet'],
         maxResults: 50,
         q: query,
-        type: ["video"],
+        type: ['video'],
       });
       const resultVideos = validateItems(response.result.items);
       updatedLocalFavorites = updateLocalFavorites(
@@ -73,8 +73,8 @@ const AppState = ({ children }) => {
         state.currentFavorites,
       );
     } catch (error) {
-      setAlert("Error: Failed fetching results");
-      console.error("getResultVideos: Something went wrong... ", error);
+      setAlert('Error: Failed fetching results');
+      console.error('getResultVideos: Something went wrong... ', error);
     }
 
     dispatch({
@@ -91,12 +91,12 @@ const AppState = ({ children }) => {
       related: state.relatedVideos,
       favorites: state.currentFavorites,
     };
-    if (!pathname.includes("/favorites")) {
+    if (!pathname.includes('/favorites')) {
       try {
         const response = await gapi.client.youtube.search.list({
-          part: ["snippet"],
+          part: ['snippet'],
           maxResults: 50,
-          type: ["video"],
+          type: ['video'],
           relatedToVideoId: video.id,
         });
         const relatedVideos = validateItems(response.result.items);
@@ -106,8 +106,8 @@ const AppState = ({ children }) => {
           state.currentFavorites,
         );
       } catch (error) {
-        setAlert("Error: Failed fetching results");
-        console.error("getRelatedVideos: Something went wrong... ", error);
+        setAlert('Error: Failed fetching results');
+        console.error('getRelatedVideos: Something went wrong... ', error);
       }
     }
 
@@ -124,7 +124,7 @@ const AppState = ({ children }) => {
 
   // TOGGLE THEME
   const toggleTheme = () => {
-    const updatedTheme = state.theme === "light" ? "dark" : "light";
+    const updatedTheme = state.theme === 'light' ? 'dark' : 'light';
     dispatch({ type: TOGGLE_THEME, payload: updatedTheme });
   };
 
@@ -160,7 +160,7 @@ const AppState = ({ children }) => {
       setAlert(`You've successfully signed up as ${user.email}`);
     } catch (error) {
       user = {};
-      setAlert("Error while signing up: " + error.message);
+      setAlert('Error while signing up: ' + error.message);
     }
 
     dispatch({
@@ -195,7 +195,7 @@ const AppState = ({ children }) => {
       deactivateLogin();
       setAlert(`You've successfully logged in as ${user.email}`);
     } catch (error) {
-      setAlert("Error while logging in: " + error.message);
+      setAlert('Error while logging in: ' + error.message);
     }
 
     dispatch({
@@ -208,9 +208,9 @@ const AppState = ({ children }) => {
   const logOutUser = async () => {
     try {
       await firebase.auth().signOut();
-      setAlert("You have successfully logged out");
+      setAlert('You have successfully logged out');
     } catch (error) {
-      setAlert("There was a problem while logging out");
+      setAlert('There was a problem while logging out');
     }
 
     dispatch({
@@ -221,7 +221,7 @@ const AppState = ({ children }) => {
   // ADD FAVORITE
   const addFavorite = async (video) => {
     const userId = state.currentUser.id;
-    const userData = firebase.database().ref("users/" + userId);
+    const userData = firebase.database().ref('users/' + userId);
     let updatedLocalFavorites = {
       results: state.resultVideos,
       related: state.relatedVideos,
@@ -235,9 +235,9 @@ const AppState = ({ children }) => {
         state.relatedVideos,
         favorites,
       );
-      setAlert("Added to Favorites");
+      setAlert('Added to Favorites');
     } catch (error) {
-      setAlert("There was an error while adding to Favorites");
+      setAlert('There was an error while adding to Favorites');
     }
     dispatch({
       type: ADD_FAVORITE,
@@ -248,7 +248,7 @@ const AppState = ({ children }) => {
   // REMOVE FAVORITE
   const removeFavorite = async (videoId) => {
     const userId = state.currentUser.id;
-    const userData = firebase.database().ref("users/" + userId);
+    const userData = firebase.database().ref('users/' + userId);
     let updatedLocalFavorites = {
       results: state.resultVideos,
       related: state.relatedVideos,
@@ -262,9 +262,9 @@ const AppState = ({ children }) => {
         state.relatedVideos,
         favorites,
       );
-      setAlert("Removed from Favorites");
+      setAlert('Removed from Favorites');
     } catch (error) {
-      setAlert("There was an error while removing from Favorites");
+      setAlert('There was an error while removing from Favorites');
     }
 
     dispatch({
@@ -292,7 +292,7 @@ const AppState = ({ children }) => {
         removeFavorite,
       }}
     >
-      <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>
+      <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         {children}
       </ThemeProvider>

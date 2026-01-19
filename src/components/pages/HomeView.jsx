@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import VideoList from "../VideoList/VideoList";
-import { useAppContext } from "../../context/app/appContext";
-import styled from "styled-components";
+import React, { Fragment } from 'react';
+import VideoList from '../VideoList/VideoList';
+import { useAppContext } from '../../context/app/appContext';
+import styled from 'styled-components';
 
 const MainTitle = styled.h1`
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 48px;
   text-align: center;
   color: ${(props) => props.theme.primaryText};

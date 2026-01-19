@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useAppContext } from "../../context/app/appContext";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { useAppContext } from '../../context/app/appContext';
+import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useAppContext();

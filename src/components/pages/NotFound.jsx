@@ -1,6 +1,6 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.background};
@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 32px;
   text-align: center;
   color: ${(props) => props.theme.primaryText};
@@ -26,7 +26,7 @@ const StyledTitle = styled.h1`
   }
 `;
 const StyledDescription = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   line-height: 28px;
   text-align: center;

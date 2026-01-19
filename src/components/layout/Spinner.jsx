@@ -1,6 +1,6 @@
-import React from "react";
-import spinner from "./spinner.gif";
-import styled from "styled-components";
+import React from 'react';
+import spinner from './spinner.gif';
+import styled from 'styled-components';
 
 const StyledSpinner = styled.img`
   width: 50px;

@@ -12,9 +12,9 @@ const initFirebase = () => {
     databaseURL: `https://${firebaseProjectId}-default-rtdb.firebaseio.com`,
     projectId: `${firebaseProjectId}`,
     storageBucket: `${firebaseProjectId}.appspot.com`,
-    messagingSenderId: "941718889832",
+    messagingSenderId: '941718889832',
     appId: firebaseAppId,
-    measurementId: "G-Q29WYTQKD1",
+    measurementId: 'G-Q29WYTQKD1',
   };
   firebase.initializeApp(firebaseConfig);
 };

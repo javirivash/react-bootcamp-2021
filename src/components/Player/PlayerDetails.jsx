@@ -1,11 +1,11 @@
-import React from "react";
-import { useAppContext } from "../../context/app/appContext";
-import { StyledTitle } from "../VideoList/VideoList";
-import styled from "styled-components";
-import FavoriteButton from "../layout/FavoriteButton";
+import React from 'react';
+import { useAppContext } from '../../context/app/appContext';
+import { StyledTitle } from '../VideoList/VideoList';
+import styled from 'styled-components';
+import FavoriteButton from '../layout/FavoriteButton';
 
 const StyledContainer = styled.div`
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   margin: auto;
   max-width: 950px;
   padding: 24px 0 70px;

@@ -1,14 +1,14 @@
-import React, { Fragment } from "react";
-import { render, screen } from "@testing-library/react";
-import AppContext from "../../context/app/appContext";
-import { currentUser, resultVideos } from "../../utils/testMocks";
-import VideoList from "./VideoList";
-jest.mock("react-router-dom", () => ({
+import React, { Fragment } from 'react';
+import { render, screen } from '@testing-library/react';
+import AppContext from '../../context/app/appContext';
+import { currentUser, resultVideos } from '../../utils/testMocks';
+import VideoList from './VideoList';
+jest.mock('react-router-dom', () => ({
   useHistory: () => [],
-  useLocation: () => ({ pathname: "/" }),
+  useLocation: () => ({ pathname: '/' }),
 }));
 
-describe("VideoList", () => {
+describe('VideoList', () => {
   const title = <Fragment>This is the list title</Fragment>;
   const loading = false;
   const renderComponent = (contextValue = {}) => {
@@ -25,27 +25,27 @@ describe("VideoList", () => {
     );
   };
 
-  it("renders spinner when loading is true", () => {
+  it('renders spinner when loading is true', () => {
     renderComponent({ loading: true });
     expect(
-      screen.getByRole("img", { name: /Loading.../i }),
+      screen.getByRole('img', { name: /Loading.../i }),
     ).toBeInTheDocument();
   });
 
-  it("renders the list title passed as prop", () => {
+  it('renders the list title passed as prop', () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /This is the list title/i }),
+      screen.getByRole('heading', { name: /This is the list title/i }),
     ).toBeInTheDocument();
   });
 
-  it("renders the videos container", () => {
+  it('renders the videos container', () => {
     renderComponent();
-    expect(screen.getByRole("videoList")).toBeInTheDocument();
+    expect(screen.getByRole('videoList')).toBeInTheDocument();
   });
 
-  it("renders the videos array provided as videoItem components", () => {
+  it('renders the videos array provided as videoItem components', () => {
     renderComponent();
-    expect(screen.getAllByRole("videoItem").length).toBe(resultVideos.length);
+    expect(screen.getAllByRole('videoItem').length).toBe(resultVideos.length);
   });
 });

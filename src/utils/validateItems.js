@@ -7,7 +7,7 @@ const validateItems = (items) => {
     return text
       .replace(/&#34;|&quot;/g, '"')
       .replace(/&#39;|&apos;/g, "'")
-      .replace(/&#38;|&amp;/g, "&");
+      .replace(/&#38;|&amp;/g, '&');
   };
 
   const validatedItems = filteredItems.slice(0, 24).map((item) => {

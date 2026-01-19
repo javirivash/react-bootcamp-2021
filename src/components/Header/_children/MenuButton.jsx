@@ -1,6 +1,6 @@
-import React from "react";
-import { useAppContext } from "../../../context/app/appContext";
-import styled from "styled-components";
+import React from 'react';
+import { useAppContext } from '../../../context/app/appContext';
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   color: #c0c0c0;
@@ -27,7 +27,7 @@ const MenuButton = () => {
 
   return (
     <StyledButton onClick={toggleMenu} className="material-icons">
-      {shouldShowMenu ? "close" : "menu"}
+      {shouldShowMenu ? 'close' : 'menu'}
     </StyledButton>
   );
 };

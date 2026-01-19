@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import MenuButton from "./_children/MenuButton";
-import SideMenu from "./_children/SideMenu";
-import Search from "./_children/Search";
-import LoginButton from "./_children/LoginButton";
-import ThemeToggle from "./_children/ThemeToggle";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import MenuButton from './_children/MenuButton';
+import SideMenu from './_children/SideMenu';
+import Search from './_children/Search';
+import LoginButton from './_children/LoginButton';
+import ThemeToggle from './_children/ThemeToggle';
 
 const Container = styled.div`
   display: flex;

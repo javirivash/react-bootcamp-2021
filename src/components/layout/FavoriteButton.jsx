@@ -1,7 +1,7 @@
-import React from "react";
-import { useAppContext } from "../../context/app/appContext";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react';
+import { useAppContext } from '../../context/app/appContext';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
   font-size: 24px;
@@ -40,7 +40,7 @@ const FavoriteButton = ({ video }) => {
       type="button"
       className="material-icons"
     >
-      {video.isFavorite ? "favorite" : "favorite_border"}
+      {video.isFavorite ? 'favorite' : 'favorite_border'}
     </StyledButton>
   );
 };

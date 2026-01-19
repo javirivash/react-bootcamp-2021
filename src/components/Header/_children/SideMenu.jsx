@@ -1,13 +1,13 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useAppContext } from "../../../context/app/appContext";
-import styled from "styled-components";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppContext } from '../../../context/app/appContext';
+import styled from 'styled-components';
 
 const StyledMenu = styled.div`
   position: fixed;
   z-index: 2;
   top: 64px;
-  left: ${(props) => (props.shouldShowMenu ? "0" : "-66px")};
+  left: ${(props) => (props.shouldShowMenu ? '0' : '-66px')};
   background-color: rgb(28, 28, 28, 0.99);
   color: #c0c0c0;
   border-radius: 0 0 5px 5px;
@@ -16,7 +16,7 @@ const StyledMenu = styled.div`
   transition: all 0.4s ease-out;
   a {
     display: block;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 38px;
     text-align: center;
@@ -39,7 +39,7 @@ const StyledMenu = styled.div`
   }
 `;
 const StyledPage = styled.div`
-  display: ${(props) => (props.shouldShowMenu ? "block" : "none")};
+  display: ${(props) => (props.shouldShowMenu ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 66px;
@@ -56,11 +56,11 @@ const SideMenu = () => {
   return (
     <Fragment>
       <StyledMenu shouldShowMenu={shouldShowMenu} onClick={toggleMenu}>
-        <Link to={"/"} onClick={onClick} replace>
+        <Link to={'/'} onClick={onClick} replace>
           <span className="material-icons">home</span>
         </Link>
         {currentUser.isLoggedIn && (
-          <Link to={"/favorites"} onClick={onClick} replace>
+          <Link to={'/favorites'} onClick={onClick} replace>
             <span className="material-icons">favorite</span>
           </Link>
         )}

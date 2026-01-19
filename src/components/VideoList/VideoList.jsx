@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
-import VideoItem from "../VideoItem/VideoItem";
-import Spinner from "../layout/Spinner";
-import { useAppContext } from "../../context/app/appContext";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { Fragment } from 'react';
+import VideoItem from '../VideoItem/VideoItem';
+import Spinner from '../layout/Spinner';
+import { useAppContext } from '../../context/app/appContext';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const StyledTitle = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 24px;
   color: ${(props) => props.theme.primaryText};
   margin-bottom: 24px;

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useAppContext } from "../../context/app/appContext";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { useAppContext } from '../../context/app/appContext';
+import styled from 'styled-components';
 
 const StyledForm = styled.form`
   display: flex;
@@ -31,14 +31,14 @@ const StyledFlex = styled.div`
   justify-content: space-between;
 `;
 const StyledHeader = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-align: center;
   margin-bottom: 20px;
 `;
 const StyledInput = styled.input`
   display: block;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #505050;
   border: 1px solid #d0d0d0;
@@ -47,7 +47,7 @@ const StyledInput = styled.input`
   padding: 9px;
 `;
 const StyledSignup = styled.button`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #101010;
   width: 100%;
@@ -60,7 +60,7 @@ const StyledSignup = styled.button`
   }
 `;
 const StyledLogin = styled.button`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #101010;
   width: 100%;
@@ -72,7 +72,7 @@ const StyledLogin = styled.button`
   }
 `;
 const StyledReturn = styled.button`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   padding-right: 8px;
   opacity: 0.6;
@@ -90,8 +90,8 @@ const StyledReturn = styled.button`
 
 const LoginView = () => {
   const [shouldShowSignup, setShouldShowSignup] = useState(true);
-  const [emailText, setEmailText] = useState("");
-  const [passwordText, setPasswordText] = useState("");
+  const [emailText, setEmailText] = useState('');
+  const [passwordText, setPasswordText] = useState('');
   const { deactivateLogin, signUpUser, logInUser } = useAppContext();
 
   const onPasswordChange = (e) => setPasswordText(e.target.value);
@@ -99,8 +99,8 @@ const LoginView = () => {
 
   const toggleForm = () => {
     setShouldShowSignup(!shouldShowSignup);
-    setEmailText("");
-    setPasswordText("");
+    setEmailText('');
+    setPasswordText('');
   };
 
   const handleSignup = (e) => {

@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import Player from "../Player/Player";
-import PlayerDetails from "../Player/PlayerDetails";
-import VideoList from "../VideoList/VideoList";
-import { useAppContext } from "../../context/app/appContext";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import Player from '../Player/Player';
+import PlayerDetails from '../Player/PlayerDetails';
+import VideoList from '../VideoList/VideoList';
+import { useAppContext } from '../../context/app/appContext';
 
 const StyledContainer = styled.div`
   margin: 64px auto 0;
@@ -20,8 +20,8 @@ const PlayerView = () => {
   const moreFavoritesTitle = (
     <Fragment>
       {notPlayingFavorites.length > 0
-        ? "More of your favorites"
-        : "Add more favorites to watch"}
+        ? 'More of your favorites'
+        : 'Add more favorites to watch'}
     </Fragment>
   );
 

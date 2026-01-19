@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { useAppContext } from "../../../context/app/appContext";
+import React from 'react';
+import styled from 'styled-components';
+import { useAppContext } from '../../../context/app/appContext';
 
 const StyledButton = styled.button`
   color: ${(props) => props.theme.icon};

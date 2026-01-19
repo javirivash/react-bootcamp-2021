@@ -11,7 +11,7 @@ import {
   LOG_OUT_USER,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
-} from "../types";
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {

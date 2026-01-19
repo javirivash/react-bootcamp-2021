@@ -1,10 +1,10 @@
-import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { useAppContext } from "../../context/app/appContext";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import VideoItemDetails from "./_children/VideoItemDetails";
-import VideoThumbnail from "./_children/VideoThumbnail";
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useAppContext } from '../../context/app/appContext';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import VideoItemDetails from './_children/VideoItemDetails';
+import VideoThumbnail from './_children/VideoThumbnail';
 
 const StyledItem = styled.div`
   display: flex;
@@ -34,11 +34,11 @@ const VideoItem = ({ video }) => {
   const onClick = () => {
     getRelatedVideos(video, pathname);
     window.scrollTo(0, 0);
-    if (pathname == "/favorites") {
-      history.push("/favorites/player");
+    if (pathname == '/favorites') {
+      history.push('/favorites/player');
     }
-    if (pathname == "/") {
-      history.push("/player");
+    if (pathname == '/') {
+      history.push('/player');
     }
   };
 

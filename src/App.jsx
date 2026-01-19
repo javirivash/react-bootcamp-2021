@@ -1,17 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AlertState from "./context/alert/AlertState";
-import AppState from "./context/app/AppState";
-import styled from "styled-components";
-import Header from "./components/Header/Header";
-import Alert from "./components/layout/Alert";
-import HomeView from "./components/pages/HomeView";
-import PlayerView from "./components/pages/PlayerView";
-import FavoritesView from "./components/pages/FavoritesView";
-import FavoritesPlayer from "./components/pages/FavoritesPlayer";
-import PrivateRoute from "./components/pages/PrivateRoute";
-import NotFound from "./components/pages/NotFound";
-import Modal from "react-modal";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AlertState from './context/alert/AlertState';
+import AppState from './context/app/AppState';
+import styled from 'styled-components';
+import Header from './components/Header/Header';
+import Alert from './components/layout/Alert';
+import HomeView from './components/pages/HomeView';
+import PlayerView from './components/pages/PlayerView';
+import FavoritesView from './components/pages/FavoritesView';
+import FavoritesPlayer from './components/pages/FavoritesPlayer';
+import PrivateRoute from './components/pages/PrivateRoute';
+import NotFound from './components/pages/NotFound';
+import Modal from 'react-modal';
 
 const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.background};
@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const App = () => {
   return (

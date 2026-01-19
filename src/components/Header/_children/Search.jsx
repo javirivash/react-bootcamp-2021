@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import styled from "styled-components";
-import { useAppContext } from "../../../context/app/appContext";
-import { useAlertContext } from "../../../context/alert/alertContext";
+import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import { useAppContext } from '../../../context/app/appContext';
+import { useAlertContext } from '../../../context/alert/alertContext';
 
 const Form = styled.form`
   display: flex;
@@ -13,7 +13,7 @@ const Form = styled.form`
   #text {
     color: #c0c0c0;
     font-size: 16px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #101010;
     border: none;
     border-radius: 3px 0 0 3px;
@@ -41,7 +41,7 @@ const Form = styled.form`
 `;
 
 const Search = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const { getResultVideos, initApis } = useAppContext();
   const { setAlert } = useAlertContext();
   const { pathname } = useLocation();
@@ -55,19 +55,19 @@ const Search = () => {
     setText(e.target.value);
   };
   const onClick = () => {
-    document.getElementById("text").select();
+    document.getElementById('text').select();
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (text !== "") {
+    if (text !== '') {
       getResultVideos(text);
-      document.getElementById("text").select();
-      if (pathname !== "/") {
-        history.push("/");
+      document.getElementById('text').select();
+      if (pathname !== '/') {
+        history.push('/');
       }
     } else {
-      setAlert("Enter a search text");
+      setAlert('Enter a search text');
     }
   };
 

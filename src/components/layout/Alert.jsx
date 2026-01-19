@@ -1,6 +1,6 @@
-import React from "react";
-import { useAlertContext } from "../../context/alert/alertContext";
-import styled from "styled-components";
+import React from 'react';
+import { useAlertContext } from '../../context/alert/alertContext';
+import styled from 'styled-components';
 
 const StyledAlert = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const StyledAlert = styled.div`
   width: 96%;
   padding: 18px;
   box-shadow: ${(props) => props.theme.shadow};
-  opacity: ${(props) => (props.alert ? "1" : "0")};
+  opacity: ${(props) => (props.alert ? '1' : '0')};
   transition: opacity 0.3s ease-out;
 
   * {
@@ -28,7 +28,7 @@ const StyledIcon = styled.i`
   margin-right: 10px;
 `;
 const StyledMessage = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-right: auto;
 `;
 const StyledButton = styled.i`

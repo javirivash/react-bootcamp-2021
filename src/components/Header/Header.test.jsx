@@ -1,16 +1,16 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import AppContext from "../../context/app/appContext";
-import AlertContext from "../../context/alert/alertContext";
-import { currentUser } from "../../utils/testMocks";
-import Header from "./Header";
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import AppContext from '../../context/app/appContext';
+import AlertContext from '../../context/alert/alertContext';
+import { currentUser } from '../../utils/testMocks';
+import Header from './Header';
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useHistory: () => [],
-  useLocation: () => ({ pathname: "/" }),
+  useLocation: () => ({ pathname: '/' }),
 }));
 
-describe("Header", () => {
+describe('Header', () => {
   const shouldShowMenu = false;
   const shouldShowLogin = true;
   const toggleMenu = jest.fn();
@@ -53,25 +53,25 @@ describe("Header", () => {
     window.scroll.mockClear();
   });
 
-  it("renders menu button", () => {
+  it('renders menu button', () => {
     renderComponent();
-    expect(screen.getByRole("button", { name: "menu" })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'menu' })).toBeInTheDocument();
   });
 
-  it("renders search input", () => {
+  it('renders search input', () => {
     renderComponent();
-    expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
 
-  it("renders sign up button", () => {
+  it('renders sign up button', () => {
     renderComponent();
-    expect(screen.getByRole("button", { name: "Log in" })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Log in' })).toBeInTheDocument();
   });
 
-  it("renders theme toggle", () => {
+  it('renders theme toggle', () => {
     renderComponent();
     expect(
-      screen.getByRole("button", { name: "dark_mode" }),
+      screen.getByRole('button', { name: 'dark_mode' }),
     ).toBeInTheDocument();
   });
 });

@@ -1,11 +1,11 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import AppContext from "../../context/app/appContext";
-import { currentUser, selectedVideo } from "../../utils/testMocks";
-import FavoriteButton from "./FavoriteButton";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import AppContext from '../../context/app/appContext';
+import { currentUser, selectedVideo } from '../../utils/testMocks';
+import FavoriteButton from './FavoriteButton';
 
-describe("FavoriteButton", () => {
+describe('FavoriteButton', () => {
   const addFavorite = jest.fn();
   const removeFavorite = jest.fn();
   const renderComponent = (contextValue = {}) => {
@@ -23,16 +23,16 @@ describe("FavoriteButton", () => {
     );
   };
 
-  it("renders button when there is an user logged in", () => {
+  it('renders button when there is an user logged in', () => {
     renderComponent();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it("adds or removes the video from favorites each time it's clicked", () => {
     renderComponent();
-    userEvent.click(screen.getByRole("button"));
-    userEvent.click(screen.getByRole("button"));
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
     expect(addFavorite).toHaveBeenCalledTimes(2);
     expect(removeFavorite).toHaveBeenCalledTimes(1);
     expect(addFavorite).toHaveBeenCalledWith({
@@ -43,8 +43,8 @@ describe("FavoriteButton", () => {
     expect(selectedVideo.isFavorite).toBe(true);
   });
 
-  it("does not render button when there is no user logged in", () => {
+  it('does not render button when there is no user logged in', () => {
     renderComponent({ currentUser: {} });
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 });

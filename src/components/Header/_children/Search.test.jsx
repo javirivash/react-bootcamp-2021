@@ -1,15 +1,15 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import AlertContext from "../../../context/alert/alertContext";
-import AppContext from "../../../context/app/appContext";
-import Search from "./Search";
-jest.mock("react-router-dom", () => ({
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import AlertContext from '../../../context/alert/alertContext';
+import AppContext from '../../../context/app/appContext';
+import Search from './Search';
+jest.mock('react-router-dom', () => ({
   useHistory: () => [],
-  useLocation: () => ({ pathname: "/player" }),
+  useLocation: () => ({ pathname: '/player' }),
 }));
 
-describe("Search", () => {
+describe('Search', () => {
   const setAlert = jest.fn();
   const initApis = jest.fn();
   const getResultVideos = jest.fn();
@@ -30,25 +30,25 @@ describe("Search", () => {
     );
   };
 
-  it("calls initApis once at first render", () => {
+  it('calls initApis once at first render', () => {
     renderComponent();
     expect(initApis).toHaveBeenCalledTimes(1);
   });
 
-  it("calls getResultVideos onSubmit with the input text", () => {
-    const query = "Bohemian Rhapsody";
+  it('calls getResultVideos onSubmit with the input text', () => {
+    const query = 'Bohemian Rhapsody';
     renderComponent();
-    userEvent.type(screen.getByRole("textbox"), query);
-    userEvent.click(screen.getByRole("button", { name: /search/i }));
+    userEvent.type(screen.getByRole('textbox'), query);
+    userEvent.click(screen.getByRole('button', { name: /search/i }));
     expect(getResultVideos).toHaveBeenCalledWith(query);
   });
 
-  it("calls setAlert with a message when an empty query is submitted", () => {
-    const query = "";
+  it('calls setAlert with a message when an empty query is submitted', () => {
+    const query = '';
     renderComponent();
-    userEvent.type(screen.getByRole("textbox"), query);
-    userEvent.click(screen.getByRole("button", { name: /search/i }));
+    userEvent.type(screen.getByRole('textbox'), query);
+    userEvent.click(screen.getByRole('button', { name: /search/i }));
     expect(getResultVideos).not.toHaveBeenCalled();
-    expect(setAlert).toHaveBeenCalledWith("Enter a search text");
+    expect(setAlert).toHaveBeenCalledWith('Enter a search text');
   });
 });

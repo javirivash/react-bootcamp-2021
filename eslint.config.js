@@ -2,8 +2,9 @@ import js from '@eslint/js';
 import reactPlugin from 'eslint-plugin-react';
 import jestPlugin from 'eslint-plugin-jest';
 import globals from 'globals';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
-export default [
+const config = [
   // Recommended settings from ESLint
   js.configs.recommended,
 
@@ -49,4 +50,7 @@ export default [
       ...jestPlugin.configs.recommended.rules,
     },
   },
+  eslintConfigPrettier,
 ];
+
+export default config;
