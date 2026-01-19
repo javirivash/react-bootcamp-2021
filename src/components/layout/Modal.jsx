@@ -1,22 +1,37 @@
-import React from "react";
-import { useAppContext } from "../../context/app/appContext";
-import AriaModal from "react-aria-modal";
-import LoginView from "../pages/LoginView";
+import React from 'react';
+import { useAppContext } from '../../context/app/appContext';
+import Modal from 'react-modal';
+import LoginView from '../pages/LoginView';
 
-const Modal = () => {
-  const { deactivateLogin } = useAppContext();
+const ModalComponent = () => {
+  const { shouldShowLogin, deactivateLogin } = useAppContext();
 
   return (
-    <AriaModal
-      titleText="loginModal"
-      verticallyCenter={true}
-      initialFocus="#email"
-      underlayStyle={{ paddingTop: "2em" }}
-      onExit={deactivateLogin}
+    <Modal
+      isOpen={shouldShowLogin}
+      onRequestClose={deactivateLogin}
+      shouldFocusAfterRender={true}
+      shouldReturnFocusAfterClose={true}
+      contentLabel='loginModal'
+      style={{
+        overlay: {
+          paddingTop: '2em',
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        },
+        content: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          transform: 'translate(-50%, -50%)',
+          marginRight: '-50%',
+        },
+      }}
     >
       <LoginView />
-    </AriaModal>
+    </Modal>
   );
 };
 
-export default Modal;
+export default ModalComponent;

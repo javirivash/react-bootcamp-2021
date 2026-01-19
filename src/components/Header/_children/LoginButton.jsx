@@ -1,11 +1,11 @@
-import React from "react";
-import { useAppContext } from "../../../context/app/appContext";
-import Modal from "../../layout/Modal";
-import styled from "styled-components";
+import React from 'react';
+import { useAppContext } from '../../../context/app/appContext';
+import Modal from '../../layout/Modal';
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   justify-self: end;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #c0c0c0;
   background-color: transparent;
@@ -25,12 +25,7 @@ const StyledButton = styled.button`
 `;
 
 const LoginButton = () => {
-  const {
-    currentUser,
-    shouldShowLogin,
-    activateLogin,
-    logOutUser,
-  } = useAppContext();
+  const { currentUser, activateLogin, logOutUser } = useAppContext();
 
   const onClick = () => {
     if (currentUser.isLoggedIn) {
@@ -43,9 +38,9 @@ const LoginButton = () => {
   return (
     <div>
       <StyledButton onClick={onClick}>
-        {currentUser.isLoggedIn ? "Log out" : "Sign up"}
+        {currentUser.isLoggedIn ? 'Log out' : 'Sign up'}
       </StyledButton>
-      {shouldShowLogin && <Modal />}
+      <Modal />
     </div>
   );
 };
