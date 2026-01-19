@@ -1,5 +1,4 @@
 /* global gapi, firebase*/
-/* eslint-disable react/prop-types */
 import React, { useReducer } from 'react';
 import AppContext from './appContext';
 import AppReducer from './appReducer';

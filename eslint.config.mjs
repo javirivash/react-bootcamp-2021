@@ -1,16 +1,18 @@
-import js from '@eslint/js';
-import reactPlugin from 'eslint-plugin-react';
-import jestPlugin from 'eslint-plugin-jest';
-import globals from 'globals';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import js from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
+import jestPlugin from "eslint-plugin-jest";
+import globals from "globals";
+import eslintConfigPrettier from "eslint-config-prettier";
 
 const config = [
-  // Recommended settings from ESLint
-  js.configs.recommended,
-
-  // React Configuration
   {
-    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+    ignores: ["build", "dist", "node_modules", "coverage"],
+  },
+
+  // JS + React Configuration
+  js.configs.recommended,
+  {
+    files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
       react: reactPlugin,
     },
@@ -26,18 +28,20 @@ const config = [
     },
     settings: {
       react: {
-        version: 'detect',
+        version: "detect",
       },
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off',
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "no-unused-vars": "warn",
     },
   },
 
   // Jest Configuration
   {
-    files: ['**/*.test.js', '**/*.spec.js'],
+    files: ["**/*.test.{js,jsx}", "**/*.spec.{js,jsx}"],
     plugins: {
       jest: jestPlugin,
     },
@@ -50,6 +54,8 @@ const config = [
       ...jestPlugin.configs.recommended.rules,
     },
   },
+
+  // Prettier Override (Always Last)
   eslintConfigPrettier,
 ];
 

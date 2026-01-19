@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useReducer } from 'react';
 import AlertContext from './alertContext';
 import AlertReducer from './alertReducer';

@@ -28,7 +28,7 @@ describe('FavoritesPlayer', () => {
     );
   };
 
-  it('renders iframe including link to the selected video ', () => {
+  it('renders iframe including link to the selected video', () => {
     const videoLink = `https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1`;
     renderComponent();
     const iframe = screen.getByRole('presentation');

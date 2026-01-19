@@ -32,7 +32,7 @@ describe('VideoItem', () => {
     window.scrollTo.mockClear();
   });
 
-  it('renders video details ', () => {
+  it('renders video details', () => {
     renderComponent();
     expect(screen.getByRole('videoItemDetails')).toBeInTheDocument();
   });
