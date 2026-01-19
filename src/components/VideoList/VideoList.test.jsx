@@ -21,21 +21,21 @@ describe("VideoList", () => {
         }}
       >
         <VideoList listTitle={title} videos={resultVideos} />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
   it("renders spinner when loading is true", () => {
     renderComponent({ loading: true });
     expect(
-      screen.getByRole("img", { name: /Loading.../i })
+      screen.getByRole("img", { name: /Loading.../i }),
     ).toBeInTheDocument();
   });
 
   it("renders the list title passed as prop", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /This is the list title/i })
+      screen.getByRole("heading", { name: /This is the list title/i }),
     ).toBeInTheDocument();
   });
 

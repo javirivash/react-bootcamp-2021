@@ -28,13 +28,13 @@ const updateLocalFavorites = (resultVideos, relatedVideos, favorites) => {
   // UPDATE REMOVED FAVORITES FROM RESULTS
   updatedLocalFavorites.results = updateRemovedFavorites(
     resultVideos,
-    favorites
+    favorites,
   );
 
   // UPDATE REMOVED FAVORITES FROM RELATED
   updatedLocalFavorites.related = updateRemovedFavorites(
     relatedVideos,
-    favorites
+    favorites,
   );
 
   favorites.forEach((favorite) => {
@@ -44,7 +44,7 @@ const updateLocalFavorites = (resultVideos, relatedVideos, favorites) => {
     // ADD FAVORITE TO RELATED
     updatedLocalFavorites.related = updateAddedFavorite(
       relatedVideos,
-      favorite
+      favorite,
     );
   });
   return updatedLocalFavorites;

@@ -19,7 +19,7 @@ describe("FavoriteButton", () => {
         }}
       >
         <FavoriteButton video={selectedVideo} />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 

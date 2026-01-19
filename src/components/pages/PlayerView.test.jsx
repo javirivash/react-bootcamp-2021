@@ -24,7 +24,7 @@ describe("PlayerView", () => {
         }}
       >
         <PlayerView />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
@@ -44,7 +44,7 @@ describe("PlayerView", () => {
   it("renders videos list title", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /More videos you may like/i })
+      screen.getByRole("heading", { name: /More videos you may like/i }),
     ).toBeInTheDocument();
   });
 

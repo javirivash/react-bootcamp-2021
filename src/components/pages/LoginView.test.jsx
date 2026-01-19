@@ -20,7 +20,7 @@ describe("LoginView", () => {
         }}
       >
         <LoginView />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 

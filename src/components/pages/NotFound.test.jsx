@@ -9,7 +9,7 @@ describe("NotFound", () => {
   it("renders Not Found title", () => {
     render(<NotFound />);
     expect(
-      screen.getByRole("heading", { name: /smart_display Page Not Found/i })
+      screen.getByRole("heading", { name: /smart_display Page Not Found/i }),
     ).toBeInTheDocument();
   });
 
@@ -18,7 +18,7 @@ describe("NotFound", () => {
     expect(
       screen.getByRole("heading", {
         name: /No page matches the route \/badroute/i,
-      })
+      }),
     ).toBeInTheDocument();
   });
 });

@@ -14,7 +14,7 @@ describe("VideoItemDetails", () => {
         }}
       >
         <VideoItemDetails video={selectedVideo} />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
   const { title, channelTitle } = selectedVideo;
@@ -32,7 +32,7 @@ describe("VideoItemDetails", () => {
   it("renders channel name", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: channelTitle })
+      screen.getByRole("heading", { name: channelTitle }),
     ).toBeInTheDocument();
   });
 

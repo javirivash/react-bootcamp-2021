@@ -17,7 +17,7 @@ describe("MenuButton", () => {
         }}
       >
         <MenuButton />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 

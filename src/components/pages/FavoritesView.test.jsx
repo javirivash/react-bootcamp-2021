@@ -19,14 +19,14 @@ describe("FavoritesView", () => {
         }}
       >
         <FavoritesView />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
   it("renders videos list title", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /These are your favorite videos/i })
+      screen.getByRole("heading", { name: /These are your favorite videos/i }),
     ).toBeInTheDocument();
   });
 
@@ -35,7 +35,7 @@ describe("FavoritesView", () => {
     expect(
       screen.getByRole("heading", {
         name: /Your favorite videos will show here/i,
-      })
+      }),
     ).toBeInTheDocument();
   });
 

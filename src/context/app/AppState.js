@@ -56,7 +56,7 @@ const AppState = ({ children }) => {
     let updatedLocalFavorites = updateLocalFavorites(
       state.resultVideos,
       state.relatedVideos,
-      state.currentFavorites
+      state.currentFavorites,
     );
 
     try {
@@ -70,7 +70,7 @@ const AppState = ({ children }) => {
       updatedLocalFavorites = updateLocalFavorites(
         resultVideos,
         state.relatedVideos,
-        state.currentFavorites
+        state.currentFavorites,
       );
     } catch (error) {
       setAlert("Error: Failed fetching results");
@@ -103,7 +103,7 @@ const AppState = ({ children }) => {
         updatedLocalFavorites = updateLocalFavorites(
           state.resultVideos,
           relatedVideos,
-          state.currentFavorites
+          state.currentFavorites,
         );
       } catch (error) {
         setAlert("Error: Failed fetching results");
@@ -190,7 +190,7 @@ const AppState = ({ children }) => {
       updatedLocalFavorites = updateLocalFavorites(
         state.resultVideos,
         state.relatedVideos,
-        favorites
+        favorites,
       );
       deactivateLogin();
       setAlert(`You've successfully logged in as ${user.email}`);
@@ -233,7 +233,7 @@ const AppState = ({ children }) => {
       updatedLocalFavorites = updateLocalFavorites(
         state.resultVideos,
         state.relatedVideos,
-        favorites
+        favorites,
       );
       setAlert("Added to Favorites");
     } catch (error) {
@@ -260,7 +260,7 @@ const AppState = ({ children }) => {
       updatedLocalFavorites = updateLocalFavorites(
         state.resultVideos,
         state.relatedVideos,
-        favorites
+        favorites,
       );
       setAlert("Removed from Favorites");
     } catch (error) {

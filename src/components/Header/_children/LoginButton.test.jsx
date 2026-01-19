@@ -21,7 +21,7 @@ describe("LoginButton", () => {
         }}
       >
         <LoginButton />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
@@ -29,7 +29,7 @@ describe("LoginButton", () => {
     it("renders with the text 'Log out'", () => {
       renderComponent();
       expect(
-        screen.getByRole("button", { name: /Log out/i })
+        screen.getByRole("button", { name: /Log out/i }),
       ).toBeInTheDocument();
     });
 
@@ -44,7 +44,7 @@ describe("LoginButton", () => {
     it("renders with the text 'Sign up'", () => {
       renderComponent({ currentUser: {} });
       expect(
-        screen.getByRole("button", { name: /Sign up/i })
+        screen.getByRole("button", { name: /Sign up/i }),
       ).toBeInTheDocument();
     });
 

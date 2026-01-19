@@ -20,21 +20,21 @@ describe("PrivateRoute", () => {
         <MemoryRouter>
           <PrivateRoute component={MockComponent} />
         </MemoryRouter>
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
   it("renders component when there is an user logged in", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /Renders Alright!/i })
+      screen.getByRole("heading", { name: /Renders Alright!/i }),
     ).toBeInTheDocument();
   });
 
   it("does not render the component when there is no user logged in", () => {
     renderComponent({ currentUser: {} });
     expect(
-      screen.queryByRole("heading", { name: /Renders Alright!/i })
+      screen.queryByRole("heading", { name: /Renders Alright!/i }),
     ).not.toBeInTheDocument();
   });
 });

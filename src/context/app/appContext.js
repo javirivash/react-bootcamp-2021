@@ -6,7 +6,7 @@ export const useAppContext = () => {
   const context = useContext(appContext);
   if (context === undefined) {
     throw new Error(
-      "useAppContext must be used within AppState component tree"
+      "useAppContext must be used within AppState component tree",
     );
   }
   return context;

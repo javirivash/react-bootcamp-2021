@@ -22,7 +22,7 @@ describe("SideMenu", () => {
         <MemoryRouter>
           <SideMenu />
         </MemoryRouter>
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
@@ -42,7 +42,7 @@ describe("SideMenu", () => {
     it("shows Favorites link", () => {
       renderComponent();
       expect(
-        screen.getByRole("link", { name: /Favorite/i })
+        screen.getByRole("link", { name: /Favorite/i }),
       ).toBeInTheDocument();
     });
 
@@ -63,7 +63,7 @@ describe("SideMenu", () => {
     it("does not show Favorites link", () => {
       renderComponent({ currentUser: {} });
       expect(screen.queryAllByRole("link", { name: /Favorites/i }).length).toBe(
-        0
+        0,
       );
     });
   });

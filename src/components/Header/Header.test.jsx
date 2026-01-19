@@ -40,7 +40,7 @@ describe("Header", () => {
         >
           <Header />
         </AppContext.Provider>
-      </AlertContext.Provider>
+      </AlertContext.Provider>,
     );
   };
 
@@ -71,7 +71,7 @@ describe("Header", () => {
   it("renders theme toggle", () => {
     renderComponent();
     expect(
-      screen.getByRole("button", { name: "dark_mode" })
+      screen.getByRole("button", { name: "dark_mode" }),
     ).toBeInTheDocument();
   });
 });

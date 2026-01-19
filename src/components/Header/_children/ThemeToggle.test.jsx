@@ -15,7 +15,7 @@ describe("ThemeToggle", () => {
         }}
       >
         <ThemeToggle />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 

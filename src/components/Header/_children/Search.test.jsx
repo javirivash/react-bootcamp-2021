@@ -26,7 +26,7 @@ describe("Search", () => {
         >
           <Search />
         </AppContext.Provider>
-      </AlertContext.Provider>
+      </AlertContext.Provider>,
     );
   };
 

@@ -21,7 +21,7 @@ describe("VideoItem", () => {
         }}
       >
         <VideoItem video={selectedVideo} />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
@@ -42,7 +42,7 @@ describe("VideoItem", () => {
     expect(screen.getByRole("img")).toBeInTheDocument();
     expect(screen.getByRole("img")).toHaveAttribute(
       "src",
-      selectedVideo.thumbnail
+      selectedVideo.thumbnail,
     );
   });
 

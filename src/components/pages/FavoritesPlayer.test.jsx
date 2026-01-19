@@ -24,7 +24,7 @@ describe("FavoritesPlayer", () => {
         }}
       >
         <FavoritesPlayer />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
@@ -44,14 +44,14 @@ describe("FavoritesPlayer", () => {
   it("renders videos list title", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /More of your favorites/i })
+      screen.getByRole("heading", { name: /More of your favorites/i }),
     ).toBeInTheDocument();
   });
 
   it("renders alternative title when there are no favorite videos", () => {
     renderComponent({ currentFavorites: [] });
     expect(
-      screen.getByRole("heading", { name: /Add more favorites to watch/i })
+      screen.getByRole("heading", { name: /Add more favorites to watch/i }),
     ).toBeInTheDocument();
   });
 

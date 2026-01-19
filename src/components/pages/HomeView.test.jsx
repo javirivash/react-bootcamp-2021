@@ -21,21 +21,23 @@ describe("HomeView", () => {
         }}
       >
         <HomeView />
-      </AppContext.Provider>
+      </AppContext.Provider>,
     );
   };
 
   it("renders the main title", () => {
     renderComponent();
     expect(
-      screen.getByRole("heading", { name: /Welcome to YouTubit/i })
+      screen.getByRole("heading", { name: /Welcome to YouTubit/i }),
     ).toBeInTheDocument();
   });
 
   it("renders the videos list title including search text", () => {
     renderComponent({ searchText: "Messi" });
     expect(
-      screen.getByRole("heading", { name: /Showing search results for Messi/i })
+      screen.getByRole("heading", {
+        name: /Showing search results for Messi/i,
+      }),
     ).toBeInTheDocument();
   });
 
