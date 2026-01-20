@@ -23,5 +23,6 @@ npm-error.log*
 .eslintcache
 .cache/
 
-# Local Netlify folder
+# Netlify
 .netlify
+deno.lock

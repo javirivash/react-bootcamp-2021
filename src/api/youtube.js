@@ -1,4 +1,4 @@
-export async function youtubeSearch({ q, relatedToVideoId }) {
+export async function youtubeSearch({ q }) {
   const params = new URLSearchParams({
     part: 'snippet',
     type: 'video',
@@ -7,9 +7,6 @@ export async function youtubeSearch({ q, relatedToVideoId }) {
 
   if (q) {
     params.set('q', q);
-  }
-  if (relatedToVideoId) {
-    params.set('relatedToVideoId', relatedToVideoId);
   }
 
   const res = await fetch(

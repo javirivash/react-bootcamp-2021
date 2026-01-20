@@ -72,30 +72,38 @@ const AppState = ({ children }) => {
   // GET RELATED VIDEOS
   const getRelatedVideos = async (video, pathname) => {
     setLoading();
-    let updatedLocalFavorites = {
-      results: state.resultVideos,
-      related: state.relatedVideos,
-      favorites: state.currentFavorites,
-    };
+
     if (!pathname.includes('/favorites')) {
       try {
-        const data = await youtubeSearch({ relatedToVideoId: video.id });
+        const data = await youtubeSearch({ q: video.title });
 
         const relatedVideos = validateItems(data.items);
-        updatedLocalFavorites = updateLocalFavorites(
+        const updatedLocalFavorites = updateLocalFavorites(
           state.resultVideos,
           relatedVideos,
           state.currentFavorites,
         );
+
+        dispatch({
+          type: GET_RELATED_VIDEOS,
+          payload: { video, updatedLocalFavorites },
+        });
+        return;
       } catch (error) {
         setAlert('Error: Failed fetching results');
         console.error('getRelatedVideos: Something went wrong... ', error);
       }
     }
-
     dispatch({
       type: GET_RELATED_VIDEOS,
-      payload: { video, updatedLocalFavorites },
+      payload: {
+        video,
+        updatedLocalFavorites: {
+          results: state.resultVideos,
+          related: [],
+          favorites: state.currentFavorites,
+        },
+      },
     });
   };
 

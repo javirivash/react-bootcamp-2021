@@ -19,12 +19,6 @@ exports.handler = async (event) => {
     if (qs.q) {
       params.set('q', qs.q);
     }
-    if (qs.relatedToVideoId) {
-      params.set('relatedToVideoId', qs.relatedToVideoId);
-    }
-    if (qs.relevanceLanguage) {
-      params.set('relevanceLanguage', qs.relevanceLanguage);
-    }
 
     const url = `https://www.googleapis.com/youtube/v3/search?${params.toString()}`;
     const res = await fetch(url);
