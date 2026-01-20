@@ -1,8 +1,8 @@
-/* global gapi, firebase*/
+/* global firebase*/
 import React, { useReducer } from 'react';
 import AppContext from './appContext';
 import AppReducer from './appReducer';
-import initGapi from '../../utils/initGapi';
+import { youtubeSearch } from '../../api/youtube';
 import initFirebase from '../../utils/initFirebase';
 import validateItems from '../../utils/validateItems';
 import getFavorites from '../../utils/getFavorites';
@@ -44,42 +44,30 @@ const AppState = ({ children }) => {
 
   // INIT APIS
   const initApis = async () => {
-    await initGapi();
-    getResultVideos(state.searchText);
     initFirebase();
+    getResultVideos(state.searchText);
   };
 
   // GET RESULT VIDEOS
   const getResultVideos = async (query) => {
     setLoading();
-    let updatedLocalFavorites = updateLocalFavorites(
-      state.resultVideos,
-      state.relatedVideos,
-      state.currentFavorites,
-    );
-
     try {
-      const response = await gapi.client.youtube.search.list({
-        part: ['snippet'],
-        maxResults: 50,
-        q: query,
-        type: ['video'],
-      });
-      const resultVideos = validateItems(response.result.items);
-      updatedLocalFavorites = updateLocalFavorites(
+      const data = await youtubeSearch({ q: query });
+      const resultVideos = validateItems(data.items);
+      const updatedLocalFavorites = updateLocalFavorites(
         resultVideos,
         state.relatedVideos,
         state.currentFavorites,
       );
+
+      dispatch({
+        type: GET_RESULT_VIDEOS,
+        payload: { query, updatedLocalFavorites },
+      });
     } catch (error) {
       setAlert('Error: Failed fetching results');
       console.error('getResultVideos: Something went wrong... ', error);
     }
-
-    dispatch({
-      type: GET_RESULT_VIDEOS,
-      payload: { query, updatedLocalFavorites },
-    });
   };
 
   // GET RELATED VIDEOS
@@ -92,13 +80,9 @@ const AppState = ({ children }) => {
     };
     if (!pathname.includes('/favorites')) {
       try {
-        const response = await gapi.client.youtube.search.list({
-          part: ['snippet'],
-          maxResults: 50,
-          type: ['video'],
-          relatedToVideoId: video.id,
-        });
-        const relatedVideos = validateItems(response.result.items);
+        const data = await youtubeSearch({ relatedToVideoId: video.id });
+
+        const relatedVideos = validateItems(data.items);
         updatedLocalFavorites = updateLocalFavorites(
           state.resultVideos,
           relatedVideos,
