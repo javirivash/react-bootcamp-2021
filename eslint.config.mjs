@@ -55,6 +55,16 @@ const config = [
     },
   },
 
+  // Netlify Functions (Node) Configuration
+  {
+    files: ['netlify/functions/**/*.{js,mjs,cjs}'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+
   // Prettier Override (Always Last)
   eslintConfigPrettier,
 ];
