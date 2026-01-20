@@ -40,15 +40,17 @@ const Form = styled.form`
   }
 `;
 
+const initQuery = 'Wizeline Academy';
+
 const Search = () => {
   const [text, setText] = useState('');
-  const { getResultVideos, initApis } = useAppContext();
+  const { getResultVideos } = useAppContext();
   const { setAlert } = useAlertContext();
   const { pathname } = useLocation();
   const history = useHistory();
 
   useEffect(() => {
-    initApis();
+    getResultVideos(initQuery);
   }, []);
 
   const onChange = (e) => {
@@ -74,19 +76,19 @@ const Search = () => {
   return (
     <Form onSubmit={onSubmit}>
       <input
-        id="text"
-        type="text"
-        name="text"
-        placeholder="Search"
+        id='text'
+        type='text'
+        name='text'
+        placeholder='Search'
         value={text}
         onChange={onChange}
         onClick={onClick}
       />
       <input
-        id="submit"
-        type="submit"
-        className="material-icons"
-        value="search"
+        id='submit'
+        type='submit'
+        className='material-icons'
+        value='search'
       />
     </Form>
   );

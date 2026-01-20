@@ -1,16 +1,18 @@
-/*global firebase*/
+import { get, ref } from 'firebase/database';
+import { db } from '../firebase/client';
+
 const getFavorites = async (userId) => {
-  const userData = firebase.database().ref('users/' + userId);
-  let favorites = [];
   try {
-    const snapshot = await userData.get();
-    if (snapshot.val()) {
-      favorites = Object.values(snapshot.val());
+    const snapshot = await get(ref(db, `users/${userId}`));
+    if (!snapshot.exists()) {
+      return [];
     }
+    const val = snapshot.val();
+    return val ? Object.values(val) : [];
   } catch (error) {
     console.error(error);
+    return [];
   }
-  return favorites;
 };
 
 export default getFavorites;

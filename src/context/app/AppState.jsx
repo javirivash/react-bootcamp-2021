@@ -1,9 +1,14 @@
-/* global firebase*/
 import React, { useReducer } from 'react';
 import AppContext from './appContext';
 import AppReducer from './appReducer';
 import { youtubeSearch } from '../../api/youtube';
-import initFirebase from '../../utils/initFirebase';
+import { auth, db } from '../../firebase/client';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { ref, set, remove } from 'firebase/database';
 import validateItems from '../../utils/validateItems';
 import getFavorites from '../../utils/getFavorites';
 import updateLocalFavorites from '../../utils/updateLocalFavorites';
@@ -27,7 +32,7 @@ import {
 
 const AppState = ({ children }) => {
   const initialState = {
-    searchText: 'Wizeline Academy',
+    searchText: '',
     resultVideos: [],
     selectedVideo: {},
     relatedVideos: [],
@@ -41,12 +46,6 @@ const AppState = ({ children }) => {
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const { setAlert } = useAlertContext();
-
-  // INIT APIS
-  const initApis = async () => {
-    initFirebase();
-    getResultVideos(state.searchText);
-  };
 
   // GET RESULT VIDEOS
   const getResultVideos = async (query) => {
@@ -131,9 +130,11 @@ const AppState = ({ children }) => {
   const signUpUser = async (email, password) => {
     let user;
     try {
-      const userCredential = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       user = {
         id: userCredential.user.uid,
         email: userCredential.user.email,
@@ -161,9 +162,11 @@ const AppState = ({ children }) => {
       favorites: state.currentFavorites,
     };
     try {
-      const userCredential = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       user = {
         id: userCredential.user.uid,
         email: userCredential.user.email,
@@ -190,7 +193,7 @@ const AppState = ({ children }) => {
   // LOG OUT USER
   const logOutUser = async () => {
     try {
-      await firebase.auth().signOut();
+      await signOut(auth);
       setAlert('You have successfully logged out');
     } catch (error) {
       setAlert('There was a problem while logging out');
@@ -204,14 +207,13 @@ const AppState = ({ children }) => {
   // ADD FAVORITE
   const addFavorite = async (video) => {
     const userId = state.currentUser.id;
-    const userData = firebase.database().ref('users/' + userId);
     let updatedLocalFavorites = {
       results: state.resultVideos,
       related: state.relatedVideos,
       favorites: state.currentFavorites,
     };
     try {
-      await userData.child(video.id).set(video);
+      await set(ref(db, `users/${userId}/${video.id}`), video);
       const favorites = await getFavorites(userId);
       updatedLocalFavorites = updateLocalFavorites(
         state.resultVideos,
@@ -231,14 +233,13 @@ const AppState = ({ children }) => {
   // REMOVE FAVORITE
   const removeFavorite = async (videoId) => {
     const userId = state.currentUser.id;
-    const userData = firebase.database().ref('users/' + userId);
     let updatedLocalFavorites = {
       results: state.resultVideos,
       related: state.relatedVideos,
       favorites: state.currentFavorites,
     };
     try {
-      await userData.child(videoId).remove();
+      await remove(ref(db, `users/${userId}/${videoId}`));
       const favorites = await getFavorites(userId);
       updatedLocalFavorites = updateLocalFavorites(
         state.resultVideos,
@@ -260,7 +261,6 @@ const AppState = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
-        initApis,
         getResultVideos,
         getRelatedVideos,
         setLoading,
