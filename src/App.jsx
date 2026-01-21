@@ -30,23 +30,23 @@ const App = () => {
     <AlertState>
       <AppState>
         <Router>
-          <div id="App">
+          <div id='App'>
             <Header />
             <Alert />
             <StyledContainer>
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/favorites/player"
+                  path='/favorites/player'
                   component={FavoritesPlayer}
                 />
                 <PrivateRoute
                   exact
-                  path="/favorites"
+                  path='/favorites'
                   component={FavoritesView}
                 />
-                <Route exact path="/player" component={PlayerView} />
-                <Route exact path="/" component={HomeView} />
+                <Route exact path='/player' component={PlayerView} />
+                <Route exact path='/' component={HomeView} />
                 <Route component={NotFound} />
               </Switch>
             </StyledContainer>

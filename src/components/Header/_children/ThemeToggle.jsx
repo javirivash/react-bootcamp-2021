@@ -26,7 +26,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <StyledButton onClick={onClick} className="material-icons">
+    <StyledButton onClick={onClick} className='material-icons'>
       dark_mode
     </StyledButton>
   );

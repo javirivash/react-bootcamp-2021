@@ -43,7 +43,7 @@ const VideoItem = ({ video }) => {
   };
 
   return (
-    <StyledItem role="videoItem" onClick={onClick}>
+    <StyledItem role='videoItem' onClick={onClick}>
       <VideoItemDetails video={video} />
       <VideoThumbnail thumbnail={video.thumbnail} />
     </StyledItem>

@@ -38,7 +38,7 @@ const NotFound = () => {
   return (
     <StyledContainer>
       <StyledTitle>
-        <span className="material-icons">smart_display</span>
+        <span className='material-icons'>smart_display</span>
         Page Not Found
       </StyledTitle>
       <StyledDescription>

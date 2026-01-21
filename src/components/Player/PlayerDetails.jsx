@@ -39,7 +39,7 @@ const PlayerDetails = () => {
   const { title, description, channelTitle } = selectedVideo;
 
   return (
-    <StyledContainer role="playerDetails">
+    <StyledContainer role='playerDetails'>
       <StyledFlex>
         <StyledTitle>{title}</StyledTitle>
         <FavoriteButton video={selectedVideo} />

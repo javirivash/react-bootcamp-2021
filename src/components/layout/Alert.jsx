@@ -40,9 +40,9 @@ const Alert = () => {
 
   return (
     <StyledAlert alert={!!alert}>
-      <StyledIcon className="material-icons">error</StyledIcon>
+      <StyledIcon className='material-icons'>error</StyledIcon>
       <StyledMessage>{alert}</StyledMessage>
-      <StyledButton onClick={() => removeAlert()} className="material-icons">
+      <StyledButton onClick={() => removeAlert()} className='material-icons'>
         close
       </StyledButton>
     </StyledAlert>

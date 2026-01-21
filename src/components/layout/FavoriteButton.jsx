@@ -37,8 +37,8 @@ const FavoriteButton = ({ video }) => {
   return (
     <StyledButton
       onClick={toggleFavorite}
-      type="button"
-      className="material-icons"
+      type='button'
+      className='material-icons'
     >
       {video.isFavorite ? 'favorite' : 'favorite_border'}
     </StyledButton>

@@ -57,11 +57,11 @@ const SideMenu = () => {
     <Fragment>
       <StyledMenu shouldShowMenu={shouldShowMenu} onClick={toggleMenu}>
         <Link to={'/'} onClick={onClick} replace>
-          <span className="material-icons">home</span>
+          <span className='material-icons'>home</span>
         </Link>
         {currentUser.isLoggedIn && (
           <Link to={'/favorites'} onClick={onClick} replace>
-            <span className="material-icons">favorite</span>
+            <span className='material-icons'>favorite</span>
           </Link>
         )}
       </StyledMenu>

@@ -32,7 +32,7 @@ const VideoList = ({ listTitle, videos }) => {
   ) : (
     <Fragment>
       <StyledTitle>{listTitle}</StyledTitle>
-      <ItemsContainer role="videoList">
+      <ItemsContainer role='videoList'>
         {videos.map((item) => (
           <VideoItem key={item.id} video={item} />
         ))}

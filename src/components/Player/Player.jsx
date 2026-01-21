@@ -32,10 +32,10 @@ const Player = () => {
     <StyledContainer>
       <StyledWrapper>
         <StyledIFrame
-          role="presentation"
-          type="text/html"
+          role='presentation'
+          type='text/html'
           src={`https://www.youtube.com/embed/${id}?autoplay=1`}
-          allow="autoplay; fullscreen"
+          allow='autoplay; fullscreen'
         ></StyledIFrame>
       </StyledWrapper>
     </StyledContainer>

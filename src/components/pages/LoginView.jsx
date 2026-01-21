@@ -116,11 +116,11 @@ const LoginView = () => {
   return shouldShowSignup ? (
     <StyledForm onSubmit={handleSignup}>
       <StyledFlex>
-        <span className="material-icons">verified_user</span>
+        <span className='material-icons'>verified_user</span>
         <StyledExit
-          type="button"
+          type='button'
           onClick={deactivateLogin}
-          className="material-icons"
+          className='material-icons'
         >
           close
         </StyledExit>
@@ -128,27 +128,27 @@ const LoginView = () => {
       <div>
         <StyledHeader>Enter a new email and password</StyledHeader>
         <StyledInput
-          id="email"
-          type="text"
-          placeholder="Email"
+          id='email'
+          type='text'
+          placeholder='Email'
           onChange={onEmailChange}
           value={emailText}
           autoFocus
         />
         <StyledInput
-          id="password"
-          type="password"
-          placeholder="Password"
+          id='password'
+          type='password'
+          placeholder='Password'
           onChange={onPasswordChange}
           value={passwordText}
         />
-        <StyledSignup type="submit" id="signUp">
+        <StyledSignup type='submit' id='signUp'>
           Sign up
         </StyledSignup>
       </div>
       <div>
         <StyledHeader>Already have an account?</StyledHeader>
-        <StyledLogin onClick={toggleForm} type="button" id="logIn">
+        <StyledLogin onClick={toggleForm} type='button' id='logIn'>
           Log in
         </StyledLogin>
       </div>
@@ -156,11 +156,11 @@ const LoginView = () => {
   ) : (
     <StyledForm onSubmit={handleLogin}>
       <StyledFlex>
-        <span className="material-icons">verified_user</span>
+        <span className='material-icons'>verified_user</span>
         <StyledExit
-          type="button"
+          type='button'
           onClick={deactivateLogin}
-          className="material-icons"
+          className='material-icons'
         >
           close
         </StyledExit>
@@ -168,26 +168,26 @@ const LoginView = () => {
       <div>
         <StyledHeader>Enter your email and password</StyledHeader>
         <StyledInput
-          id="email"
-          type="text"
-          placeholder="Email"
+          id='email'
+          type='text'
+          placeholder='Email'
           onChange={onEmailChange}
           value={emailText}
         />
         <StyledInput
-          id="password"
-          type="password"
-          placeholder="Password"
+          id='password'
+          type='password'
+          placeholder='Password'
           onChange={onPasswordChange}
           value={passwordText}
         />
-        <StyledLogin type="submit" id="logIn">
+        <StyledLogin type='submit' id='logIn'>
           Log in
         </StyledLogin>
       </div>
       <div>
         <StyledReturn onClick={toggleForm}>
-          <span className="material-icons">keyboard_arrow_left</span>
+          <span className='material-icons'>keyboard_arrow_left</span>
           Sign up
         </StyledReturn>
       </div>

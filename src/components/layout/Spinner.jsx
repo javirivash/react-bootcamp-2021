@@ -9,7 +9,7 @@ const StyledSpinner = styled.img`
   display: block;
 `;
 const Spinner = () => {
-  return <StyledSpinner src={spinner} alt="Loading..." />;
+  return <StyledSpinner src={spinner} alt='Loading...' />;
 };
 
 export default Spinner;

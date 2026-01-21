@@ -12,7 +12,7 @@ const ModalComponent = () => {
       onRequestClose={deactivateLogin}
       shouldFocusAfterRender={true}
       shouldReturnFocusAfterClose={true}
-      contentLabel="loginModal"
+      contentLabel='loginModal'
       style={{
         overlay: {
           paddingTop: '2em',
