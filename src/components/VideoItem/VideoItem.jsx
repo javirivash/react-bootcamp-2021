@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/app/appContext';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -29,16 +29,16 @@ const StyledItem = styled.div`
 const VideoItem = ({ video }) => {
   const { getRelatedVideos } = useAppContext();
   const { pathname } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onClick = () => {
     getRelatedVideos(video, pathname);
     window.scrollTo(0, 0);
     if (pathname == '/favorites') {
-      history.push('/favorites/player');
+      navigate('/favorites/player');
     }
     if (pathname == '/') {
-      history.push('/player');
+      navigate('/player');
     }
   };
 

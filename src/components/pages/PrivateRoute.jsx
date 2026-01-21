@@ -1,22 +1,15 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAppContext } from '../../context/app/appContext';
 import PropTypes from 'prop-types';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ children }) => {
   const { currentUser } = useAppContext();
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        currentUser.isLoggedIn ? <Component {...props} /> : <Redirect to='/' />
-      }
-    />
-  );
+  return currentUser?.isLoggedIn ? children : <Navigate to='/' replace />;
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.func,
+  children: PropTypes.node.isRequired,
 };
 
 export default PrivateRoute;

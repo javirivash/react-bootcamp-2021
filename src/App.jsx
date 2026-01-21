@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AlertState from './context/alert/AlertState';
 import AppState from './context/app/AppState';
 import styled from 'styled-components';
@@ -34,21 +34,27 @@ const App = () => {
             <Header />
             <Alert />
             <StyledContainer>
-              <Switch>
-                <PrivateRoute
-                  exact
+              <Routes>
+                <Route
                   path='/favorites/player'
-                  component={FavoritesPlayer}
+                  element={
+                    <PrivateRoute>
+                      <FavoritesPlayer />
+                    </PrivateRoute>
+                  }
                 />
-                <PrivateRoute
-                  exact
+                <Route
                   path='/favorites'
-                  component={FavoritesView}
+                  element={
+                    <PrivateRoute>
+                      <FavoritesView />
+                    </PrivateRoute>
+                  }
                 />
-                <Route exact path='/player' component={PlayerView} />
-                <Route exact path='/' component={HomeView} />
-                <Route component={NotFound} />
-              </Switch>
+                <Route path='/player' element={<PlayerView />} />
+                <Route path='/' element={<HomeView />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
             </StyledContainer>
           </div>
         </Router>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAppContext } from '../../../context/app/appContext';
 import { useAlertContext } from '../../../context/alert/alertContext';
@@ -47,7 +47,7 @@ const Search = () => {
   const { getResultVideos } = useAppContext();
   const { setAlert } = useAlertContext();
   const { pathname } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getResultVideos(initQuery);
@@ -66,7 +66,7 @@ const Search = () => {
       getResultVideos(text);
       document.getElementById('text').select();
       if (pathname !== '/') {
-        history.push('/');
+        navigate('/', { replace: false });
       }
     } else {
       setAlert('Enter a search text');
