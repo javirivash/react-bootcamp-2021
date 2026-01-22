@@ -8,7 +8,7 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "menu" })).toBeInTheDocument();
   });
 
-  test("search input button is in the document", () => {
+  test("search input is in the document", () => {
     render(<Header />);
     expect(screen.getByRole("textbox")).toBeInTheDocument();
   });

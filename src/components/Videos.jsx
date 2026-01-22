@@ -11,10 +11,11 @@ const ItemsContainer = styled.article`
   margin: auto;
 `;
 
-const Videos = ({ data }) => {
+const Videos = ({ fetchedVideos }) => {
+  console.log("Videos fetched: ", fetchedVideos);
   return (
     <ItemsContainer>
-      {data.items.map((item) => (
+      {fetchedVideos.map((item) => (
         <VideoItem key={item.etag} snippet={item.snippet} />
       ))}
     </ItemsContainer>
@@ -22,7 +23,7 @@ const Videos = ({ data }) => {
 };
 
 Videos.propTypes = {
-  data: PropTypes.object.isRequired,
+  fetchedVideos: PropTypes.array.isRequired,
 };
 
 export default Videos;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Button = styled.button`
   justify-self: end;
   border-radius: 3px;
-  font-size: 16px;
+  font-size: 14px;
   color: #101010;
   background-color: #c0c0c0;
   border-radius: 14px;
