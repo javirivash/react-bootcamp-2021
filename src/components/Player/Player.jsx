@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAppContext } from '../../context/app/appContext';
+import { useParams } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   max-width: 950px;
@@ -24,9 +24,7 @@ const StyledIFrame = styled.iframe`
 `;
 
 const Player = () => {
-  const {
-    selectedVideo: { id },
-  } = useAppContext();
+  const { videoId } = useParams();
 
   return (
     <StyledContainer>
@@ -34,7 +32,7 @@ const Player = () => {
         <StyledIFrame
           role='presentation'
           type='text/html'
-          src={`https://www.youtube.com/embed/${id}?autoplay=1`}
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
           allow='autoplay; fullscreen'
         ></StyledIFrame>
       </StyledWrapper>

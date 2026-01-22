@@ -1,6 +1,8 @@
 import {
   GET_RESULT_VIDEOS,
-  GET_RELATED_VIDEOS,
+  SET_SELECTED_VIDEO,
+  LOAD_PLAYER_SUCCESS,
+  LOAD_PLAYER_ERROR,
   SET_LOADING,
   TOGGLE_THEME,
   ACTIVATE_LOGIN,
@@ -24,13 +26,25 @@ export default (state, action) => {
         currentFavorites: action.payload.updatedLocalFavorites.favorites,
         loading: false,
       };
-    case GET_RELATED_VIDEOS:
+    case SET_SELECTED_VIDEO:
       return {
         ...state,
-        selectedVideo: action.payload.video,
+        selectedVideo: action.payload,
+      };
+    case LOAD_PLAYER_SUCCESS:
+      return {
+        ...state,
+        selectedVideo: action.payload.selectedVideo,
         resultVideos: action.payload.updatedLocalFavorites.results,
         relatedVideos: action.payload.updatedLocalFavorites.related,
         currentFavorites: action.payload.updatedLocalFavorites.favorites,
+        loading: false,
+      };
+
+    case LOAD_PLAYER_ERROR:
+      return {
+        ...state,
+        relatedVideos: action.payload.updatedLocalFavorites.related,
         loading: false,
       };
     case SET_LOADING:

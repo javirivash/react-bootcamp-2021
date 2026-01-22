@@ -36,7 +36,7 @@ const App = () => {
             <StyledContainer>
               <Routes>
                 <Route
-                  path='/favorites/player'
+                  path='/favorites/player/:videoId'
                   element={
                     <PrivateRoute>
                       <FavoritesPlayer />
@@ -51,7 +51,7 @@ const App = () => {
                     </PrivateRoute>
                   }
                 />
-                <Route path='/player' element={<PlayerView />} />
+                <Route path='/player/:videoId' element={<PlayerView />} />
                 <Route path='/' element={<HomeView />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>

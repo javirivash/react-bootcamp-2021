@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import AppContext from './appContext';
 import AppReducer from './appReducer';
-import { youtubeSearch } from '../../api/youtube';
+import { youtubeSearch, youtubeVideos } from '../../api/youtube';
 import { auth, db } from '../../firebase/client';
 import {
   createUserWithEmailAndPassword,
@@ -17,7 +17,9 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyles } from './themes';
 import {
   GET_RESULT_VIDEOS,
-  GET_RELATED_VIDEOS,
+  SET_SELECTED_VIDEO,
+  LOAD_PLAYER_SUCCESS,
+  LOAD_PLAYER_ERROR,
   SET_LOADING,
   TOGGLE_THEME,
   ACTIVATE_LOGIN,
@@ -69,42 +71,49 @@ const AppState = ({ children }) => {
     }
   };
 
-  // GET RELATED VIDEOS
-  const getRelatedVideos = async (video, pathname) => {
+  // SET SELECTED VIDEO
+  const setSelectedVideo = (video) => {
+    dispatch({ type: SET_SELECTED_VIDEO, payload: video });
+  };
+
+  // LOAD PLAYER VIDEOS
+  const loadPlayerById = async ({ videoId, includeRelated }) => {
     setLoading();
 
-    if (!pathname.includes('/favorites')) {
-      try {
-        const data = await youtubeSearch({ q: video.title });
+    try {
+      const data = await youtubeVideos({ videoId, includeRelated });
+      const relatedVideos = includeRelated
+        ? validateItems(data.relatedItems || [])
+        : [];
 
-        const relatedVideos = validateItems(data.items);
-        const updatedLocalFavorites = updateLocalFavorites(
-          state.resultVideos,
-          relatedVideos,
-          state.currentFavorites,
-        );
+      const updatedLocalFavorites = updateLocalFavorites(
+        state.resultVideos,
+        relatedVideos,
+        state.currentFavorites,
+      );
 
-        dispatch({
-          type: GET_RELATED_VIDEOS,
-          payload: { video, updatedLocalFavorites },
-        });
-        return;
-      } catch (error) {
-        setAlert('Error: Failed fetching results');
-        console.error('getRelatedVideos: Something went wrong... ', error);
-      }
-    }
-    dispatch({
-      type: GET_RELATED_VIDEOS,
-      payload: {
-        video,
-        updatedLocalFavorites: {
-          results: state.resultVideos,
-          related: [],
-          favorites: state.currentFavorites,
+      dispatch({
+        type: LOAD_PLAYER_SUCCESS,
+        payload: {
+          selectedVideo: data.selectedVideo,
+          updatedLocalFavorites,
         },
-      },
-    });
+      });
+    } catch (error) {
+      setAlert('Error: Failed loading player');
+      console.error('loadPlayerById failed:', error);
+
+      dispatch({
+        type: LOAD_PLAYER_ERROR,
+        payload: {
+          updatedLocalFavorites: {
+            results: state.resultVideos,
+            related: [],
+            favorites: state.currentFavorites,
+          },
+        },
+      });
+    }
   };
 
   // SET LOADING
@@ -204,7 +213,8 @@ const AppState = ({ children }) => {
       await signOut(auth);
       setAlert('You have successfully logged out');
     } catch (error) {
-      setAlert('There was a problem while logging out');
+      setAlert('There was a problem while logging out' + error.mess);
+      console.error('logOutUser: Something went wrong... ', error);
     }
 
     dispatch({
@@ -230,7 +240,8 @@ const AppState = ({ children }) => {
       );
       setAlert('Added to Favorites');
     } catch (error) {
-      setAlert('There was an error while adding to Favorites');
+      setAlert('There was an error while adding to Favorites' + error.message);
+      console.error('addFavorite: Something went wrong... ', error);
     }
     dispatch({
       type: ADD_FAVORITE,
@@ -256,7 +267,10 @@ const AppState = ({ children }) => {
       );
       setAlert('Removed from Favorites');
     } catch (error) {
-      setAlert('There was an error while removing from Favorites');
+      setAlert(
+        'There was an error while removing from Favorites' + error.message,
+      );
+      console.error('removeFavorite: Something went wrong... ', error);
     }
 
     dispatch({
@@ -270,7 +284,8 @@ const AppState = ({ children }) => {
       value={{
         ...state,
         getResultVideos,
-        getRelatedVideos,
+        setSelectedVideo,
+        loadPlayerById,
         setLoading,
         toggleTheme,
         activateLogin,

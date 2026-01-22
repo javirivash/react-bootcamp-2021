@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import Player from '../Player/Player';
 import PlayerDetails from '../Player/PlayerDetails';
 import VideoList from '../VideoList/VideoList';
@@ -11,10 +12,15 @@ const StyledContainer = styled.div`
 `;
 
 const PlayerView = () => {
-  const { currentFavorites, selectedVideo } = useAppContext();
+  const { currentFavorites, loadPlayerById } = useAppContext();
+  const { videoId } = useParams();
+
+  useEffect(() => {
+    loadPlayerById({ videoId, includeRelated: false });
+  }, [videoId]);
 
   const notPlayingFavorites = currentFavorites.filter((video) => {
-    return video.id !== selectedVideo.id;
+    return video.id !== videoId;
   });
 
   const moreFavoritesTitle = (

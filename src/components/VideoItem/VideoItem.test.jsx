@@ -10,13 +10,13 @@ vi.mock('react-router-dom', () => ({
 }));
 
 describe('VideoItem', () => {
-  const getRelatedVideos = vi.fn();
+  const setSelectedVideo = vi.fn();
   const renderComponent = (contextValue = {}) => {
     render(
       <AppContext.Provider
         value={{
           currentUser,
-          getRelatedVideos,
+          setSelectedVideo,
           ...contextValue,
         }}
       >
@@ -46,9 +46,9 @@ describe('VideoItem', () => {
     );
   });
 
-  it('calls getRelatedVideos when clicking the item', () => {
+  it('calls setSelectedVideo when clicking the item', () => {
     renderComponent();
     userEvent.click(screen.getByRole('videoItem'));
-    expect(getRelatedVideos).toHaveBeenCalledWith(selectedVideo, '/');
+    expect(setSelectedVideo).toHaveBeenCalledWith(selectedVideo, '/');
   });
 });

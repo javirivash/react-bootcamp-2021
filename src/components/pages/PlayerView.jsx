@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import Player from '../Player/Player';
 import PlayerDetails from '../Player/PlayerDetails';
 import VideoList from '../VideoList/VideoList';
@@ -10,10 +11,15 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const PlayerView = () => {
-  const { relatedVideos } = useAppContext();
+const relatedTitle = <>More videos you may like</>;
 
-  const relatedTitle = <Fragment>More videos you may like</Fragment>;
+const PlayerView = () => {
+  const { videoId } = useParams();
+  const { relatedVideos, loadPlayerById } = useAppContext();
+
+  useEffect(() => {
+    loadPlayerById({ videoId, includeRelated: true });
+  }, [videoId]);
 
   return (
     <StyledContainer>

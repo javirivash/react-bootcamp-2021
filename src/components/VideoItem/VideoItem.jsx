@@ -27,19 +27,19 @@ const StyledItem = styled.div`
 `;
 
 const VideoItem = ({ video }) => {
-  const { getRelatedVideos } = useAppContext();
+  const { setSelectedVideo } = useAppContext();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const onClick = () => {
-    getRelatedVideos(video, pathname);
+    setSelectedVideo(video);
     window.scrollTo(0, 0);
-    if (pathname == '/favorites') {
-      navigate('/favorites/player');
-    }
-    if (pathname == '/') {
-      navigate('/player');
-    }
+
+    navigate(
+      pathname.startsWith('/favorites')
+        ? `/favorites/player/${video.id}`
+        : `/player/${video.id}`,
+    );
   };
 
   return (
