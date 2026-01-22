@@ -1,8 +1,14 @@
 /* global gapi */
+/* eslint-disable no-undef */
 const initGapi = async () => {
-  // eslint-disable-next-line no-undef
-  const apiKey = process.env.REACT_APP_API_KEY;
+  let apiKey;
   let discovery = {};
+
+  if (process.env.NODE_ENV !== "production") {
+    apiKey = process.env.REACT_APP_API_KEY;
+  } else {
+    apiKey = process.env.API_KEY;
+  }
 
   const handleClientLoad = async () => {
     try {
