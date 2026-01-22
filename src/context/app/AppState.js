@@ -21,7 +21,6 @@ const AppState = ({ children }) => {
     resultVideos: [],
     selectedVideo: {},
     relatedVideos: [],
-    showPlayer: false,
     loading: true,
     theme: "light",
   };
@@ -66,7 +65,7 @@ const AppState = ({ children }) => {
     let items;
 
     try {
-      const response = await gapi.client.youtube.search.lis({
+      const response = await gapi.client.youtube.search.list({
         part: ["snippet"],
         maxResults: 50,
         type: ["video"],
