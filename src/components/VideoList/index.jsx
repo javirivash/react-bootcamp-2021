@@ -11,7 +11,7 @@ const ItemsContainer = styled.div`
   margin: auto;
 `;
 
-const VideoList = ({ videos, handleSelectedVideo }) => {
+const VideoList = ({ videos }) => {
   return (
     <ItemsContainer role="videoList">
       {videos.map((item) => (
@@ -19,7 +19,6 @@ const VideoList = ({ videos, handleSelectedVideo }) => {
           key={item.id.videoId}
           id={item.id.videoId}
           snippet={item.snippet}
-          handleSelectedVideo={handleSelectedVideo}
         />
       ))}
     </ItemsContainer>
@@ -28,7 +27,6 @@ const VideoList = ({ videos, handleSelectedVideo }) => {
 
 VideoList.propTypes = {
   videos: PropTypes.array.isRequired,
-  handleSelectedVideo: PropTypes.func.isRequired,
 };
 
 export default VideoList;

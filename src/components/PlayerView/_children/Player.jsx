@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+import AppContext from "../../../context/appContext";
 
 const Container = styled.div`
   max-width: 950px;
@@ -25,7 +25,12 @@ const Container = styled.div`
   }
 `;
 
-const Player = ({ selectedVideo }) => {
+const Player = () => {
+  const appContext = useContext(AppContext);
+  const {
+    selectedVideo: { id },
+  } = appContext;
+
   return (
     <Container>
       <div className="wrapper">
@@ -35,16 +40,12 @@ const Player = ({ selectedVideo }) => {
           type="text/html"
           width="640"
           height="360"
-          src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1`}
+          src={`https://www.youtube.com/embed/${id}?autoplay=1`}
           allow="autoplay; fullscreen"
         ></iframe>
       </div>
     </Container>
   );
-};
-
-Player.propTypes = {
-  selectedVideo: PropTypes.object.isRequired,
 };
 
 export default Player;

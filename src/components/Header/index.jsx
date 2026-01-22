@@ -4,7 +4,6 @@ import MenuButton from "./_children/MenuButton";
 import Search from "./_children/Search";
 import LoginButton from "./_children/LoginButton";
 import ThemeToggle from "./_children/ThemeToggle";
-import PropTypes from "prop-types";
 
 const Container = styled.div`
   display: flex;
@@ -29,18 +28,15 @@ const Container = styled.div`
   }
 `;
 
-const Header = ({ handleSearch }) => {
+const Header = () => {
   return (
     <Container role="header">
       <MenuButton name="menu" />
-      <Search handleSearch={handleSearch} />
+      <Search />
       <LoginButton name="logIn" />
       <ThemeToggle name="themeToggle" />
     </Container>
   );
 };
 
-Header.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
-};
 export default Header;

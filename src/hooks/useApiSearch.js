@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const useApiSearch = (searchText, selectedVideo) => {
   const [isClientInit, setIsClientInit] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  const [resultVideos, setResultVideos] = useState([]);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -58,7 +58,7 @@ const useApiSearch = (searchText, selectedVideo) => {
         q: query,
         type: ["video"],
       });
-      setSearchResults(validateItems(response.result.items));
+      setResultVideos(validateItems(response.result.items));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -97,7 +97,7 @@ const useApiSearch = (searchText, selectedVideo) => {
     }
   }, [selectedVideo]);
 
-  return [searchResults, relatedVideos, loading];
+  return [resultVideos, relatedVideos, loading];
 };
 
 export default useApiSearch;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import VideoDetails from "./_children/VideoDetails";
 import VideoThumbnail from "./_children/VideoThumbnail";
+import AppContext from "../../context/appContext";
 
 const StyledItem = styled.div`
   display: flex;
@@ -19,9 +20,12 @@ const StyledItem = styled.div`
   }
 `;
 
-const VideoItem = ({ id, snippet, handleSelectedVideo }) => {
+const VideoItem = ({ id, snippet }) => {
+  const appContext = useContext(AppContext);
+  const { getRelatedVideos } = appContext;
+
   const onClick = () => {
-    handleSelectedVideo({ id, ...snippet });
+    getRelatedVideos({ id, ...snippet });
   };
 
   return (
@@ -37,7 +41,6 @@ const VideoItem = ({ id, snippet, handleSelectedVideo }) => {
 VideoItem.propTypes = {
   id: PropTypes.string.isRequired,
   snippet: PropTypes.object.isRequired,
-  handleSelectedVideo: PropTypes.func.isRequired,
 };
 
 export default VideoItem;

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+import AppContext from "../../../context/appContext";
 
 const Form = styled.form`
   display: flex;
@@ -36,8 +36,10 @@ const Form = styled.form`
   }
 `;
 
-const Search = ({ handleSearch }) => {
+const Search = () => {
   const [text, setText] = useState("");
+  const appContext = useContext(AppContext);
+  const { getResultVideos } = appContext;
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -49,7 +51,7 @@ const Search = ({ handleSearch }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (text !== "") {
-      handleSearch(text);
+      getResultVideos(text);
       document.getElementById("text").select();
     } else {
       console.log("Enter a search text");
@@ -75,10 +77,6 @@ const Search = ({ handleSearch }) => {
       />
     </Form>
   );
-};
-
-Search.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
 };
 
 export default Search;
