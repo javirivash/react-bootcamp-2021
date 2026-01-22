@@ -1,28 +1,48 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { StyledTitle } from "../VideoList/VideoList";
+
 const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.primaryText};
   display: flex;
-  justify-content: center;
-  position: fixed;
-  width: 100vw;
-  width: 100vh;
-  opacity: 0.6;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 64px;
+  padding-top: 64px;
+  opacity: 0.7;
+`;
+
+const StyledTitle = styled.h1`
+  font-family: "Roboto", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  color: ${(props) => props.theme.primaryText};
+  margin-bottom: 30px;
+  span {
+    font-size: 42px;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
 `;
 const StyledParagraph = styled.h1`
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
   color: ${(props) => props.theme.primaryText};
-  margin-bottom: 24px;
 `;
+
 const NotFound = () => {
+  const { pathname } = useLocation();
   return (
     <StyledContainer>
-      <StyledTitle>Not Found</StyledTitle>
+      <StyledTitle>
+        <span className="material-icons">smart_display</span>
+        Page Not Found
+      </StyledTitle>
       <StyledParagraph>
-        The page you are looking for does not exist...
+        No page matches the route <i>{pathname}</i>
       </StyledParagraph>
     </StyledContainer>
   );
