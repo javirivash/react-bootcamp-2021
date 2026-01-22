@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import AppContext from "../../../context/appContext";
+import React from "react";
+import { useAppContext } from "../../../context/appContext";
 import styled from "styled-components";
 import { StyledTitle } from "../../VideoList";
 
@@ -24,10 +24,9 @@ const StyledChannel = styled.h1`
 `;
 
 const PlayerDetails = () => {
-  const appContext = useContext(AppContext);
   const {
     selectedVideo: { title, description, channelTitle },
-  } = appContext;
+  } = useAppContext();
 
   return (
     <StyledContainer>

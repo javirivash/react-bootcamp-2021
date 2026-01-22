@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import AppContext from "../../../context/appContext";
+import { useAppContext } from "../../../context/appContext";
 
 const StyledButton = styled.button`
   color: ${(props) => props.theme.icon};
@@ -19,8 +19,7 @@ const StyledButton = styled.button`
 `;
 
 const ThemeToggle = () => {
-  const appContext = useContext(AppContext);
-  const { toggleTheme } = appContext;
+  const { toggleTheme } = useAppContext();
 
   const onClick = () => {
     toggleTheme();

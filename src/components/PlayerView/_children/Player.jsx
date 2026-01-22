@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import AppContext from "../../../context/appContext";
+import { useAppContext } from "../../../context/appContext";
 
 const StyledContainer = styled.div`
   max-width: 950px;
@@ -26,10 +26,9 @@ const StyledContainer = styled.div`
 `;
 
 const Player = () => {
-  const appContext = useContext(AppContext);
   const {
     selectedVideo: { id },
-  } = appContext;
+  } = useAppContext();
 
   return (
     <StyledContainer>
