@@ -47,7 +47,9 @@ const AppState = (props) => {
         q: query,
         type: ["video"],
       });
+      console.log("Response items: ", response.result.items);
       items = validateItems(response.result.items);
+      console.log("Validated items: ", items);
     } catch (error) {
       console.error("getResultVideos: Something went wrong... ", error);
     }

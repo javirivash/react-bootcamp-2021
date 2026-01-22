@@ -21,25 +21,24 @@ const StyledItem = styled.div`
   }
 `;
 
-const VideoItem = ({ id, snippet }) => {
+const VideoItem = ({ video }) => {
   const appContext = useContext(AppContext);
   const { getRelatedVideos } = appContext;
 
   const onClick = () => {
-    getRelatedVideos({ id, ...snippet });
+    getRelatedVideos(video);
   };
 
   return (
     <StyledItem role="videoItem" onClick={onClick}>
-      <VideoDetails snippet={snippet} />
-      <VideoThumbnail thumbnails={snippet.thumbnails} />
+      <VideoDetails video={video} />
+      <VideoThumbnail thumbnail={video.thumbnail} />
     </StyledItem>
   );
 };
 
 VideoItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  snippet: PropTypes.object.isRequired,
+  video: PropTypes.object.isRequired,
 };
 
 export default VideoItem;
