@@ -11,7 +11,6 @@ export const StyledTitle = styled.h1`
   color: ${(props) => props.theme.primaryText};
   margin-bottom: 24px;
 `;
-
 const ItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
