@@ -9,12 +9,12 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   :hover {
-    color: #080808;
-    background-color: #fda50f;
+    color: #c0c0c0;
+    background-color: #181818;
   }
 
   :active {
-    color: #c0c0c0;
+    color: #080808;
     background-color: #fda50f;
   }
 `;
