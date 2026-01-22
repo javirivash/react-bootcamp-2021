@@ -7,8 +7,9 @@ const StyledTitle = styled.h1`
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 22px;
-  color: #101010;
+  color: ${(props) => props.theme.primaryText};
   height: 42px;
+  overflow-wrap: anywhere;
   overflow-y: hidden;
 `;
 

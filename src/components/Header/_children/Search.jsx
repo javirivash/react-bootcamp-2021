@@ -9,30 +9,29 @@ const Form = styled.form`
   width: 300px;
 
   #text {
-    font-size: 16px;
     color: #c0c0c0;
-    background-color: #202020;
+    font-size: 16px;
+    background-color: #101010;
+    border: none;
     border-radius: 3px 0 0 3px;
     width: 85%;
     padding: 8px;
   }
 
   #submit {
+    color: #c0c0c0;
     font-size: 20px;
-    color: #a0a0a0;
-    background-color: #202020;
-    border-left: 1px solid #101010;
+    background-color: #101010;
+    border: none;
+    border-left: 1px solid #181818;
     border-radius: 0 3px 3px 0;
     width: 15%;
     cursor: pointer;
+    opacity: 0.7;
   }
 
   #submit:hover {
-    background-color: #181818;
-  }
-
-  #submit:active {
-    color: #d0d0d0;
+    opacity: 1;
   }
 `;
 

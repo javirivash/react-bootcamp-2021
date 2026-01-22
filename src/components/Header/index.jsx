@@ -13,13 +13,12 @@ const Container = styled.div`
   z-index: 1;
   top: 0;
   width: 100%;
-  background-color: #101010;
+  background-color: rgb(24, 24, 24, 0.99);
   height: 64px;
   padding: 16px;
 
   * {
     text-align: center;
-    border: none;
     height: 34px;
   }
 

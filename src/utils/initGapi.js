@@ -4,7 +4,7 @@ const initGapi = async () => {
   let apiKey;
   let discovery = {};
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.REACT_APP_API_KEY) {
     apiKey = process.env.REACT_APP_API_KEY;
   } else {
     apiKey = process.env.API_KEY;
