@@ -36,19 +36,21 @@ const Form = styled.form`
   }
 `;
 
-const Search = ({ handleSearch, handleShowSearch }) => {
+const Search = ({ handleSearch }) => {
   const [text, setText] = useState("");
 
   const onChange = (e) => {
     setText(e.target.value);
+  };
+  const onClick = () => {
+    document.getElementById("text").select();
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (text !== "") {
       handleSearch(text);
-      handleShowSearch(true);
-      setText("");
+      document.getElementById("text").select();
     } else {
       console.log("Enter a search text");
     }
@@ -63,6 +65,7 @@ const Search = ({ handleSearch, handleShowSearch }) => {
         placeholder="Search"
         value={text}
         onChange={onChange}
+        onClick={onClick}
       />
       <input
         id="submit"
@@ -76,7 +79,6 @@ const Search = ({ handleSearch, handleShowSearch }) => {
 
 Search.propTypes = {
   handleSearch: PropTypes.func.isRequired,
-  handleShowSearch: PropTypes.func.isRequired,
 };
 
 export default Search;

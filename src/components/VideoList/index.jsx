@@ -1,9 +1,9 @@
 import React from "react";
-import VideoItem from "./VideoItem/index.jsx";
+import VideoItem from "../VideoItem";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const ItemsContainer = styled.article`
+const ItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -11,23 +11,24 @@ const ItemsContainer = styled.article`
   margin: auto;
 `;
 
-const Videos = ({ handleShowSearch, resultVideos }) => {
+const VideoList = ({ resultVideos, handleSelectedVideo }) => {
   return (
-    <ItemsContainer>
+    <ItemsContainer role="videoList">
       {resultVideos.map((item) => (
         <VideoItem
-          handleShowSearch={handleShowSearch}
-          key={item.etag}
+          key={item.id.videoId}
+          id={item.id.videoId}
           snippet={item.snippet}
+          handleSelectedVideo={handleSelectedVideo}
         />
       ))}
     </ItemsContainer>
   );
 };
 
-Videos.propTypes = {
-  handleShowSearch: PropTypes.func.isRequired,
+VideoList.propTypes = {
   resultVideos: PropTypes.array.isRequired,
+  handleSelectedVideo: PropTypes.func.isRequired,
 };
 
-export default Videos;
+export default VideoList;

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import VideoItem from ".";
-import snippet from "./snippet.json";
+import snippet from "./snippet-mock.json";
 
 describe("VideoItem", () => {
   test("thumbnail is in the document", () => {

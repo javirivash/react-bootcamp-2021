@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
-import Header from "./Header";
-import Videos from "./Videos";
-import VideoDetailsView from "./VideoDetailsView";
-import Spinner from "./Spinner";
-import useApiSearch from "../hooks/useApiSearch";
+import Header from "./components/Header";
+import VideoList from "./components/VideoList";
+import VideoDetailsView from "./components/VideoDetailsView";
+import Spinner from "./components/layout/Spinner";
+import useApiSearch from "./hooks/useApiSearch";
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -21,45 +21,50 @@ const MainTitle = styled.h1`
   margin: 90px auto 35px;
 `;
 
-const Content = styled.main`
+const Content = styled.div`
   padding: 0 30px;
+  margin: 1px solid blue;
 `;
 
 const App = () => {
   const [searchText, setSearchText] = useState("Wizeline Academy");
-  const [resultVideos, loading] = useApiSearch(searchText);
   const [shouldShowSearch, setShouldShowSearch] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState({});
+  const [resultVideos, loading] = useApiSearch(searchText, selectedVideo);
 
   const handleSearch = (text) => {
     setSearchText(text);
+    setShouldShowSearch(true);
   };
 
-  const handleShowSearch = (shouldShow) => {
-    setShouldShowSearch(shouldShow);
+  const handleSelectedVideo = (videoProps) => {
+    setSelectedVideo(videoProps);
+    setShouldShowSearch(false);
   };
 
   return (
     <Fragment>
       <GlobalStyle />
       <div className="App">
-        <Header
-          handleShowSearch={handleShowSearch}
-          handleSearch={handleSearch}
-        />
-        <MainTitle>Welcome to YouTubit</MainTitle>
+        <Header handleSearch={handleSearch} />
         {loading ? (
           <Spinner />
         ) : (
           <Content>
             {shouldShowSearch ? (
               <Fragment>
-                <Videos
-                  handleShowSearch={handleShowSearch}
+                <MainTitle>Welcome to YouTubit</MainTitle>
+                <VideoList
                   resultVideos={resultVideos}
+                  handleSelectedVideo={handleSelectedVideo}
                 />
               </Fragment>
             ) : (
-              <VideoDetailsView name={"javier"} />
+              <VideoDetailsView
+                selectedVideo={selectedVideo}
+                resultVideos={resultVideos}
+                handleSelectedVideo={handleSelectedVideo}
+              />
             )}
           </Content>
         )}
