@@ -40,12 +40,12 @@ const Form = styled.form`
 
 const Search = () => {
   const [text, setText] = useState("");
-  const { getResultVideos, handleInitGapi } = useAppContext();
+  const { getResultVideos, initApis } = useAppContext();
   const { setAlert } = useAlertContext();
   const history = useHistory();
 
   useEffect(() => {
-    handleInitGapi();
+    initApis();
   }, []);
 
   const onChange = (e) => {
