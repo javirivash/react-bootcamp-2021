@@ -3,6 +3,12 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 
+// import useAppContext from "./context/AppState";
+// jest.mock("./context/AppState");
+// useAppContext.mockReturnValue({loading:true});
+// useAppContext.mockResolvedValue({loading:true});
+// jest.resetAllMocks();
+
 describe("App", () => {
   test("header is in the document", () => {
     render(<App />);
