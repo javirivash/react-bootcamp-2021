@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useAppContext } from "../../../context/appContext";
+import { useAppContext } from "../../../context/app/appContext";
+import { useAlertContext } from "../../../context/alert/alertContext";
 
 const Form = styled.form`
   display: flex;
@@ -11,6 +12,7 @@ const Form = styled.form`
   #text {
     color: #c0c0c0;
     font-size: 16px;
+    font-family: "Roboto", sans-serif;
     background-color: #101010;
     border: none;
     border-radius: 3px 0 0 3px;
@@ -38,6 +40,7 @@ const Form = styled.form`
 const Search = () => {
   const [text, setText] = useState("");
   const { getResultVideos } = useAppContext();
+  const { setAlert } = useAlertContext();
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -52,7 +55,7 @@ const Search = () => {
       getResultVideos(text);
       document.getElementById("text").select();
     } else {
-      console.log("Enter a search text");
+      setAlert("Enter a search text");
     }
   };
 

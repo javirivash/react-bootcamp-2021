@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   justify-self: end;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #c0c0c0;
   background-color: transparent;

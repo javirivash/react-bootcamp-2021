@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppContext } from "../../../context/appContext";
+import { useAppContext } from "../../../context/app/appContext";
 import styled from "styled-components";
 import { StyledTitle } from "../../VideoList";
 
