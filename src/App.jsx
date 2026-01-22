@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertState from "./context/alert/AlertState";
 import AppState from "./context/app/AppState";
 import styled from "styled-components";
