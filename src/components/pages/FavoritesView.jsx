@@ -9,7 +9,6 @@ const StyledContainer = styled.div`
 `;
 const FavoritesView = () => {
   const { currentFavorites } = useAppContext();
-
   const favoritesTitle = (
     <Fragment>
       {currentFavorites.length > 0
