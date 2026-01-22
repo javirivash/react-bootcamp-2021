@@ -10,7 +10,6 @@ describe("SideMenu", () => {
   const shouldShowMenu = true;
   const toggleMenu = jest.fn();
   const renderComponent = (contextValue = {}) => {
-    render(<div id="menuPortal"></div>);
     render(
       <AppContext.Provider
         value={{
@@ -43,14 +42,14 @@ describe("SideMenu", () => {
     it("shows Favorites link", () => {
       renderComponent();
       expect(
-        screen.getByRole("link", { name: /Favorites/i })
+        screen.getByRole("link", { name: /Favorite/i })
       ).toBeInTheDocument();
     });
 
     it("resets the scroll position when clicking either link", () => {
       renderComponent();
       userEvent.click(screen.getByRole("link", { name: /Home/i }));
-      userEvent.click(screen.getByRole("link", { name: /Favorites/i }));
+      userEvent.click(screen.getByRole("link", { name: /Favorite/i }));
       expect(window.scrollTo).toHaveBeenCalledTimes(2);
     });
   });
