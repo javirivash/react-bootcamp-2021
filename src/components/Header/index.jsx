@@ -28,11 +28,11 @@ const Container = styled.nav`
   }
 `;
 
-const Header = ({ handleSearch }) => {
+const Header = ({ handleSearch, handleShowSearch }) => {
   return (
     <Container>
       <MenuButton name="menu" />
-      <Search handleSearch={handleSearch} />
+      <Search handleSearch={handleSearch} handleShowSearch={handleShowSearch} />
       <LoginButton name="logIn" />
       <ThemeToggle name="themeToggle" />
     </Container>
@@ -41,5 +41,6 @@ const Header = ({ handleSearch }) => {
 
 Header.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  handleShowSearch: PropTypes.func.isRequired,
 };
 export default Header;

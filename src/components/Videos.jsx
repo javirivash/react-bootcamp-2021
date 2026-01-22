@@ -11,19 +11,23 @@ const ItemsContainer = styled.article`
   margin: auto;
 `;
 
-const Videos = ({ fetchedVideos }) => {
-  console.log("Videos fetched: ", fetchedVideos);
+const Videos = ({ handleShowSearch, resultVideos }) => {
   return (
     <ItemsContainer>
-      {fetchedVideos.map((item) => (
-        <VideoItem key={item.etag} snippet={item.snippet} />
+      {resultVideos.map((item) => (
+        <VideoItem
+          handleShowSearch={handleShowSearch}
+          key={item.etag}
+          snippet={item.snippet}
+        />
       ))}
     </ItemsContainer>
   );
 };
 
 Videos.propTypes = {
-  fetchedVideos: PropTypes.array.isRequired,
+  handleShowSearch: PropTypes.func.isRequired,
+  resultVideos: PropTypes.array.isRequired,
 };
 
 export default Videos;

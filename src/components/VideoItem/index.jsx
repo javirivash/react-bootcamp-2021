@@ -19,16 +19,23 @@ const StyledItem = styled.div`
   }
 `;
 
-const VideoItem = ({ snippet }) => {
+const VideoItem = ({ handleShowSearch, snippet }) => {
+  const onClick = () => {
+    handleShowSearch(false);
+  };
+
   return (
-    <StyledItem>
-      <VideoDetails snippet={snippet} />
-      <VideoThumbnail thumbnails={snippet.thumbnails} />
-    </StyledItem>
+    <div onClick={onClick}>
+      <StyledItem>
+        <VideoDetails snippet={snippet} />
+        <VideoThumbnail thumbnails={snippet.thumbnails} />
+      </StyledItem>
+    </div>
   );
 };
 
 VideoItem.propTypes = {
+  handleShowSearch: PropTypes.func.isRequired,
   snippet: PropTypes.object.isRequired,
 };
 
