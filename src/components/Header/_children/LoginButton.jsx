@@ -33,17 +33,17 @@ const LoginButton = () => {
   } = useAppContext();
 
   const onClick = () => {
-    if (!currentUser.id) {
-      activateLogin();
-    } else {
+    if (currentUser.isLoggedIn) {
       logOutUser();
+    } else {
+      activateLogin();
     }
   };
 
   return (
     <div>
       <StyledButton onClick={onClick}>
-        {!currentUser.id ? "Sign up" : "Log out"}
+        {currentUser.isLoggedIn ? "Log out" : "Sign up"}
       </StyledButton>
       {shouldShowLogin && <Modal />}
     </div>

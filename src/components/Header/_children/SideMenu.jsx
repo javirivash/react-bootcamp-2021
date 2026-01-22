@@ -58,7 +58,7 @@ const SideMenu = () => {
         <Link to={"/"} onClick={onClick} replace>
           <span className="material-icons">home</span>
         </Link>
-        {currentUser.id && (
+        {currentUser.isLoggedIn && (
           <Link to={"/favorites"} onClick={onClick} replace>
             <span className="material-icons">favorite</span>
           </Link>
