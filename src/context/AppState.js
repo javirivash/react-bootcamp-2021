@@ -14,7 +14,7 @@ const AppState = (props) => {
     selectedVideo: {},
     relatedVideos: [],
     showPlayer: false,
-    loading: false,
+    loading: true,
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
