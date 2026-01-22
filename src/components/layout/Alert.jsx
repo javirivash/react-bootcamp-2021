@@ -8,13 +8,15 @@ const StyledAlert = styled.div`
   align-items: center;
   position: fixed;
   z-index: 1;
-  bottom: 0px;
+  bottom: 0;
   background-color: ${(props) => props.theme.alert};
   border-radius: 5px;
   margin: 10px 2%;
   width: 96%;
   padding: 18px;
   box-shadow: ${(props) => props.theme.shadow};
+  opacity: ${(props) => (props.alert ? "1" : "0")};
+  transition: opacity 0.3s ease-out;
 
   * {
     font-size: 14px;
@@ -35,20 +37,15 @@ const StyledButton = styled.i`
 
 const Alert = () => {
   const { alert, removeAlert } = useAlertContext();
-  const onClick = () => {
-    removeAlert();
-  };
 
   return (
-    alert !== null && (
-      <StyledAlert>
-        <StyledIcon className="material-icons">error</StyledIcon>
-        <StyledMessage>{alert}</StyledMessage>
-        <StyledButton onClick={onClick} className="material-icons">
-          close
-        </StyledButton>
-      </StyledAlert>
-    )
+    <StyledAlert alert={!!alert}>
+      <StyledIcon className="material-icons">error</StyledIcon>
+      <StyledMessage>{alert}</StyledMessage>
+      <StyledButton onClick={() => removeAlert()} className="material-icons">
+        close
+      </StyledButton>
+    </StyledAlert>
   );
 };
 

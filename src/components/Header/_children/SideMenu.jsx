@@ -1,19 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../../context/app/appContext";
 import styled from "styled-components";
-import AriaModal from "react-aria-modal";
 
 const StyledMenu = styled.div`
   position: fixed;
   z-index: 2;
   top: 64px;
-  left: 0;
+  left: ${(props) => (props.shouldShowMenu ? "0" : "-66px")};
   background-color: rgb(28, 28, 28, 0.99);
   color: #c0c0c0;
   border-radius: 0 0 5px 5px;
   width: 66px;
-
+  height: 100%;
+  transition: all 0.4s ease-out;
   a {
     display: block;
     font-family: "Roboto", sans-serif;
@@ -38,6 +38,14 @@ const StyledMenu = styled.div`
     }
   }
 `;
+const StyledPage = styled.div`
+  display: ${(props) => (props.shouldShowMenu ? "block" : "none")};
+  position: fixed;
+  top: 0;
+  left: 66px;
+  bottom: 0;
+  right: 0;
+`;
 
 const SideMenu = () => {
   const { currentUser, shouldShowMenu, toggleMenu } = useAppContext();
@@ -45,16 +53,9 @@ const SideMenu = () => {
     window.scrollTo(0, 0);
   };
 
-  if (!shouldShowMenu) return null;
   return (
-    <AriaModal
-      titleText="menuModal"
-      scrollDisabled={false}
-      underlayColor={false}
-      focusTrapPaused={true}
-      onExit={toggleMenu}
-    >
-      <StyledMenu onClick={toggleMenu}>
+    <Fragment>
+      <StyledMenu shouldShowMenu={shouldShowMenu} onClick={toggleMenu}>
         <Link to={"/"} onClick={onClick} replace>
           <span className="material-icons">home</span>
         </Link>
@@ -64,7 +65,8 @@ const SideMenu = () => {
           </Link>
         )}
       </StyledMenu>
-    </AriaModal>
+      <StyledPage shouldShowMenu={shouldShowMenu} onClick={toggleMenu} />
+    </Fragment>
   );
 };
 
