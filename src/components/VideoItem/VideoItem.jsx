@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useAppContext } from "../../context/app/appContext";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import VideoItemDetails from "./_children/VideoItemDetails";
 import VideoThumbnail from "./_children/VideoThumbnail";
-import { useAppContext } from "../../context/app/appContext";
 
 const StyledItem = styled.div`
   display: flex;
@@ -29,10 +29,15 @@ const StyledItem = styled.div`
 const VideoItem = ({ video }) => {
   const { getRelatedVideos } = useAppContext();
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const onClick = () => {
     getRelatedVideos(video);
-    history.push("/player");
+    if (pathname.includes("/favorites")) {
+      history.push("/favorites/player");
+    } else {
+      history.push("/player");
+    }
   };
 
   return (

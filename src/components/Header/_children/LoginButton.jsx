@@ -13,11 +13,14 @@ const StyledButton = styled.button`
   border-radius: 14px;
   margin: 0 10px;
   padding: 8px 12px;
-  min-width: 70px;
+  min-width: 74px;
   cursor: pointer;
   opacity: 0.7;
 
   :hover {
+    opacity: 1;
+  }
+  :focus {
     opacity: 1;
   }
 `;

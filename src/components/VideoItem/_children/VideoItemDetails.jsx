@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import FavoriteButton from "../../layout/FavoriteButton";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ const StyledTitle = styled.h1`
   color: ${(props) => props.theme.primaryText};
   height: 42px;
   overflow-wrap: anywhere;
-  overflow-y: hidden;
+  overflow: hidden;
 `;
 
 const StyledDescription = styled.p`
@@ -28,11 +29,11 @@ const StyledDescription = styled.p`
   color: ${(props) => props.theme.secondaryText};
   height: 60px;
   overflow-wrap: anywhere;
+  text-overflow: ellipsis;
   overflow: hidden;
 `;
 
 const StyledChannel = styled.h1`
-  align-self: flex-end;
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
   color: ${(props) => props.theme.secondaryText};
@@ -41,12 +42,23 @@ const StyledChannel = styled.h1`
   overflow: hidden;
 `;
 
-const VideoItemDetails = ({ video: { title, description, channelTitle } }) => {
+const StyledFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const VideoItemDetails = ({ video }) => {
+  const { title, description, channelTitle } = video;
+
   return (
     <StyledContainer>
       <StyledTitle>{title}</StyledTitle>
       <StyledDescription>{description}</StyledDescription>
-      <StyledChannel>{channelTitle}</StyledChannel>
+      <StyledFlex>
+        <FavoriteButton video={video} />
+        <StyledChannel>{channelTitle}</StyledChannel>
+      </StyledFlex>
     </StyledContainer>
   );
 };

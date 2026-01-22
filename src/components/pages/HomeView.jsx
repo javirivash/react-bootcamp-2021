@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import VideoList from "../components/VideoList/VideoList";
-import { useAppContext } from "../context/app/appContext";
+import VideoList from "../VideoList/VideoList";
+import { useAppContext } from "../../context/app/appContext";
 import styled from "styled-components";
 
 const MainTitle = styled.h1`

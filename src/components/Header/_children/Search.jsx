@@ -31,10 +31,12 @@ const Form = styled.form`
     width: 15%;
     cursor: pointer;
     opacity: 0.7;
-  }
-
-  #submit:hover {
-    opacity: 1;
+    :hover {
+      opacity: 1;
+    }
+    :focus {
+      opacity: 1;
+    }
   }
 `;
 

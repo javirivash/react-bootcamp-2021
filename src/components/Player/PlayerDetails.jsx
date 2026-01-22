@@ -2,6 +2,7 @@ import React from "react";
 import { useAppContext } from "../../context/app/appContext";
 import { StyledTitle } from "../VideoList/VideoList";
 import styled from "styled-components";
+import FavoriteButton from "../layout/FavoriteButton";
 
 const StyledContainer = styled.div`
   font-family: "DM Sans", sans-serif;
@@ -10,10 +11,20 @@ const StyledContainer = styled.div`
   padding: 24px 0 70px;
 `;
 
+const StyledFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 const StyledDescription = styled.p`
   font-size: 16px;
+  line-height: 24px;
+
   color: ${(props) => props.theme.secondaryText};
   max-height: 170px;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
   overflow: hidden;
 `;
 
@@ -24,13 +35,15 @@ const StyledChannel = styled.h1`
 `;
 
 const PlayerDetails = () => {
-  const {
-    selectedVideo: { title, description, channelTitle },
-  } = useAppContext();
+  const { selectedVideo } = useAppContext();
+  const { title, description, channelTitle } = selectedVideo;
 
   return (
     <StyledContainer>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledFlex>
+        <StyledTitle>{title}</StyledTitle>
+        <FavoriteButton video={selectedVideo} />
+      </StyledFlex>
       <StyledDescription>{description}</StyledDescription>
       <StyledChannel>Posted by {channelTitle}</StyledChannel>
     </StyledContainer>
