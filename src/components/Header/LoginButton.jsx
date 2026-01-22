@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
+  justify-self: end;
   border-radius: 3px;
   font-size: 16px;
   color: #101010;
   background-color: #c0c0c0;
   border-radius: 14px;
-  margin: 0 0.6rem;
-  padding: 0.5rem 0.8rem;
+  margin: 0 10px;
+  padding: 8px 12px;
   min-width: 70px;
   cursor: pointer;
 
