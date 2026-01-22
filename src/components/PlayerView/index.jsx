@@ -14,7 +14,7 @@ const PlayerView = () => {
   const appContext = useContext(AppContext);
   const { showPlayer, loading, relatedVideos } = appContext;
 
-  const title = "More videos you may like";
+  const listTitle = "More videos you may like";
 
   return (
     showPlayer &&
@@ -22,7 +22,7 @@ const PlayerView = () => {
       <StyledContainer>
         <Player />
         <PlayerDetails />
-        <VideoList title={title} videos={relatedVideos} />
+        <VideoList listTitle={listTitle} videos={relatedVideos} />
       </StyledContainer>
     )
   );
