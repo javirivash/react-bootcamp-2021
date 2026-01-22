@@ -28,7 +28,7 @@ const StyledMenu = styled.div`
     padding: 21px;
     opacity: 0.7;
     :hover {
-      background-color: rgb(30, 30, 30, 0.99);
+      background-color: rgb(30, 30, 30, 0.97);
       border-radius: 0 0 5px 5px;
     }
     :focus {

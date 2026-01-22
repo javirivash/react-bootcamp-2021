@@ -5,48 +5,47 @@ const updateLocalFavorites = (resultVideos, relatedVideos, favorites) => {
     favorites: favorites,
   };
 
-  // UPDATE REMOVED FAVORITES FROM RESULTS
-  updatedLocalFavorites.results = resultVideos.map((result) => {
-    if (result.isFavorite) {
-      const favoriteMatch = favorites.filter((favorite) => {
-        return result.id === favorite.id;
-      });
-      if (favoriteMatch.length == 0) {
-        result.isFavorite = false;
+  const updateRemovedFavorites = (videos, favorites) => {
+    return videos.map((video) => {
+      if (video.isFavorite) {
+        video.isFavorite = favorites.some((favorite) => {
+          return video.id === favorite.id;
+        });
       }
-    }
-    return result;
-  });
+      return video;
+    });
+  };
+
+  const updateAddedFavorite = (videos, favorite) => {
+    return videos.map((video) => {
+      if (favorite.id == video.id) {
+        video.isFavorite = true;
+      }
+      return video;
+    });
+  };
+
+  // UPDATE REMOVED FAVORITES FROM RESULTS
+  updatedLocalFavorites.results = updateRemovedFavorites(
+    resultVideos,
+    favorites
+  );
 
   // UPDATE REMOVED FAVORITES FROM RELATED
-  updatedLocalFavorites.related = relatedVideos.map((related) => {
-    if (related.isFavorite) {
-      const favoriteMatch = favorites.filter((favorite) => {
-        return related.id === favorite.id;
-      });
-      if (favoriteMatch.length == 0) {
-        related.isFavorite = false;
-      }
-    }
-    return related;
-  });
+  updatedLocalFavorites.related = updateRemovedFavorites(
+    relatedVideos,
+    favorites
+  );
 
   favorites.forEach((favorite) => {
-    // ADD FAVORITES TO RESULTS
-    updatedLocalFavorites.results = resultVideos.map((resultVideo) => {
-      if (favorite.id == resultVideo.id) {
-        resultVideo.isFavorite = true;
-      }
-      return resultVideo;
-    });
+    // ADD FAVORITE TO RESULTS
+    updatedLocalFavorites.results = updateAddedFavorite(resultVideos, favorite);
 
-    // ADD FAVORITES TO RELATED
-    updatedLocalFavorites.related = relatedVideos.map((relatedVideo) => {
-      if (favorite.id == relatedVideo.id) {
-        relatedVideo.isFavorite = true;
-      }
-      return relatedVideo;
-    });
+    // ADD FAVORITE TO RELATED
+    updatedLocalFavorites.related = updateAddedFavorite(
+      relatedVideos,
+      favorite
+    );
   });
   return updatedLocalFavorites;
 };
