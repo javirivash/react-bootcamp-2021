@@ -17,7 +17,7 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <h1>Hello danger!</h1>
+      <h1>Hello yellow!</h1>
       {authenticated ? (
         <>
           <h2>Good to have you back</h2>
