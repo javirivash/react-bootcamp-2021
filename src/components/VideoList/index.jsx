@@ -11,10 +11,10 @@ const ItemsContainer = styled.div`
   margin: auto;
 `;
 
-const VideoList = ({ resultVideos, handleSelectedVideo }) => {
+const VideoList = ({ videos, handleSelectedVideo }) => {
   return (
     <ItemsContainer role="videoList">
-      {resultVideos.map((item) => (
+      {videos.map((item) => (
         <VideoItem
           key={item.id.videoId}
           id={item.id.videoId}
@@ -27,7 +27,7 @@ const VideoList = ({ resultVideos, handleSelectedVideo }) => {
 };
 
 VideoList.propTypes = {
-  resultVideos: PropTypes.array.isRequired,
+  videos: PropTypes.array.isRequired,
   handleSelectedVideo: PropTypes.func.isRequired,
 };
 

@@ -36,11 +36,7 @@ const DetailsContainer = styled.div`
   }
 `;
 
-const VideoDetailsView = ({
-  selectedVideo,
-  resultVideos,
-  handleSelectedVideo,
-}) => {
+const PlayerView = ({ selectedVideo, relatedVideos, handleSelectedVideo }) => {
   const { title, description, channelTitle } = selectedVideo;
 
   return (
@@ -54,7 +50,7 @@ const VideoDetailsView = ({
         </DetailsContainer>
         <h1 className="title">Related Videos</h1>
         <VideoList
-          resultVideos={resultVideos}
+          videos={relatedVideos}
           handleSelectedVideo={handleSelectedVideo}
         />
       </Container>
@@ -62,11 +58,10 @@ const VideoDetailsView = ({
   );
 };
 
-VideoDetailsView.propTypes = {
+PlayerView.propTypes = {
   selectedVideo: PropTypes.object.isRequired,
-  resultVideos: PropTypes.array.isRequired,
+  relatedVideos: PropTypes.array.isRequired,
   handleSelectedVideo: PropTypes.func.isRequired,
-  onYouTubeIframeAPIReady: PropTypes.func.isRequired,
 };
 
-export default VideoDetailsView;
+export default PlayerView;

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Header from "./components/Header";
 import VideoList from "./components/VideoList";
-import VideoDetailsView from "./components/VideoDetailsView";
+import PlayerView from "./components/PlayerView";
 import Spinner from "./components/layout/Spinner";
 import useApiSearch from "./hooks/useApiSearch";
 import styled, { createGlobalStyle } from "styled-components";
@@ -28,9 +28,12 @@ const Content = styled.div`
 
 const App = () => {
   const [searchText, setSearchText] = useState("Wizeline Academy");
-  const [shouldShowSearch, setShouldShowSearch] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState({});
-  const [resultVideos, loading] = useApiSearch(searchText, selectedVideo);
+  const [shouldShowSearch, setShouldShowSearch] = useState(true);
+  const [searchResults, relatedVideos, loading] = useApiSearch(
+    searchText,
+    selectedVideo
+  );
 
   const handleSearch = (text) => {
     setSearchText(text);
@@ -55,14 +58,14 @@ const App = () => {
               <Fragment>
                 <MainTitle>Welcome to YouTubit</MainTitle>
                 <VideoList
-                  resultVideos={resultVideos}
+                  videos={searchResults}
                   handleSelectedVideo={handleSelectedVideo}
                 />
               </Fragment>
             ) : (
-              <VideoDetailsView
+              <PlayerView
                 selectedVideo={selectedVideo}
-                resultVideos={resultVideos}
+                relatedVideos={relatedVideos}
                 handleSelectedVideo={handleSelectedVideo}
               />
             )}
