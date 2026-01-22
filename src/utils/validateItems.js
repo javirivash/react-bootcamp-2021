@@ -7,7 +7,7 @@ const validateItems = (items) => {
     return text.replace(/&#34;/g, '"').replace(/&#39;/g, "'");
   };
 
-  return filteredItems.slice(0, 24).reduce((acc, item) => {
+  return filteredItems.slice(0, 24).map((item) => {
     const {
       title,
       description,
@@ -17,16 +17,14 @@ const validateItems = (items) => {
       },
     } = item.snippet;
 
-    const newItem = {
+    return {
       id: item.id.videoId,
       title: restoreQuotes(title),
       description: restoreQuotes(description),
       channelTitle: restoreQuotes(channelTitle),
       thumbnail: url,
     };
-
-    return acc.concat(newItem);
-  }, []);
+  });
 };
 
 export default validateItems;
