@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import reactPlugin from 'eslint-plugin-react';
 import vitest from '@vitest/eslint-plugin';
 import globals from 'globals';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 
 const config = [
   {
