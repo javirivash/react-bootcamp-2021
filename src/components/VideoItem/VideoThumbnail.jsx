@@ -9,7 +9,7 @@ const Thumbnail = styled.img`
 `;
 
 const VideoThumbnail = (props) => {
-  return <Thumbnail src={props.thumbnails.medium.url} alt="" />;
+  return <Thumbnail src={props.thumbnails.medium.url} alt="thumbnail" />;
 };
 
 VideoThumbnail.propTypes = {
