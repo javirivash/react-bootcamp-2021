@@ -5,7 +5,14 @@ import AppContext from "./appContext";
 import AppReducer from "./appReducer";
 import validateItems from "../utils/validateItems";
 import initGapi from "../utils/initGapi";
-import { GET_RESULT_VIDEOS, GET_RELATED_VIDEOS, SET_LOADING } from "./types";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./themes";
+import {
+  GET_RESULT_VIDEOS,
+  GET_RELATED_VIDEOS,
+  SET_LOADING,
+  TOGGLE_THEME,
+} from "./types";
 
 const AppState = (props) => {
   const initialState = {
@@ -15,6 +22,7 @@ const AppState = (props) => {
     relatedVideos: [],
     showPlayer: false,
     loading: true,
+    theme: "light",
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -78,6 +86,12 @@ const AppState = (props) => {
     dispatch({ type: SET_LOADING });
   };
 
+  // TOGGLE THEME
+  const toggleTheme = () => {
+    const updatedTheme = state.theme === "light" ? "dark" : "light";
+    dispatch({ type: TOGGLE_THEME, payload: updatedTheme });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -87,13 +101,18 @@ const AppState = (props) => {
         relatedVideos: state.relatedVideos,
         showPlayer: state.showPlayer,
         loading: state.loading,
+        theme: state.theme,
         handleInitGapi,
         getResultVideos,
         getRelatedVideos,
         setLoading,
+        toggleTheme,
       }}
     >
-      {props.children}
+      <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        {props.children}
+      </ThemeProvider>
     </AppContext.Provider>
   );
 };
