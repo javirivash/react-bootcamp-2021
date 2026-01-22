@@ -10,30 +10,31 @@ const initGapi = async () => {
     apiKey = process.env.API_KEY;
   }
 
-  const handleClientLoad = async () => {
-    try {
-      const response = await fetch(
-        "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
-      );
-      discovery = await response.json();
-      gapi.load("client", handleClientInit);
-    } catch (error) {
-      console.error("handleClientLoad: Something went wrong... ", error);
-    }
-  };
-
-  const handleClientInit = async () => {
+  const handleClientInit = async (resolve) => {
     try {
       await gapi.client.init({
         apiKey: apiKey,
         discoveryDocs: [discovery],
       });
+      resolve();
     } catch (error) {
       console.error("handleClientInit: Something went wrong... ", error);
     }
   };
 
-  handleClientLoad();
+  try {
+    const response = await fetch(
+      "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+    );
+    discovery = await response.json();
+    return new Promise((resolve) => {
+      gapi.load("client", () => {
+        handleClientInit(resolve);
+      });
+    });
+  } catch (error) {
+    console.error("handleClientLoad: Something went wrong... ", error);
+  }
 };
 
 export default initGapi;

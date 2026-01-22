@@ -1,5 +1,4 @@
 const validateItems = (items) => {
-  let validatedItems = [];
   const filteredItems = items.filter((item) => {
     return item.snippet && item.id?.videoId;
   });
@@ -8,7 +7,7 @@ const validateItems = (items) => {
     return text.replace(/&#34;/g, '"').replace(/&#39;/g, "'");
   };
 
-  filteredItems.slice(0, 24).forEach((item) => {
+  return filteredItems.slice(0, 24).reduce((acc, item) => {
     const {
       title,
       description,
@@ -26,10 +25,8 @@ const validateItems = (items) => {
       thumbnail: url,
     };
 
-    validatedItems.push(newItem);
-  });
-
-  return validatedItems;
+    return acc.concat(newItem);
+  }, []);
 };
 
 export default validateItems;
