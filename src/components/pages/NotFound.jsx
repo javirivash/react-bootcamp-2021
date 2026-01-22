@@ -25,7 +25,7 @@ const StyledTitle = styled.h1`
     margin-right: 12px;
   }
 `;
-const StyledParagraph = styled.h1`
+const StyledDescription = styled.h1`
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   line-height: 28px;
@@ -41,9 +41,9 @@ const NotFound = () => {
         <span className="material-icons">smart_display</span>
         Page Not Found
       </StyledTitle>
-      <StyledParagraph>
+      <StyledDescription>
         No page matches the route <i>{pathname}</i>
-      </StyledParagraph>
+      </StyledDescription>
     </StyledContainer>
   );
 };
