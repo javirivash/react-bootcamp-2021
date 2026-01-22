@@ -1,15 +1,35 @@
 const validateItems = (items) => {
-  const validatedItems = items.filter((item) => {
+  let validatedItems = [];
+  const filteredItems = items.filter((item) => {
     return item.snippet && item.id?.videoId;
   });
-  return validatedItems.slice(0, 24);
-};
 
-// let items;
-// .forEach((item)=>{
-//   item.snippet.channelTitle.replace(/&#34;/g, '"').replace(/&#39;/g, ''')
-//   item.snippet.channelTitle.replace(/&#34;/g, '"').replace(/&#39;/g, ''')
-//   item.snippet.channelTitle.replace(/&#34;/g, '"').replace(/&#39;/g, ''')
-// });
+  const restoreQuotes = (text) => {
+    return text.replace(/&#34;/g, '"').replace(/&#39;/g, "'");
+  };
+
+  filteredItems.slice(0, 24).forEach((item) => {
+    const {
+      title,
+      description,
+      channelTitle,
+      thumbnails: {
+        medium: { url },
+      },
+    } = item.snippet;
+
+    const newItem = {
+      id: item.id.videoId,
+      title: restoreQuotes(title),
+      description: restoreQuotes(description),
+      channelTitle: restoreQuotes(channelTitle),
+      thumbnail: url,
+    };
+
+    validatedItems.push(newItem);
+  });
+
+  return validatedItems;
+};
 
 export default validateItems;

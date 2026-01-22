@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import AppContext from "../../../context/appContext";
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   max-width: 950px;
   max-height: 534px;
   margin: auto;
@@ -32,7 +32,7 @@ const Player = () => {
   } = appContext;
 
   return (
-    <Container>
+    <StyledContainer>
       <div className="wrapper">
         <iframe
           id="player"
@@ -44,7 +44,7 @@ const Player = () => {
           allow="autoplay; fullscreen"
         ></iframe>
       </div>
-    </Container>
+    </StyledContainer>
   );
 };
 

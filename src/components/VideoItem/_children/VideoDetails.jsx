@@ -13,7 +13,7 @@ const Details = styled.article`
   padding-right: 12px;
 `;
 
-const VideoDetails = ({ snippet: { title, channelTitle, description } }) => {
+const VideoDetails = ({ video: { title, channelTitle, description } }) => {
   return (
     <Details>
       <VideoTitle title={title} />
@@ -24,7 +24,7 @@ const VideoDetails = ({ snippet: { title, channelTitle, description } }) => {
 };
 
 VideoDetails.propTypes = {
-  snippet: PropTypes.object.isRequired,
+  video: PropTypes.object.isRequired,
 };
 
 export default VideoDetails;

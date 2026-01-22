@@ -19,17 +19,13 @@ const ItemsContainer = styled.div`
   padding-left: 20px;
 `;
 
-const VideoList = ({ title, videos }) => {
+const VideoList = ({ listTitle, videos }) => {
   return (
     <Fragment>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>{listTitle}</StyledTitle>
       <ItemsContainer role="videoList">
         {videos.map((item) => (
-          <VideoItem
-            key={item.id.videoId}
-            id={item.id.videoId}
-            snippet={item.snippet}
-          />
+          <VideoItem key={item.id} video={item} />
         ))}
       </ItemsContainer>
     </Fragment>
@@ -37,7 +33,7 @@ const VideoList = ({ title, videos }) => {
 };
 
 VideoList.propTypes = {
-  title: PropTypes.string.isRequired,
+  listTitle: PropTypes.string.isRequired,
   videos: PropTypes.array.isRequired,
 };
 
