@@ -3,7 +3,7 @@ import VideoItem from "./VideoItem/index.jsx";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const ItemsContainer = styled.div`
+const ItemsContainer = styled.article`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -5,7 +5,7 @@ import Search from "./Search";
 import LoginButton from "./LoginButton";
 import ThemeToggle from "./ThemeToggle";
 
-const Container = styled.div`
+const Container = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -26,13 +26,13 @@ const Container = styled.div`
   }
 `;
 
-const Header = (handleThemeToggle) => {
+const Header = () => {
   return (
     <Container>
-      <MenuButton />
+      <MenuButton name="menu" />
       <Search />
-      <LoginButton />
-      <ThemeToggle handleThemeToggle={handleThemeToggle} />
+      <LoginButton name="logIn" />
+      <ThemeToggle name="themeToggle" />
     </Container>
   );
 };
