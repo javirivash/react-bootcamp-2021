@@ -4,18 +4,21 @@ import Spinner from "./components/layout/Spinner";
 import HomeView from "./components/HomeView/HomeView";
 import PlayerView from "./components/PlayerView";
 import styled from "styled-components";
-import { GlobalStyles } from "./context/themes";
 import AppState from "./context/AppState";
 
 const Content = styled.div`
+  background-color: ${(props) => props.theme.background};
+  min-height: 100vh;
   padding: 0 30px;
-  background-color: ${(props) => props.theme.color};
+
+  @media only screen and (max-width: 530px) {
+    padding: 0;
+  }
 `;
 
 const App = () => {
   return (
     <AppState>
-      <GlobalStyles />
       <div className="App">
         <Header />
         <Content>

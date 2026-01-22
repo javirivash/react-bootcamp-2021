@@ -1,7 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 import VideoItem from "../VideoItem";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+
+export const StyledTitle = styled.h1`
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  color: ${(props) => props.theme.primaryText};
+  margin-bottom: 24px;
+`;
 
 const ItemsContainer = styled.div`
   display: flex;
@@ -9,23 +16,28 @@ const ItemsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
+  padding-left: 20px;
 `;
 
-const VideoList = ({ videos }) => {
+const VideoList = ({ title, videos }) => {
   return (
-    <ItemsContainer role="videoList">
-      {videos.map((item) => (
-        <VideoItem
-          key={item.id.videoId}
-          id={item.id.videoId}
-          snippet={item.snippet}
-        />
-      ))}
-    </ItemsContainer>
+    <Fragment>
+      <StyledTitle>{title}</StyledTitle>
+      <ItemsContainer role="videoList">
+        {videos.map((item) => (
+          <VideoItem
+            key={item.id.videoId}
+            id={item.id.videoId}
+            snippet={item.snippet}
+          />
+        ))}
+      </ItemsContainer>
+    </Fragment>
   );
 };
 
 VideoList.propTypes = {
+  title: PropTypes.string.isRequired,
   videos: PropTypes.array.isRequired,
 };
 

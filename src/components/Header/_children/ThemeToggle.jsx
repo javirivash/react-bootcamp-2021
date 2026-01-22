@@ -3,20 +3,18 @@ import styled from "styled-components";
 import AppContext from "../../../context/appContext";
 
 const StyledButton = styled.button`
-  color: #c0c0c0;
-  background-color: transparent;
+  color: ${(props) => props.theme.icon};
+  background-color: ${(props) => props.theme.toggle};
+  border: none;
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
+  opacity: 0.7;
 
   :hover {
     color: #c0c0c0;
-    background-color: #181818;
-  }
-
-  :active {
-    color: #080808;
-    background-color: #fda50f;
+    background-color: transparent;
+    opacity: 1;
   }
 `;
 

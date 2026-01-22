@@ -6,8 +6,9 @@ const Description = styled.p`
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
   line-height: 20px;
-  color: #303030;
+  color: ${(props) => props.theme.secondaryText};
   height: 60px;
+  overflow-wrap: anywhere;
   overflow: hidden;
 `;
 

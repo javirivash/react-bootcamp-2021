@@ -6,8 +6,10 @@ const StyledChannel = styled.h1`
   align-self: flex-end;
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
-  color: #303030;
+  color: ${(props) => props.theme.secondaryText};
   height: 20px;
+  overflow-wrap: anywhere;
+  overflow: hidden;
 `;
 
 const VideoChannel = (props) => {

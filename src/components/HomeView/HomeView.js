@@ -7,24 +7,37 @@ const MainTitle = styled.h1`
   font-family: "Oswald", sans-serif;
   font-size: 48px;
   text-align: center;
-  margin: 90px auto 35px;
+  color: ${(props) => props.theme.primaryText};
+  margin: 64px auto 35px;
+  padding-top: 20px;
+
+  @media only screen and (max-width: 420px) {
+    font-size: 38px;
+  }
 `;
 
 const HomeView = () => {
   const appContext = useContext(AppContext);
-
-  const { resultVideos, showPlayer, loading, handleInitGapi } = appContext;
+  const {
+    searchText,
+    resultVideos,
+    showPlayer,
+    loading,
+    handleInitGapi,
+  } = appContext;
 
   useEffect(() => {
     handleInitGapi();
   }, []);
+
+  const title = `Showing search results for "${searchText}"`;
 
   return (
     !showPlayer &&
     !loading && (
       <div>
         <MainTitle>Welcome to Youtubit</MainTitle>
-        <VideoList videos={resultVideos}></VideoList>
+        <VideoList title={title} videos={resultVideos}></VideoList>
       </div>
     )
   );
