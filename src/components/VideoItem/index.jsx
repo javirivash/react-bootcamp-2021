@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import VideoDetails from "./_children/VideoDetails";
 import VideoThumbnail from "./_children/VideoThumbnail";
-import { useAppContext } from "../../context/appContext";
+import { useAppContext } from "../../context/app/appContext";
 
 const StyledItem = styled.div`
   display: flex;

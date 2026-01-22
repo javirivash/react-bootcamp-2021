@@ -10,8 +10,6 @@ const initGapi = async () => {
     apiKey = process.env.API_KEY;
   }
 
-  console.log("process.env: ", process.env);
-
   const handleClientInit = async (resolve) => {
     try {
       await gapi.client.init({

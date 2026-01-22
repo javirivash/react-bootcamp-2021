@@ -3,7 +3,7 @@ import {
   GET_RELATED_VIDEOS,
   SET_LOADING,
   TOGGLE_THEME,
-} from "./types";
+} from "../types";
 
 export default (state, action) => {
   switch (action.type) {

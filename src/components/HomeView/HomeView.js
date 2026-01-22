@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import VideoList from "../VideoList";
-import { useAppContext } from "../../context/appContext";
+import { useAppContext } from "../../context/app/appContext";
 import styled from "styled-components";
 
 const MainTitle = styled.h1`
@@ -34,10 +34,10 @@ const HomeView = () => {
   return (
     !showPlayer &&
     !loading && (
-      <div>
+      <Fragment>
         <MainTitle>Welcome to Youtubit</MainTitle>
         <VideoList listTitle={searchTitle} videos={resultVideos}></VideoList>
-      </div>
+      </Fragment>
     )
   );
 };
