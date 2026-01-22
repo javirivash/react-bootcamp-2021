@@ -5,7 +5,8 @@ const StyledButton = styled.button`
   color: #c0c0c0;
   background-color: #101010;
   border-radius: 3px;
-  width: 2.2rem;
+  margin-right: 90px;
+  width: 34px;
   cursor: pointer;
 
   :hover {
@@ -14,6 +15,10 @@ const StyledButton = styled.button`
 
   :active {
     background-color: #080808;
+  }
+
+  @media only screen and (max-width: 580px) {
+    margin-right: 10px;
   }
 `;
 
