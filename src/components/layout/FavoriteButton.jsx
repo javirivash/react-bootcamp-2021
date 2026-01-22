@@ -47,6 +47,5 @@ const FavoriteButton = ({ video }) => {
 
 FavoriteButton.propTypes = {
   video: PropTypes.object.isRequired,
-  isFavorite: PropTypes.bool,
 };
 export default FavoriteButton;
