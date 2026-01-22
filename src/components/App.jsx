@@ -76,7 +76,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // fetch only when text is not empty && youtube api is loaded
+    // fetch only when text is not empty && youtube api is
     searchRequest(searchText);
   }, [searchText]);
 
