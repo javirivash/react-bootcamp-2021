@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import VideoDetails from "./VideoDetails";
-import VideoThumbnail from "./VideoThumbnail";
+import VideoDetails from "./_children/VideoDetails";
+import VideoThumbnail from "./_children/VideoThumbnail";
 
 const StyledItem = styled.div`
   display: flex;
@@ -19,13 +19,13 @@ const StyledItem = styled.div`
   }
 `;
 
-const VideoItem = ({ handleShowSearch, snippet }) => {
+const VideoItem = ({ id, snippet, handleSelectedVideo }) => {
   const onClick = () => {
-    handleShowSearch(false);
+    handleSelectedVideo({ id, ...snippet });
   };
 
   return (
-    <div onClick={onClick}>
+    <div role="videoItem" onClick={onClick}>
       <StyledItem>
         <VideoDetails snippet={snippet} />
         <VideoThumbnail thumbnails={snippet.thumbnails} />
@@ -35,8 +35,9 @@ const VideoItem = ({ handleShowSearch, snippet }) => {
 };
 
 VideoItem.propTypes = {
-  handleShowSearch: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   snippet: PropTypes.object.isRequired,
+  handleSelectedVideo: PropTypes.func.isRequired,
 };
 
 export default VideoItem;
