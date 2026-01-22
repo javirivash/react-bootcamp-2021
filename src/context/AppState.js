@@ -93,13 +93,7 @@ const AppState = (props) => {
   return (
     <AppContext.Provider
       value={{
-        searchText: state.searchText,
-        resultVideos: state.resultVideos,
-        selectedVideo: state.selectedVideo,
-        relatedVideos: state.relatedVideos,
-        showPlayer: state.showPlayer,
-        loading: state.loading,
-        theme: state.theme,
+        ...state,
         handleInitGapi,
         getResultVideos,
         getRelatedVideos,
