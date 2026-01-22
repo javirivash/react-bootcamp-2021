@@ -1,4 +1,9 @@
-import { GET_RESULT_VIDEOS, GET_RELATED_VIDEOS, SET_LOADING } from "./types";
+import {
+  GET_RESULT_VIDEOS,
+  GET_RELATED_VIDEOS,
+  SET_LOADING,
+  TOGGLE_THEME,
+} from "./types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -22,6 +27,11 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case TOGGLE_THEME:
+      return {
+        ...state,
+        theme: action.payload,
       };
     default:
       return state;

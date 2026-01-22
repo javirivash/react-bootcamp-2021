@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import AppContext from "../../../context/appContext";
 
 const StyledButton = styled.button`
   color: #c0c0c0;
@@ -20,10 +21,17 @@ const StyledButton = styled.button`
 `;
 
 const ThemeToggle = () => {
+  const appContext = useContext(AppContext);
+  const { toggleTheme } = appContext;
+
+  const onClick = () => {
+    toggleTheme();
+  };
+
   return (
-    <div>
-      <StyledButton className="material-icons">dark_mode</StyledButton>
-    </div>
+    <StyledButton onClick={onClick} className="material-icons">
+      dark_mode
+    </StyledButton>
   );
 };
 

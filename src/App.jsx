@@ -3,31 +3,23 @@ import Header from "./components/Header";
 import Spinner from "./components/layout/Spinner";
 import HomeView from "./components/HomeView/HomeView";
 import PlayerView from "./components/PlayerView";
-import styled, { createGlobalStyle } from "styled-components";
-
+import styled from "styled-components";
+import { GlobalStyles } from "./context/themes";
 import AppState from "./context/AppState";
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-`;
 
 const Content = styled.div`
   padding: 0 30px;
-  margin: 1px solid blue;
+  background-color: ${(props) => props.theme.color};
 `;
 
 const App = () => {
   return (
     <AppState>
-      <GlobalStyle />
+      <GlobalStyles />
       <div className="App">
         <Header />
-        <Spinner />
         <Content>
+          <Spinner />
           <HomeView />
           <PlayerView />
         </Content>
