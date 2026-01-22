@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Player from "./_children/Player";
 import VideoList from "../VideoList";
+import AppContext from "../../context/appContext";
 
 const Container = styled.div`
   margin: 64px auto;
@@ -36,32 +36,30 @@ const DetailsContainer = styled.div`
   }
 `;
 
-const PlayerView = ({ selectedVideo, relatedVideos, handleSelectedVideo }) => {
-  const { title, description, channelTitle } = selectedVideo;
+const PlayerView = () => {
+  const appContext = useContext(AppContext);
+  const {
+    showPlayer,
+    loading,
+    relatedVideos,
+    selectedVideo: { title, description, channelTitle },
+  } = appContext;
 
   return (
-    <Fragment>
+    showPlayer &&
+    !loading && (
       <Container>
-        <Player selectedVideo={selectedVideo} />
+        <Player />
         <DetailsContainer>
           <h1 className="title">{title}</h1>
           <p className="description">{description}</p>
           <h1 className="channelTitle">Posted by {channelTitle}</h1>
         </DetailsContainer>
         <h1 className="title">Related Videos</h1>
-        <VideoList
-          videos={relatedVideos}
-          handleSelectedVideo={handleSelectedVideo}
-        />
+        <VideoList videos={relatedVideos} />
       </Container>
-    </Fragment>
+    )
   );
-};
-
-PlayerView.propTypes = {
-  selectedVideo: PropTypes.object.isRequired,
-  relatedVideos: PropTypes.array.isRequired,
-  handleSelectedVideo: PropTypes.func.isRequired,
 };
 
 export default PlayerView;
