@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import AppContext from "../../../context/appContext";
+import { useAppContext } from "../../../context/appContext";
 
 const Form = styled.form`
   display: flex;
@@ -37,8 +37,7 @@ const Form = styled.form`
 
 const Search = () => {
   const [text, setText] = useState("");
-  const appContext = useContext(AppContext);
-  const { getResultVideos } = appContext;
+  const { getResultVideos } = useAppContext();
 
   const onChange = (e) => {
     setText(e.target.value);
